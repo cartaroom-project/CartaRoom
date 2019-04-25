@@ -2,8 +2,10 @@ import Vue from 'vue';
 import firebase from 'firebase';
 import App from './App.vue';
 import router from './router';
+import VueFire from 'vuefire';
 
 Vue.config.productionTip = false;
+Vue.use(VueFire);
 
 let app = '';
 const config = {
@@ -16,6 +18,7 @@ const config = {
 };
 
 firebase.initializeApp(config);
+
 
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {

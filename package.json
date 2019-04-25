@@ -11,7 +11,8 @@
     "core-js": "^2.6.5",
     "firebase": "^5.10.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3"
+    "vue-router": "^3.0.3",
+    "vuefire": "^1.4.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",

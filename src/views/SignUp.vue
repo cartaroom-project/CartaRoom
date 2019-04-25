@@ -23,6 +23,7 @@
       signUp: function() {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
+            firebase.database().ref('users').push({email: this.email, edit: false})
             this.$router.replace('home')
           },
           (err) => {
