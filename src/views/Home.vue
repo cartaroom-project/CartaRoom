@@ -10,7 +10,7 @@
 </template>
 
 <script>
-// import firebase from 'firebase';
+import firebase from 'firebase';
 import db from '@/firebase.js';
 db.ref('users').once('value').then(function(snapshot) {
   console.log(snapshot.val());
