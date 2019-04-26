@@ -10,6 +10,7 @@
 
  <script>
   import firebase from 'firebase';
+  import axios from 'axios';
 
   export default {
     name: 'signUp',
@@ -21,6 +22,13 @@
     },
     methods: {
       signUp: function() {
+        // axios.post('https://us-central1-cartaroom-3f36f.cloudfunctions.net/addUser',{email: this.email, password: this.password}).then(
+        //   function(response){
+        //     console.log(response);
+        //   }
+        // ).catch(function(error){
+        //   console.log(error);
+        // });
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             firebase.database().ref('users').push({email: this.email, edit: false})
@@ -34,6 +42,8 @@
     }
   }
 </script>
+
+
 
  <style scoped>
   .sign-up {
