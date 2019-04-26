@@ -1,8 +1,17 @@
 <template>
   <div class="sign-up">
-    <p>Let's create a new account !</p>
-    <input type="text" v-model="email" placeholder="Email"><br>
-    <input type="password" v-model="password" placeholder="Password"><br>
+    <p>Let's create a new account!</p>
+
+
+      Picked:{{ credentials.isAdmin }}
+      <br>
+
+      <label>Admin</label>
+      <input type="checkbox" true-value="true" false-value="false" v-model="credentials.isAdmin">
+        <br>
+    <input type="text" v-model="credentials.email" placeholder="Email"><br>
+    <input type="password" v-model="credentials.password" placeholder="Password">
+      <br>
     <button @click="signUp">Sign Up</button>
     <span>or go back to <router-link to="/login">login</router-link>.</span>
   </div>
@@ -12,25 +21,39 @@
   import firebase from 'firebase';
 
   export default {
-    name: 'signUp',
-    data() {
+      name: 'signUp',
+      data() {
       return {
-        email: '',
-        password: ''
+          credentials:
+              {
+                  email: '',
+                  password: '',
+                  isAdmin: 'false'
+              }
       }
     },
     methods: {
       signUp: function() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
           (user) => {
-            firebase.database().ref('users').push({email: this.email, edit: false})
+            firebase.database().ref('users').push({email: this.credentials.email, edit: false, isAdmin:this.credentials.isAdmin})
             this.$router.replace('home')
           },
           (err) => {
             alert('Oops. ' + err.message)
           }
         );
-      }
+      },
+
+      // post: function()
+      // {
+      //    this.$http.post(firebase.database().ref('users'), this.credentials).then(function (data) {
+      //
+      //        this.submitted=true;
+      //        this.$router.replace('home')
+      //        }
+      //    )
+      // }
     }
   }
 </script>
