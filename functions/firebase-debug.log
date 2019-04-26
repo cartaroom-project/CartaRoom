@@ -1,0 +1,28 @@
+[debug] [2019-04-25T21:14:23.465Z] ----------------------------------------------------------------------
+[debug] [2019-04-25T21:14:23.468Z] Command:       /usr/local/Cellar/node/11.9.0/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2019-04-25T21:14:23.468Z] CLI Version:   6.7.1
+[debug] [2019-04-25T21:14:23.468Z] Platform:      darwin
+[debug] [2019-04-25T21:14:23.468Z] Node Version:  v11.9.0
+[debug] [2019-04-25T21:14:23.469Z] Time:          Thu Apr 25 2019 14:14:23 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-04-25T21:14:23.469Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-25T21:14:23.480Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-25T21:14:23.480Z] > authorizing via signed-in user
+[debug] [2019-04-25T21:14:23.480Z] [iam] checking project cartaroom-3f36f for permissions ["firebase.projects.get"]
+[debug] [2019-04-25T21:14:23.482Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/cartaroom-3f36f:testIamPermissions  
+
+[debug] [2019-04-25T21:14:23.660Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-25T21:14:23.662Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cartaroom-3f36f  
+ 
+[debug] [2019-04-25T21:14:23.860Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/vincent/Library/Mobile Documents/com~apple~CloudDocs/Programming/html/CartaRoom'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-04-25T21:14:24.658Z] Fetching environment
+[debug] [2019-04-25T21:14:24.660Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/292210465189:getServerAppConfig  
+ 
+[debug] [2019-04-25T21:14:24.779Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-25T21:14:24.779Z] Starting @google-cloud/functions-emulator
+[debug] [2019-04-25T21:14:24.813Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
