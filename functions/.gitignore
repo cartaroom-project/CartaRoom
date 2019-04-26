@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 ## Compiled JavaScript files
 **/*.js
 **/*.js.map
@@ -5,4 +7,5 @@
 # Typescript v1 declaration files
 typings/
 
+>>>>>>> 7a1cba671ce767870a3ee4a5ee6e4f75afded907
 node_modules/

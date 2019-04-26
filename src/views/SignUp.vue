@@ -19,6 +19,7 @@
 
  <script>
   import firebase from 'firebase';
+  import axios from 'axios';
 
   export default {
       name: 'signUp',
@@ -57,6 +58,8 @@
     }
   }
 </script>
+
+
 
  <style scoped>
   .sign-up {
