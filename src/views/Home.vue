@@ -15,11 +15,24 @@
 <script>
 import firebase from 'firebase';
 import db from '@/firebase.js';
+
 db.ref('rooms').once('value').then(function(snapshot) {
   console.log(snapshot.val());
 }).catch((error) => {
   console.log(error);
 });
+
+  var userID;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+    userID = user.uid;
+  } else {
+    console.log("No user available"); 
+    userID = "null";
+  }
+});
+
 export default {
   name: 'home',
    data () {
@@ -38,7 +51,7 @@ export default {
         console.log(error);
       });
 
-        db.ref('rooms').once('value').then((snapshot) => {
+        db.ref('rooms').orderByChild("userID").equalTo(userID).once('value').then((snapshot) => {
         this.rooms = [];
         snapshot.forEach((doc) => {
           this.rooms.push(doc.val());

@@ -14,13 +14,25 @@
  <script>
   import firebase from 'firebase';
   import axios from 'axios';
+  var userID;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+    userID = user.uid;
+  } else {
+    console.log("No user available"); 
+    userID = "null";
+  }
+});
 
   export default {
       name: 'addRoom',
+      
       data() {
       return {
           roomInfo:
               {
+                  userID: userID,
                   name: '',
                   capacity: '',
                   decription: '',
@@ -30,7 +42,7 @@
     },
     methods: {
       addRoom: function() {
-            firebase.database().ref('rooms').push({name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address })
+            firebase.database().ref('rooms').push({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address })
             this.$router.replace('home')
       }
     },
