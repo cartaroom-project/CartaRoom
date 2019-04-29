@@ -1,6 +1,6 @@
 <template>
    <div class="search">
-        <h1>Reserve a Room</h1>
+        <h1>Reserve a Room(Patron Home Page)</h1>
 		<input type="text" placeholder="Location">
 		<button @click="search">Search</button>
     </div>

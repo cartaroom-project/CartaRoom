@@ -1,8 +1,8 @@
 <template>
   <div class="results">
     <ul>
-      <h2>Search Results</h2>
-      <li v-for="room of rooms" v-bind:key ="room['.key']">{{room.name}}</li>
+      <h2>Search Results<br /><br /> </h2>
+      <li v-for="room of rooms" v-bind:key ="room['.key']">Name: {{room.name}} <br />Capacity: {{room.capacity}} <br /> Address: {{room.address}} <br /> <br /></li>
       <router-link to="/search">Back to Search</router-link>
     </ul>
   </div>
