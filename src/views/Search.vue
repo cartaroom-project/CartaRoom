@@ -1,16 +1,23 @@
 <template>
-   <div id="search">
+   <div class="search">
         <h1>Reserve a Room</h1>
-        <form>
-		Location: <input type= "text">
-		<button type="button" value="Submit" onclick="ClickMe()">Search</button>
-		<p id="Search"></p>
-		</form>
+		<input type="text" placeholder="Location">
+		<button @click="search">Search</button>
     </div>
 </template>
 
 <script>
-function ClickMe() {
-	document.getElementById("Search").innerHTML = "Searching";
+  export default {
+    name: 'search',
+    data() {
+      return {
+      }
+    },
+	methods: {
+	search: function(){	
+	//document.getElementById("Search").innerHTML = "Searching";
+	this.$router.replace('results')
+		},
 	}
+  }
 </script>

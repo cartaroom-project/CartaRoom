@@ -7,6 +7,8 @@ import Login from '@/views/Login';
 import SignUp from '@/views/SignUp';
 import About from '@/views/About';
 import AddRoom from '@/views/AddRoom';
+import Search from '@/views/Search';
+import Results from '@/views/Results';
 
 Vue.use(Router);
 
@@ -50,6 +52,16 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search,
+    },
+    {
+      path: '/results',
+      name: 'Results',
+      component: Results,
     }
   ]
 });

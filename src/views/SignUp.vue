@@ -2,7 +2,6 @@
   <div class="sign-up">
     <p>Let's create a new account!</p>
 
-
       Picked:{{ credentials.isAdmin }}
       <br>
 
