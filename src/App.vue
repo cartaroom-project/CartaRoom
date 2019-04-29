@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <TopNavbar></TopNavbar>
     <div id="nav">
       <router-link to="/login">Login</router-link> |
       <router-link to="/sign-up">Sign Up</router-link>
@@ -30,3 +31,9 @@
   color: #42b983;
 }
 </style>
+<script>
+  import TopNavbar from "./components/TopNavbar";
+  export default {
+    components: {TopNavbar}
+  }
+</script>
