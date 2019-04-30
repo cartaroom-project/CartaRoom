@@ -2,7 +2,12 @@
   <div class="results">
     <ul>
       <h2>Search Results<br /><br /> </h2>
-      <li v-for="room of rooms" v-bind:key ="room['.key']">Name: {{room.name}} <br />Capacity: {{room.capacity}} <br /> Address: {{room.address}} <br /> <br /></li>
+      <ul v-for="room of rooms" v-bind:key ="room['.key']">
+        Name: {{room.name}} <br />
+        Capacity: {{room.capacity}} <br />
+        Address: {{room.address}} <br /> 
+      <button @click="bookRoom">Book Room</button> <br />
+      </ul>
       <router-link to="/search">Back to Search</router-link>
     </ul>
   </div>
@@ -34,11 +39,10 @@ export default {
       });
     },
   methods: {
-    // logout: function() {
-    //   firebase.auth().signOut().then(() => {
-    //     this.$router.replace('login')
-    //   })
-    // }
+     bookRoom: function() {
+        alert('Congrats you have booked the room!');
+        this.$router.replace('search')
+     }
   }
 }
 </script>

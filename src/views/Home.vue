@@ -4,7 +4,12 @@
       <h1>You are an Host</h1>
       <h2>List of All rooms</h2>
       <router-link to="/addRoom">Host a new Room<br /><br /></router-link>
-      <li v-for="room of rooms" v-bind:key ="room['.key']">Name: {{room.name}} <br />Capacity: {{room.capacity}} <br /> Address: {{room.address}} <br /> <br /></li>
+      <ul v-for="room of rooms" v-bind:key ="room['.key']">
+      Name: {{room.name}} <br />
+      Capacity: {{room.capacity}} <br /> 
+      Address: {{room.address}} <br /> 
+      <button v-on:click="deleteRoom(room.uniqueKey)">Delete Room</button>
+      <br /></ul>
     </ul>
     <button @click="logout">Logout</button>
   </div>
@@ -54,6 +59,12 @@ export default {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
+    },
+      deleteRoom: function(id) {
+        console.log('unique ID ' + id);
+        db.ref('rooms').child(id).remove();
+        alert('Room Deleted!');
+        this.$router.go();
     }
   }
 }

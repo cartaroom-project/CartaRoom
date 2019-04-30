@@ -2,9 +2,10 @@
   <div class="sign-up">
     <p>Let's add a new room</p>
     <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
-    <input type="text" v-model="roomInfo.capacity" placeholder="Capacity"><br>
+    <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
     <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
     <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
+    <!-- <input type = "file" @click="uploadImage"> -->
       <br>
     <button @click="addRoom">Add Room</button>
     <router-link to="/home">Cancel</router-link>
@@ -14,14 +15,18 @@
  <script>
   import firebase from 'firebase';
   import axios from 'axios';
+
   var userID;
+  var uniqueKeyID = '1';
+  var storageRef = firebase.storage().ref();
+
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
    // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
     userID = user.uid;
   } else {
    // console.log("No user available"); 
-    userID = "null";
+    userID = 'null';
   }
 });
 
@@ -36,13 +41,17 @@
                   name: '',
                   capacity: '',
                   decription: '',
-                  address: ''
+                  address: '',
+                  uniqueKeyID: uniqueKeyID
               }
       }
     },
     methods: {
       addRoom: function() {
-            firebase.database().ref('rooms').push({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address })
+            uniqueKeyID = firebase.database().ref('rooms').push({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID})
+            console.log(uniqueKeyID.key);
+            this.roomInfo.uniqueKeyID = uniqueKeyID.key;
+            firebase.database().ref('rooms/' + uniqueKeyID.key).update({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID})
             this.$router.replace('home')
       }
     },
