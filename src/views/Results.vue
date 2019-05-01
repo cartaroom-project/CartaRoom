@@ -41,8 +41,14 @@ export default {
     },
   methods: {
      bookRoom: function(room) {
-         console.log(room)
+
+        var userEmail = firebase.auth().currentUser.email;
+        var uniqueKeyIDBooking = '1';
+
+        console.log(room)
         firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
+        uniqueKeyIDBooking = firebase.database().ref('bookings').push({room: room, user: userEmail, bookingID: '1'})
+        firebase.database().ref('bookings/' + uniqueKeyIDBooking.key).update({room: room, user: userEmail, bookingID: uniqueKeyIDBooking.key})
         alert('Congrats you have booked the room!');
         this.$router.go();
      }

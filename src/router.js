@@ -57,11 +57,17 @@ const router = new Router({
       path: '/search',
       name: 'Search',
       component: Search,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/results',
       name: 'Results',
       component: Results,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });

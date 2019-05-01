@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!-- renders view once logged in -->
+      <!-- renders view after logged in -->
       <router-link to="/home">Dashboard</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/search">Search</router-link>

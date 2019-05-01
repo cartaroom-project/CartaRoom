@@ -7,11 +7,16 @@
       <ul v-for="room of rooms" v-bind:key ="room['.key']">
       Name: {{room.name}} <br />
       Capacity: {{room.capacity}} <br /> 
-      Address: {{room.address}} <br /> 
-      Reserved: {{room.reserved}} <button v-on:click="unbookRoom(room)">Reset Reservation Status</button> <br /> 
+      Address: {{room.address}} <br />  
       <button v-on:click="deleteRoom(room.uniqueKey)">Delete Room</button>
       <br /></ul>
     </ul>
+    <h2>List of All Bookings</h2>
+      <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
+      Room Name: {{booking.room.name}} <br />
+      Booker: {{booking.user}} <br /> 
+      <button v-on:click="unbookRoom(booking)">Remove Booking</button> <br /> 
+      </ul>
     <button @click="logout">Logout</button>
   </div>
 </template>
@@ -41,7 +46,7 @@ export default {
   name: 'home',
    data () {
     return {
-      users:[],
+      bookings:[],
       rooms: []
     }
    },
@@ -50,6 +55,15 @@ export default {
         this.rooms = [];
         snapshot.forEach((doc) => {
           this.rooms.push(doc.val());
+        }) 
+      }).catch((error) => {
+        console.log(error);
+      });
+
+        db.ref('bookings').orderByChild("room/userID").equalTo(userID).once('value').then((snapshot) => {
+        this.bookings = [];
+        snapshot.forEach((doc) => {
+          this.bookings.push(doc.val());
         }) 
       }).catch((error) => {
         console.log(error);
@@ -67,8 +81,9 @@ export default {
         alert('Room Deleted!');
         this.$router.go();
     },
-    unbookRoom: function(room) {
-        firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'false'})
+    unbookRoom: function(booking) {
+        firebase.database().ref('rooms/' + booking.room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'false'})
+        db.ref('bookings').child(bookings.bookingID).remove();
         alert('Room Status has been reset');
         this.$router.go();
     }
