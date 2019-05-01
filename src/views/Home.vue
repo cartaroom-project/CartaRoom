@@ -8,6 +8,7 @@
       Name: {{room.name}} <br />
       Capacity: {{room.capacity}} <br /> 
       Address: {{room.address}} <br /> 
+      Reserved: {{room.reserved}} <button v-on:click="unbookRoom(room)">Reset Reservation Status</button> <br /> 
       <button v-on:click="deleteRoom(room.uniqueKey)">Delete Room</button>
       <br /></ul>
     </ul>
@@ -64,6 +65,11 @@ export default {
         console.log('unique ID ' + id);
         db.ref('rooms').child(id).remove();
         alert('Room Deleted!');
+        this.$router.go();
+    },
+    unbookRoom: function(room) {
+        firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'false'})
+        alert('Room Status has been reset');
         this.$router.go();
     }
   }
