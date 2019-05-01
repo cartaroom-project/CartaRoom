@@ -15,7 +15,7 @@
       <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
       Room Name: {{booking.room.name}} <br />
       Booker: {{booking.user}} <br /> 
-      <button v-on:click="unbookRoom(booking)">Remove Booking</button> <br /> 
+      <button v-on:click="unbookRoom(booking, booking.room.uniqueID)">Remove Booking</button> <br /> 
       </ul>
     <button @click="logout">Logout</button>
   </div>
@@ -82,8 +82,8 @@ export default {
         this.$router.go();
     },
     unbookRoom: function(booking) {
-        firebase.database().ref('rooms/' + booking.room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'false'})
-        db.ref('bookings').child(bookings.bookingID).remove();
+        firebase.database().ref('rooms/' + booking.room.uniqueKey).update({userID: booking.room.userID, name: booking.room.name, capacity: booking.room.capacity, description: booking.room.description, address: booking.room.address, uniqueKey: booking.room.uniqueKey, reserved: 'false'})
+        db.ref('bookings').child(booking.bookingID).remove();
         alert('Room Status has been reset');
         this.$router.go();
     }
