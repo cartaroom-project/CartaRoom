@@ -15,6 +15,8 @@
       <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
       Room Name: {{booking.room.name}} <br />
       Booker: {{booking.user}} <br /> 
+      Start Time: {{booking.startTime}} <br /> 
+      End Time: {{booking.endTime}} <br /> 
       <button v-on:click="unbookRoom(booking, booking.room.uniqueID)">Remove Booking</button> <br /> 
       </ul>
     <button @click="logout">Logout</button>

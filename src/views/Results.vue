@@ -2,6 +2,9 @@
   <div class="results">
     <ul>
       <h2>Search Results<br /><br /> </h2>
+      Start Time: <input type="time" v-model="startTime"><br /> 
+      End Time: <input type="time" v-model="endTime"><br /> <br /> 
+
       <ul v-for="room of rooms" v-bind:key ="room['.key']">
         Name: {{room.name}} <br />
         Capacity: {{room.capacity}} <br />
@@ -26,7 +29,9 @@ export default {
   name: 'results',
    data () {
     return {
-      rooms: []
+      rooms: [],
+      startTime: '',
+      endTime: ''
     }
    },
     created () {
@@ -41,14 +46,15 @@ export default {
     },
   methods: {
      bookRoom: function(room) {
-
-        var userEmail = firebase.auth().currentUser.email;
+        var userInfo = firebase.auth().currentUser.email;
         var uniqueKeyIDBooking = '1';
 
         console.log(room)
+        console.log('Start Time: ' + this.startTime)
+
         firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
-        uniqueKeyIDBooking = firebase.database().ref('bookings').push({room: room, user: userEmail, bookingID: '1'})
-        firebase.database().ref('bookings/' + uniqueKeyIDBooking.key).update({room: room, user: userEmail, bookingID: uniqueKeyIDBooking.key})
+        uniqueKeyIDBooking = firebase.database().ref('bookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime})
+        firebase.database().ref('bookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime})
         alert('Congrats you have booked the room!');
         this.$router.go();
      }
