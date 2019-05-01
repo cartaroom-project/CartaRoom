@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- renders view before login -->
       <router-link to="/login">Login</router-link> |
       <router-link to="/sign-up">Sign Up</router-link> |
       <router-link to="/about">About</router-link> |
