@@ -14,3 +14,18 @@ const config = {
 
 let fb = firebase.initializeApp(config);
 export default fb.database();
+
+
+// Firebase rules:
+// {
+//   "rules": {
+//     "users": {
+//         ".read": true,
+//         ".write": true
+//     },
+//   "rooms": {
+//         ".read": true,
+//         ".write": true
+//     }
+//   }
+//  }

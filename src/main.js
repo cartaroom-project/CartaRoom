@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import firebase from 'firebase';
-import App from './App.vue';
+import App from './App.vue'; //Navbar for non-logged in user
+import App1 from './App1.vue'; //Navbar for logged in user
 import router from './router';
 import axios from 'axios';
 
@@ -10,8 +11,14 @@ let app;
 //export default firebase.database();
 
 firebase.auth().onAuthStateChanged(() => {
-  if (!app) {
+  if (firebase.auth().currentUser) {
     /* eslint-disable no-new */
+    app = new Vue({
+      router,
+      render: h => h(App1)
+    }).$mount('#app');
+  }
+  else{
     app = new Vue({
       router,
       render: h => h(App)
