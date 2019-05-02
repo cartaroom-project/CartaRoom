@@ -4,8 +4,7 @@
       <!-- renders view before login -->
       <router-link to="/login">Login</router-link> |
       <router-link to="/sign-up">Sign Up</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/search">Search</router-link>
+      <router-link to="/about">About</router-link> 
       <router-view></router-view>
     </div>
     
