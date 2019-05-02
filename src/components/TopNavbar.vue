@@ -6,6 +6,7 @@
 
 <script>
     import CompLogo from "./CompLogo";
+
     export default {
         name: "TopNavbar",
         components: {CompLogo}
