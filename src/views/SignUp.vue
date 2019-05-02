@@ -1,49 +1,59 @@
 <template>
-  <div class="sign-up">
-    <p>Let's create a new account!</p>
+ <div class="sign-up">
+   <p>Let's create a new account!</p>
 
-      Picked:{{ credentials.isAdmin }}
-      <br>
 
-      <label>Admin</label>
-      <input type="checkbox" true-value="true" false-value="false" v-model="credentials.isAdmin">
-        <br>
-    <input type="text" v-model="credentials.email" placeholder="Email"><br>
-    <input type="password" v-model="credentials.password" placeholder="Password">
-      <br>
-    <button @click="signUp">Sign Up</button>
-    <span>or go back to <router-link to="/login">login</router-link>.</span>
-  </div>
+     Picked:{{ credentials.isHost }}
+     <br>
+     <label for="host">Host</label>
+     <input id="host" type="radio" name="accType" v-bind:value="true" v-model="credentials.isHost"/>
+
+     <label for="patron">Patron</label>
+     <input id="patron" type="radio" name="accType" v-bind:value="false" v-model="credentials.isHost"/>
+
+       <br>
+   <input type="email" v-model="credentials.email" placeholder="Email"><br>
+   <input type="password" v-model="credentials.password" placeholder="Password">
+     <br>
+   <button @click="signUp">Sign Up</button>
+   <span>or go back to <router-link to="/login">login</router-link>.</span>
+ </div>
 </template>
 
- <script>
-  import firebase from 'firebase';
-  import axios from 'axios';
 
-  export default {
-      name: 'signUp',
-      data() {
-      return {
-          credentials:
-              {
-                  email: '',
-                  password: '',
-                  isAdmin: 'false'
-              }
-      }
-    },
+ <script>
+ import firebase from 'firebase';
+ var SetAccType = firebase.functions().httpsCallable('SetAccType');
+
+ export default {
+     name: 'signUp',
+     data() {
+     return {
+         credentials:
+             {
+                 email: '',
+                 password: '',
+                 isHost: true
+             }
+     }
+   },
     methods: {
-      signUp: function() {
-        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
+     signUp: function() {
+       firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
           (user) => {
-            firebase.database().ref('users').push({email: this.credentials.email, edit: false, isAdmin:this.credentials.isAdmin})
-            this.$router.replace('home')
-          },
-          (err) => {
-            alert('Oops. ' + err.message)
+          if(this.credentials.isHost){
+              SetAccType({isHost: this.credentials.isHost}).then(this.$router.replace('home')).catch(function(error) {
+              this.$router.replace('home')
+               console.log(error);
+              });
+          }else if(!this.credentials.isHost){
+              SetAccType({isHost: this.credentials.isHost}).then(this.$router.replace('search')).catch(function(error) {
+                this.$router.replace('search')
+               console.log(error);
+              });
           }
-        );
-      },
+          });
+     }
 
       // post: function()
       // {

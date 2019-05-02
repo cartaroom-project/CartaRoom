@@ -1,6 +1,6 @@
 <template>
   <div class="allCustomers">
-      <h1>You are an Host</h1>
+      <h1>You are a Host</h1>
     <h2>List of all Customers</h2>
       <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
       Customer: {{booking.user}} <br /> 
