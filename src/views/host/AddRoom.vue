@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up">
+  <div class="addRoom">
     <p>Let's add a new room</p>
     <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
     <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
