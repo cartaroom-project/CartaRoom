@@ -14,16 +14,11 @@ let app;
 //export default firebase.database();
 
 firebase.auth().onAuthStateChanged(() => {
-
-  app = new Vue({
-    router,
-    render: h => h(App)
-  }).$mount('#app');
-
+  if(firebase.auth().currentUser){
   firebase.auth().currentUser.getIdTokenResult()
   .then((idTokenResult) => {
     //console.log(idTokenResult)
-    // Confirm the user is an Admin.
+    // Confirm the user is an Host or Patron.
     if (idTokenResult.claims.host) {
       app = new Vue({
         router,
@@ -36,11 +31,12 @@ firebase.auth().onAuthStateChanged(() => {
       }).$mount('#app');
     }
   })
-  .catch((error) => {
-    console.log(error)
-  })
-
-
+}else{
+  app = new Vue({
+    router,
+    render: h => h(App)
+  }).$mount('#app');
+}
 });
 
 axios.defaults.baseURL = 'https://cartaroom-3f36f.firebaseio.com/'

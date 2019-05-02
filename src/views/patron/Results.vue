@@ -51,8 +51,8 @@ export default {
         var userInfo = firebase.auth().currentUser.email;
         var uniqueKeyIDBooking = '1';
 
-        console.log(room)
-        console.log('Start Time: ' + this.startTime)
+        //console.log(room)
+        //console.log('Start Time: ' + this.startTime)
 
         firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
         uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})

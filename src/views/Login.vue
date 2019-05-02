@@ -25,7 +25,7 @@
         (user) => {
           firebase.auth().currentUser.getIdTokenResult()
             .then((idTokenResult) => {
-              //console.log(idTokenResult)
+              console.log(idTokenResult)
               // Confirm the user is an Admin.
               if (idTokenResult.claims.host) {
                 this.$router.replace('home')
