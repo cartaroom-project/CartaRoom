@@ -2,13 +2,20 @@ import firebase from 'firebase';
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '@/views/Home';
+import Home from '@/views/host/Home';
+import AddRoom from '@/views/host/AddRoom';
+import CurrentBookings from '@/views/host/CurrentBookings';
+import AllBookings from '@/views/host/AllBookings';
+import AllCustomers from '@/views/host/AllCustomers';
+
 import Login from '@/views/Login';
 import SignUp from '@/views/SignUp';
 import About from '@/views/About';
-import AddRoom from '@/views/AddRoom';
-import Search from '@/views/Search';
-import Results from '@/views/Results';
+
+import Search from '@/views/patron/Search';
+import Results from '@/views/patron/Results';
+import CurrentBookingsPatron from '@/views/patron/CurrentBookingsPatron';
+import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
 
 Vue.use(Router);
 
@@ -54,6 +61,30 @@ const router = new Router({
       }
     },
     {
+      path: '/currentBookings',
+      name: 'CurrentBookings',
+      component: CurrentBookings,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/allBookings',
+      name: 'AllBookings',
+      component: AllBookings,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/allCustomers',
+      name: 'AllCustomers',
+      component: AllCustomers,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/search',
       name: 'Search',
       component: Search,
@@ -65,6 +96,22 @@ const router = new Router({
       path: '/results',
       name: 'Results',
       component: Results,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/currentBookingsPatron',
+      name: 'CurrentBookingsPatron',
+      component: CurrentBookingsPatron,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/allBookingsPatron',
+      name: 'AllBookingsPatron',
+      component: AllBookingsPatron,
       meta: {
         requiresAuth: true
       }
