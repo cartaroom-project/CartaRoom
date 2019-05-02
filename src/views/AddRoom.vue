@@ -40,18 +40,19 @@
                   userID: userID,
                   name: '',
                   capacity: '',
-                  decription: '',
+                  description: '',
                   address: '',
-                  uniqueKeyID: uniqueKeyID
+                  uniqueKeyID: uniqueKeyID,
+                  reserved: 'false'
               }
       }
     },
     methods: {
       addRoom: function() {
-            uniqueKeyID = firebase.database().ref('rooms').push({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID})
+            uniqueKeyID = firebase.database().ref('rooms').push({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.description, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID, reserved:this.roomInfo.reserved})
             console.log(uniqueKeyID.key);
             this.roomInfo.uniqueKeyID = uniqueKeyID.key;
-            firebase.database().ref('rooms/' + uniqueKeyID.key).update({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID})
+            firebase.database().ref('rooms/' + uniqueKeyID.key).update({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID, reserved:this.roomInfo.reserved})
             this.$router.replace('home')
       }
     },

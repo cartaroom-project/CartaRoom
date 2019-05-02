@@ -6,7 +6,8 @@
         Name: {{room.name}} <br />
         Capacity: {{room.capacity}} <br />
         Address: {{room.address}} <br /> 
-      <button @click="bookRoom">Book Room</button> <br />
+        Reserved: {{room.reserved}} <br /> 
+        <button v-on:click="bookRoom(room)">Book Room</button> <br />
       </ul>
       <router-link to="/search">Back to Search</router-link>
     </ul>
@@ -39,9 +40,11 @@ export default {
       });
     },
   methods: {
-     bookRoom: function() {
+     bookRoom: function(room) {
+         console.log(room)
+        firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
         alert('Congrats you have booked the room!');
-        this.$router.replace('search')
+        this.$router.go();
      }
   }
 }
