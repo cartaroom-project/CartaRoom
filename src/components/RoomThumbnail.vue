@@ -1,6 +1,6 @@
 <template>
-    <div class="room-thumbnail">
-        <img src="../assets/main-room.jpg"/>
+    <div class="roomthumbnail">
+        <img class="thumbnail" src="../assets/main-room.jpg"/>
     </div>
 </template>
 
@@ -11,8 +11,14 @@
 </script>
 
 <style scoped>
-    .room-thumbnail {
-
+    .roomthumbnail {
+        padding: 16px;
+    }
+    .thumbnail {
+        min-width: 280px;
+        max-width: 350px;
+        height: auto;
+        padding: 16px;
     }
 
 </style>

@@ -20,4 +20,5 @@
     max-width: 20%;
     padding: 16px;
 }
+
 </style>
