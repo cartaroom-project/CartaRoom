@@ -20,16 +20,28 @@
       }
     },
     methods: {
-      login: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-          (user) => {
-            this.$router.replace('home')
-          },
-          (err) => {
-            alert('Oops. ' + err.message)
-          }
-        );
-      }
+    login: function () {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        (user) => {
+          firebase.auth().currentUser.getIdTokenResult()
+            .then((idTokenResult) => {
+              //console.log(idTokenResult)
+              // Confirm the user is an Admin.
+              if (idTokenResult.claims.host) {
+                this.$router.replace('home')
+              } else {
+                this.$router.replace('search')
+              }
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+        },
+        function (err) {
+          alert('Oops: ' + err.message)
+        }
+      )
+    }
     }
   }
 </script>
