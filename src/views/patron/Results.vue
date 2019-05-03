@@ -1,4 +1,4 @@
-<template>
+
     <div class="results">
         <ul>
             <h2>Search Results<br /><br /> </h2>
@@ -7,12 +7,14 @@
             End Time: <input type="time" v-model="endTime"><br /> <br />
 
 
+
       <ul v-for="room of rooms" v-bind:key ="room['.key']">
         Name: {{room.name}} <br />
         Capacity: {{room.capacity}} <br />
-        Address: {{room.address}} <br /> 
-        Reserved: {{room.reserved}} <br /> 
-        <button v-on:click="bookRoom(room)">Book Room</button> <br />
+        Address: {{room.address}} <br />
+        Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br> 
+        <button v-on:click="viewRoom(room.roomID)">View Room</button>
+        <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
       </ul>
       <router-link to="/search">Back to Search</router-link>
     </ul>
@@ -22,6 +24,7 @@
 </template>
 
 <script>
+
     import firebase from 'firebase';
     import db from '@/firebase.js';
     // db.ref('rooms').once('value').then(function(snapshot) {
@@ -69,4 +72,5 @@
             }
         }
     }
+
 </script>
