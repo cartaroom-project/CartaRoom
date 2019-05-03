@@ -11,7 +11,8 @@
 
         <br>
 
-        <p>Let\'s create a new PATRONPATRON account!</p>
+        <p>Let\'s create a new account!</p>
+        <p>COMMON INFORMATION</p>
         <input type="email" v-model="credentials.email" placeholder="email"><br>
         <input type="password" v-model="credentials.password" placeholder="password"><br>
         <input type="password" v-model="credentials.password" placeholder=" confirm password"><br>
@@ -19,6 +20,7 @@
         <input v-model="credentials.lastName" placeholder="last name"><br>
         <input v-model="credentials.phone" placeholder="phone"><br>
 
+        <p>PATRON ONLY INFORMATION</p>
         <select v-model="patronCredentials.selected" multiple>
         <option>Student</option>
         <option>Employed</option>
@@ -29,8 +31,7 @@
 
         <button @click="signUp">Sign Up</button>
 
-        <p>Let\'s create a new HOSTHOST account!</p>
-        <h3>Business Information</h3>
+        <h3>BUSINESSS INFORMATION</h3>
         <input v-model="hostCredentials.name" placeholder="business name">
         <input v-model="hostCredentials.address" placeholder="business address"><br>
         <input v-model="hostCredentials.phone" placeholder="business phone"><br>
@@ -52,7 +53,7 @@
 
  <script>
  import firebase from 'firebase';
- var SetAccType = firebase.functions().httpsCallable('SetAccType');
+ var setAccType = firebase.functions().httpsCallable('setAccType');
  var addPatron = firebase.functions().httpsCallable('addPatron');
  var addHost = firebase.functions().httpsCallable('addHost');
 
@@ -86,7 +87,7 @@
      signUp: function() {
        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
           (user) => {
-              SetAccType({isHost: this.credentials.isHost});
+              setAccType({isHost: this.credentials.isHost});
               if(this.credentials.isHost)
               {
                   addHost({
