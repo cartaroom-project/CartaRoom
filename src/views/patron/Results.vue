@@ -9,8 +9,8 @@
       <ul v-for="room of rooms" v-bind:key ="room['.key']">
         Name: {{room.name}} <br />
         Capacity: {{room.capacity}} <br />
-        Address: {{room.address}} <br /> 
-        Reserved: {{room.reserved}} <br /> 
+        Address: {{room.address}} <br />
+        Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br />
         <button v-on:click="bookRoom(room)">Book Room</button> <br />
       </ul>
       <router-link to="/search">Back to Search</router-link>

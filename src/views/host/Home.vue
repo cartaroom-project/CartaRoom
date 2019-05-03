@@ -6,7 +6,7 @@
       Name: {{room.name}} <br />
       Capacity: {{room.capacity}} <br /> 
       Address: {{room.address}} <br />  
-      <button v-on:click="deleteRoom(room.uniqueKey)">Delete Room</button>
+      <button v-on:click="deleteRoom(room.roomID)">Delete Room</button>
       <br /></ul>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
     }
    },
     created () {
-        db.ref('rooms').orderByChild("userID").equalTo(userID).once('value').then((snapshot) => {
+        db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
         this.rooms = [];
         snapshot.forEach((doc) => {
           this.rooms.push(doc.val());
@@ -52,7 +52,7 @@ export default {
     },
   methods: {
       deleteRoom: function(id) {
-        console.log('unique ID ' + id);
+        console.log('room ID ' + id);
         db.ref('rooms').child(id).remove();
         alert('Room Deleted!');
         this.$router.go();
