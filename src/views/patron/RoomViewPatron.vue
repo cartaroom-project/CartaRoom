@@ -17,7 +17,7 @@
             <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
                   <ul v-for="index in timeSlotsAvailable" :key="index">
                 <p>{{roomInfo.bookingSlots[index].startingTime}}:00 to {{roomInfo.bookingSlots[index].endingTime}}:00 
-                    <button v-on:click="bookRoom(room)">Book Room</button> 
+                    <button v-on:click="bookRoom(roomInfo.bookingSlots[index].startingTime, roomInfo.bookingSlots[index].endingTime)">Book Room</button> 
                     </p>
                 </ul>
                 <!-- <p>{{roomInfo.bookingSlots[1].startingTime}}:00 to {{roomInfo.bookingSlots[1].endingTime}}:00</p> <br /> -->
@@ -118,7 +118,7 @@
         this.msg = 'Time Slots';
         this.msg1 = '';
         },
-        bookRoom: function(room) {
+        bookRoom: function(startTime, endTime) {
         // var userInfo = firebase.auth().currentUser.email;
         // var uniqueKeyIDBooking = '1';
 
@@ -132,7 +132,7 @@
         // uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
         // firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
 
-        alert('Congrats you have booked the room!');
+        alert('Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
         this.$router.go();
      }
     //   addRoom: function() {
