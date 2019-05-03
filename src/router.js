@@ -20,112 +20,112 @@ import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
 Vue.use(Router);
 
 const router = new Router({
-  routes: [
-    {
-      path: '*',
-      redirect: '/login'
-    },
-    {
-      path: '/',
-      redirect: '/login'
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/sign-up',
-      name: 'SignUp',
-      component: SignUp
-    },
-    {
-      path: '/about',
-      name: 'About',
-      component: About,
-    },
-    {
-      path: '/addRoom',
-      name: 'AddRoom',
-      component: AddRoom,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/currentBookings',
-      name: 'CurrentBookings',
-      component: CurrentBookings,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/allBookings',
-      name: 'AllBookings',
-      component: AllBookings,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/allCustomers',
-      name: 'AllCustomers',
-      component: AllCustomers,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/search',
-      name: 'Search',
-      component: Search,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/results',
-      name: 'Results',
-      component: Results,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/currentBookingsPatron',
-      name: 'CurrentBookingsPatron',
-      component: CurrentBookingsPatron,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/allBookingsPatron',
-      name: 'AllBookingsPatron',
-      component: AllBookingsPatron,
-      meta: {
-        requiresAuth: true
-      }
-    }
-  ]
+    routes: [
+        {
+            path: '*',
+            redirect: '/login'
+        },
+        {
+            path: '/',
+            redirect: '/login'
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login
+        },
+        {
+            path: '/sign-up',
+            name: 'SignUp',
+            component: SignUp
+        },
+        {
+            path: '/about',
+            name: 'About',
+            component: About,
+        },
+        {
+            path: '/addRoom',
+            name: 'AddRoom',
+            component: AddRoom,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/home',
+            name: 'Home',
+            component: Home,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/currentBookings',
+            name: 'CurrentBookings',
+            component: CurrentBookings,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/allBookings',
+            name: 'AllBookings',
+            component: AllBookings,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/allCustomers',
+            name: 'AllCustomers',
+            component: AllCustomers,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/search',
+            name: 'Search',
+            component: Search,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/results',
+            name: 'Results',
+            component: Results,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/currentBookingsPatron',
+            name: 'CurrentBookingsPatron',
+            component: CurrentBookingsPatron,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/allBookingsPatron',
+            name: 'AllBookingsPatron',
+            component: AllBookingsPatron,
+            meta: {
+                requiresAuth: true
+            }
+        }
+    ]
 });
 
 router.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser;
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    const currentUser = firebase.auth().currentUser;
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (requiresAuth && !currentUser) next('login');
-  //else if (!requiresAuth && currentUser) next('home');
-  else next();
+    if (requiresAuth && !currentUser) next('login');
+    //else if (!requiresAuth && currentUser) next('home');
+    else next();
 });
 
 export default router;
