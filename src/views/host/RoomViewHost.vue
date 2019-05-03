@@ -8,6 +8,7 @@
     <p>Address: {{ roomInfo.address }}</p>
     <p>Open Time: {{ roomInfo.openTime }}</p>
     <p>Close Time: {{ roomInfo.closeTime }}</p>
+    <p>Total Bookings: {{ roomInfo.bookingCounter }}</p>
      <h3>Ammenaties:</h3>
             <ul v-for="amenity in roomInfo.selectedAmenities"  v-bind:key ="amenity['.key']">
                 {{amenity}} 
