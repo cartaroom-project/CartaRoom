@@ -7,6 +7,7 @@
             <router-link to="/sign-up">Sign Up</router-link>
             |
             <router-link to="/about">About</router-link>
+            <HostNavbar></HostNavbar>
             <router-view></router-view>
         </div>
         <v-footer
@@ -41,6 +42,7 @@
 <script>
     import firebase from 'firebase';
     import db from '@/firebase.js';
+    import HostNavbar from "./components/HostNavbar";
 
     // db.ref('rooms').once('value').then(function(snapshot) {
     //   console.log(snapshot.val());
@@ -62,6 +64,7 @@
 
     export default {
         name: 'home',
+        components: {HostNavbar},
         methods: {
             logout: function () {
                 firebase.auth().signOut().then(() => {

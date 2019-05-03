@@ -1,5 +1,6 @@
 <template>
     <div class="recommended">
+        <h1>Recommeneded for you!</h1>
         <recommended-item></recommended-item>
         <recommended-item></recommended-item>
         <recommended-item></recommended-item>
