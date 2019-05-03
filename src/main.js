@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(() => {
   if(firebase.auth().currentUser){
   firebase.auth().currentUser.getIdTokenResult()
   .then((idTokenResult) => {
-    //console.log(idTokenResult)
+    //console.log(firebase.auth().currentUser)
     // Confirm the user is an Host or Patron.
     if (idTokenResult.claims.host) {
       app = new Vue({

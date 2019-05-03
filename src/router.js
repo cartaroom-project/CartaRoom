@@ -4,6 +4,7 @@ import Router from 'vue-router';
 
 import Home from '@/views/host/Home';
 import AddRoom from '@/views/host/AddRoom';
+import EditRoom from '@/views/host/EditRoom';
 import CurrentBookings from '@/views/host/CurrentBookings';
 import AllBookings from '@/views/host/AllBookings';
 import AllCustomers from '@/views/host/AllCustomers';
@@ -16,6 +17,7 @@ import Search from '@/views/patron/Search';
 import Results from '@/views/patron/Results';
 import CurrentBookingsPatron from '@/views/patron/CurrentBookingsPatron';
 import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
+import RoomViewPatron from '@/views/patron/RoomViewPatron';
 
 Vue.use(Router);
 
@@ -48,6 +50,14 @@ const router = new Router({
       path: '/addRoom',
       name: 'AddRoom',
       component: AddRoom,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/editRoom/:id',
+      name: 'EditRoom',
+      component: EditRoom,
       meta: {
         requiresAuth: true
       }
@@ -115,7 +125,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: '/roomViewPatron/:id',
+      name: 'RoomViewPatron',
+      component: RoomViewPatron,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 });
 

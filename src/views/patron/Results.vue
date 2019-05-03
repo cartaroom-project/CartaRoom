@@ -10,8 +10,9 @@
         Name: {{room.name}} <br />
         Capacity: {{room.capacity}} <br />
         Address: {{room.address}} <br />
-        Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br />
-        <button v-on:click="bookRoom(room)">Book Room</button> <br />
+        Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br> 
+        <button v-on:click="viewRoom(room.roomID)">View Room</button>
+        <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
       </ul>
       <router-link to="/search">Back to Search</router-link>
     </ul>
@@ -47,23 +48,29 @@ export default {
       });
     },
   methods: {
-     bookRoom: function(room) {
-        var userInfo = firebase.auth().currentUser.email;
-        var uniqueKeyIDBooking = '1';
+    //  bookRoom: function(room) {
+    //     var userInfo = firebase.auth().currentUser.email;
+    //     var uniqueKeyIDBooking = '1';
 
-        //console.log(room)
-        //console.log('Start Time: ' + this.startTime)
+    //     //console.log(room)
+    //     //console.log('Start Time: ' + this.startTime)
 
-        firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
-        uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
-        firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
+    //     firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
+    //     uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
+    //     firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
 
-        uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
-        firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
+    //     uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
+    //     firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
 
-        alert('Congrats you have booked the room!');
-        this.$router.go();
-     }
+    //     alert('Congrats you have booked the room!');
+    //     this.$router.go();
+    //  }
+        viewRoom: function(id){
+      this.$router.push({
+        name: 'RoomViewPatron',
+        params: { id: id }
+      })
+    }
   }
 }
 </script>

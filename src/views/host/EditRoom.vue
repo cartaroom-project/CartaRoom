@@ -1,10 +1,11 @@
 <template>
-  <div class="addRoom">
-    <p>Let's add a new room</p>
-    <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
-    <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
-    <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
-    <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
+  <div class="editRoom">
+    <p>Let's Edit a room</p>
+    <h1>your id is {{ id }}</h1>
+    <input type="text" v-model="roomInfo.name"><br>
+    <input type="number" v-model="roomInfo.capacity"><br>
+    <input type="text" v-model="roomInfo.description"><br>
+    <input type="text" v-model="roomInfo.address"><br>
     Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
     Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
      <h3>Ammenaties:</h3>
@@ -20,6 +21,7 @@
 </template>
 
  <script>
+//   console.log(this.$router);
   import firebase from 'firebase';
   import axios from 'axios';
 
@@ -42,6 +44,8 @@
       
       data() {
       return {
+          id: 0,
+          room: {},
         amenities:[
           {offering: 'wifi'},
           {offering: 'projector'},
@@ -65,6 +69,27 @@
               }
       }
     },
+    created() {
+            this.id = this.$route.params.id;
+            // this.roomInfo.name =  firebase.database().ref('rooms/' + this.id +'/name' )
+            firebase.database().ref('rooms/' + this.id).once('value').then((snapshot) => {
+          this.room = snapshot.val();
+                  this.roomInfo.hostID = snapshot.val().hostID,
+                  this.roomInfo.name = snapshot.val().name,
+                  this.roomInfo.capacity = snapshot.val().capacity,
+                  this.roomInfo.description = snapshot.val().description,
+                  this.roomInfo.address = snapshot.val().address,
+                  this.roomInfo.roomID = snapshot.val().roomID,
+                  this.roomInfo.reserved = snapshot.val().reserved,
+                  this.roomInfo.bookingCounter = snapshot.val().bookingCounter,
+                  this.roomInfo.openTime = snapshot.val().openTime,
+                  this.roomInfo.closeTime = snapshot.val().closeTime,
+                //   this.roomInfo.selectedAmenities = snapshot.val().amenities,
+                  // this.roomInfo.bookingSlots = snapshot.val().bookingSlots
+          console.log(this.roomInfo)
+        }) 
+      console.log(this.roomInfo)
+    },
     methods: {
       addRoom: function() {
         var i = 0;
@@ -80,13 +105,13 @@
             i++;
         }
 
-            roomID = firebase.database().ref('rooms').push({
+            firebase.database().ref('rooms/' + this.id).update({
               hostID: this.roomInfo.hostID,
               name: this.roomInfo.name, 
               capacity: this.roomInfo.capacity, 
               description: this.roomInfo.description, 
               address:this.roomInfo.address, 
-              roomID:this.roomInfo.roomID,
+              roomID:this.id,
               reserved:this.roomInfo.reserved,
               bookingCounter: this.roomInfo.bookingCounter,
               openTime: this.roomInfo.openTime,
@@ -94,23 +119,7 @@
               amenities: this.roomInfo.selectedAmenities,
               bookingSlots: this.roomInfo.bookingSlots})
 
-            this.roomInfo.roomID = roomID.key;
-
-            firebase.database().ref('rooms/' + roomID.key).update({              
-              hostID: this.roomInfo.hostID,
-              name: this.roomInfo.name, 
-              capacity: this.roomInfo.capacity, 
-              description: this.roomInfo.description, 
-              address:this.roomInfo.address, 
-              roomID:this.roomInfo.roomID,
-              reserved:this.roomInfo.reserved,
-              bookingCounter: this.roomInfo.bookingCounter,
-              openTime: this.roomInfo.openTime,
-              closeTime: this.roomInfo.closeTime,
-              amenities: this.roomInfo.selectedAmenities,
-              bookingSlots: this.roomInfo.bookingSlots})
-
-            this.$router.replace('home')
+            this.$router.go(-1)
       }
     },
 
@@ -150,16 +159,4 @@
 </style>
 
 
-// Needed fields:
-// *Name--Text#
-// *Location--Text#
-// *Description--Text#
-// *Capacity--Number#
-// *Hours of operation--Time(Start/End)#
-// Reservable?2d Array?[Add Later]{Hidden}--time slots, put reserved in currentBookings table cause you can't store each booking here with all dates
-// Room ID{Hidden}#
-// Pictures?[Add Later]
-// Host ID{Hidden}#
-// *Amenities--Dropdown#
-// Booking Counter{Hidden}#
-// Reviews[Add Later]{Hidden}
+
