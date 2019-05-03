@@ -1,22 +1,44 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
- exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
- });
+exports.createUserData = functions.auth.user().onCreate((user) => {
+    let uid = user.uid;
+    return createUserInfo(user)
+});
 
- exports.addUser = functions.https.onRequest((request, response) => {
-    if (request.method !== "POST") {
-        response.status(400).send("what are you trying baby?");
-        return 0;
+
+function createUserInfo(user) {
+    const userInfo = {
+        email: user.email
     }
 
-    const email = request.body.email;
-    const pass = request.body.password; 
+    const ref = admin.database().ref(`users/${user.uid}`);
 
-        firebase.auth().createUserWithEmailAndPassword(email,pass);
-        firebase.database().ref('users').push({email: email, edit: false});
-        response.send("You have successfully signed up!");
-   });
+    return ref.set(userInfo)
+        .catch((error) => {
+            console.log(`Error: ${error}`)
+        });
+}
+
+exports.SetAccType = functions.https.onCall((data, context) => {
+    const uid = context.auth.uid;
+
+    admin.auth().setCustomUserClaims(uid,{
+        host: data.isHost,
+        patron: !data.isHost,
+        premium: false,
+    })
+        .then(() => {
+            // Update real-time database to notify client to force refresh.
+            const metadataRef = admin.database().ref("metadata/" + user.uid);
+
+            // Set the refresh time to the current UTC timestamp.
+            // This will be captured on the client to force a token refresh.
+            return metadataRef.set({ refreshTime: new Date().getTime() });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+});

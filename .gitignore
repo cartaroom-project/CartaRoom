@@ -21,3 +21,5 @@ yarn-error.log*
 *.sw?
 
 node_modules/
+
+firebase.json
