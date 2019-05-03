@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-      <h1>You are an Host</h1>
+      <h1>You are a Host</h1>
       <h2>List of All rooms</h2>
       <ul v-for="room of rooms" v-bind:key ="room['.key']">
       Name: {{room.name}} <br />
