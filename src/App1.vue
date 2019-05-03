@@ -2,11 +2,11 @@
   <div id="app">
     <div id="nav">
       <!-- renders view after logged in[Host] -->
-      <router-link to="/home">View All Rooms[host]</router-link> |
-      <router-link to="/addRoom">Host a new Room[host]</router-link> |
-      <router-link to="/currentBookings">Current Bookings[host]</router-link> |
-      <router-link to="/allBookings">All Bookings[host]</router-link> |
-      <router-link to="/allCustomers">Customer Database[host]</router-link> <br /> 
+      <router-link to="/home">View All Rooms</router-link> |
+      <router-link to="/addRoom">Host a new Room</router-link> |
+      <router-link to="/currentBookings">Current Bookings</router-link> |
+      <router-link to="/allBookings">All Bookings</router-link> |
+      <router-link to="/allCustomers">Customer Database</router-link> <br /> 
       <button @click="logout">Logout</button>
       <router-view></router-view>
     </div>

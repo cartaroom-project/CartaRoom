@@ -5,6 +5,8 @@
     <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
     <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
     <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
+    Open Time:<br />  <input type="time" v-model="openTime"><br /> 
+    Close Time:<br />  <input type="time" v-model="closeTime"><br />
     <!-- <input type = "file" @click="uploadImage"> -->
       <br>
     <button @click="addRoom">Add Room</button>
@@ -16,17 +18,17 @@
   import firebase from 'firebase';
   import axios from 'axios';
 
-  var userID;
-  var uniqueKeyID = '1';
+  var hostID;
+  var roomID = '1';
   var storageRef = firebase.storage().ref();
 
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
    // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-    userID = user.uid;
+    hostID = user.uid;
   } else {
    // console.log("No user available"); 
-    userID = 'null';
+    hostID = 'null';
   }
 });
 
@@ -37,22 +39,47 @@
       return {
           roomInfo:
               {
-                  userID: userID,
+                  hostID: hostID,
                   name: '',
                   capacity: '',
                   description: '',
                   address: '',
-                  uniqueKeyID: uniqueKeyID,
-                  reserved: 'false'
+                  roomID: roomID,
+                  reserved: 'false',
+                  bookingCounter: 0,
+                  openTime:'',
+                  closeTime:''
               }
       }
     },
     methods: {
       addRoom: function() {
-            uniqueKeyID = firebase.database().ref('rooms').push({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.description, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID, reserved:this.roomInfo.reserved})
-            console.log(uniqueKeyID.key);
-            this.roomInfo.uniqueKeyID = uniqueKeyID.key;
-            firebase.database().ref('rooms/' + uniqueKeyID.key).update({userID: this.roomInfo.userID, name: this.roomInfo.name, capacity: this.roomInfo.capacity, description: this.roomInfo.decription, address:this.roomInfo.address, uniqueKey:this.roomInfo.uniqueKeyID, reserved:this.roomInfo.reserved})
+            roomID = firebase.database().ref('rooms').push({
+              hostID: this.roomInfo.hostID,
+              name: this.roomInfo.name, 
+              capacity: this.roomInfo.capacity, 
+              description: this.roomInfo.description, 
+              address:this.roomInfo.address, 
+              roomID:this.roomInfo.roomID,
+              reserved:this.roomInfo.reserved,
+              bookingCounter: this.roomInfo.bookingCounter,
+              openTime: this.roomInfo.openTime,
+              closeTime: this.roomInfo.closeTime})
+
+            this.roomInfo.room = roomID.key;
+
+            firebase.database().ref('rooms/' + roomID.key).update({              
+              hostID: this.roomInfo.hostID,
+              name: this.roomInfo.name, 
+              capacity: this.roomInfo.capacity, 
+              description: this.roomInfo.description, 
+              address:this.roomInfo.address, 
+              roomID:this.roomInfo.roomID,
+              reserved:this.roomInfo.reserved,
+              bookingCounter: this.roomInfo.bookingCounter,
+              openTime: this.roomInfo.openTime,
+              closeTime: this.roomInfo.closeTime})
+
             this.$router.replace('home')
       }
     },
@@ -91,3 +118,18 @@
     font-size: 11px;
   }
 </style>
+
+
+// Needed fields:
+// *Name--Text#
+// *Location--Text#
+// *Description--Text#
+// *Capacity--Number#
+// *Hours of operation--Time(Start/End)#
+// Reservable?2d Array?[Add Later]{Hidden}
+// Room ID{Hidden}#
+// Pictures?[Add Later]
+// Host ID{Hidden}#
+// *Amenities--Dropdown
+// Booking Counter{Hidden}#
+// Reviews[Add Later]{Hidden}

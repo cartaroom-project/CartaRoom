@@ -41,18 +41,27 @@
      signUp: function() {
        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
           (user) => {
-          if(this.credentials.isHost){
-              SetAccType({isHost: this.credentials.isHost}).then(this.$router.replace('home')).catch(function(error) {
-              this.$router.replace('home')
-               console.log(error);
-              });
-          }else if(!this.credentials.isHost){
-              SetAccType({isHost: this.credentials.isHost}).then(this.$router.replace('search')).catch(function(error) {
-                this.$router.replace('search')
-               console.log(error);
-              });
-          }
-          });
+          SetAccType({isHost: this.credentials.isHost})
+          this.$router.replace('login')
+
+        // Logging in after sign up
+      //   firebase.auth().signInWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
+      //     firebase.auth().currentUser.getIdTokenResult()
+      //       .then((idTokenResult) => {
+      //         console.log(idTokenResult)
+      //         // Confirm the user is an Admin.
+      //         if (idTokenResult.claims.host) {
+      //           this.$router.replace('home')
+      //         } else {
+      //           this.$router.replace('search')
+      //         }
+      //       })
+      //       .catch((error) => {
+      //         console.log(error)
+      //       })
+      // )
+
+           });
      }
 
       // post: function()
