@@ -3,22 +3,26 @@
         <h1>Reserve a Room(Patron Home Page)</h1>
 		<input type="text" placeholder="Location">
 		<button @click="search">Search</button>
+       <Recommended></Recommended>
     </div>
 </template>
 
 <script>
-    export default {
-    name: 'search',
-    data() {
-        return {
 
-        }
+  import Recommended from "../../components/Recommended";
+  export default {
+    name: 'search',
+      components: {Recommended},
+      data() {
+      return {
+      }
     },
-    methods: {
-    search: function(){
-        //document.getElementById("Search").innerHTML = "Searching";
-        this.$router.replace('results')
-        },
-    }
-    }
+	methods: {
+	search: function(){	
+	//document.getElementById("Search").innerHTML = "Searching";
+	this.$router.replace('results')
+		},
+	}
+  }
+
 </script>

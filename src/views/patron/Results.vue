@@ -6,16 +6,19 @@
             Start Time: <input type="time" v-model="startTime"><br />
             End Time: <input type="time" v-model="endTime"><br /> <br />
 
-            <ul v-for="room of rooms" v-bind:key ="room['.key']">
-                Name: {{room.name}} <br />
-                Capacity: {{room.capacity}} <br />
-                Address: {{room.address}} <br />
-                Reserved: {{room.reserved}} <br />
-                <button v-on:click="bookRoom(room)">Book Room</button> <br />
-            </ul>
-            <router-link to="/search">Back to Search</router-link>
-        </ul>
-    </div>
+
+      <ul v-for="room of rooms" v-bind:key ="room['.key']">
+        Name: {{room.name}} <br />
+        Capacity: {{room.capacity}} <br />
+        Address: {{room.address}} <br /> 
+        Reserved: {{room.reserved}} <br /> 
+        <button v-on:click="bookRoom(room)">Book Room</button> <br />
+      </ul>
+      <router-link to="/search">Back to Search</router-link>
+    </ul>
+    <Recommended></Recommended>
+  </div>
+
 </template>
 
 <script>
