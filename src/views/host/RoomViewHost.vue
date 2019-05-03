@@ -1,32 +1,33 @@
 <template>
   <div class="editRoom">
-    <p>Let's Edit a room</p>
-    <h1>{{roomInfo.name}}</h1>
-    <input type="text" v-model="roomInfo.name"><br>
-    <input type="number" v-model="roomInfo.capacity"><br>
-    <input type="text" v-model="roomInfo.description"><br>
-    <input type="text" v-model="roomInfo.address"><br>
-    Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
-    Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
+    <p>Room View</p>
+    <h1>Room: {{ roomInfo.name }}</h1>
+    <p>Name: {{ roomInfo.name }}</p>
+    <p>Capacity: {{ roomInfo.capacity }}</p>
+    <p>Description: {{ roomInfo.description }}</p>
+    <p>Address: {{ roomInfo.address }}</p>
+    <p>Open Time: {{ roomInfo.openTime }}</p>
+    <p>Close Time: {{ roomInfo.closeTime }}</p>
      <h3>Ammenaties:</h3>
-            <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
-              <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities">
-              <label :for="amenity.offering">{{amenity.offering}}</label>
-            </li>
-    <!-- <input type = "file" @click="uploadImage"> -->
-      <br>
-    <button @click="addRoom">Confirm Edit</button><br />
+            <ul v-for="amenity in roomInfo.selectedAmenities"  v-bind:key ="amenity['.key']">
+                {{amenity}} 
+            </ul>
+      <br />
+      <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
+      <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button><br />
     <router-link to="/home">Cancel</router-link>
   </div>
 </template>
 
  <script>
 //   console.log(this.$router);
+// bookingSlots[1].startingTime
   import firebase from 'firebase';
   import axios from 'axios';
 
   var hostID;
   var roomID = '1';
+//   var timeSlotsAVailable = 2;
   var storageRef = firebase.storage().ref();
 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -65,7 +66,7 @@
                   openTime:0,
                   closeTime:0,
                   selectedAmenities: [],
-                  bookingSlots: [[]]
+                  bookingSlots: [{startingTime: '9:00',endingTime: '10:00'}]
               }
       }
     },
@@ -84,43 +85,26 @@
                   this.roomInfo.bookingCounter = snapshot.val().bookingCounter,
                   this.roomInfo.openTime = snapshot.val().openTime,
                   this.roomInfo.closeTime = snapshot.val().closeTime,
-                //   this.roomInfo.selectedAmenities = snapshot.val().amenities,
-                  // this.roomInfo.bookingSlots = snapshot.val().bookingSlots
+                  this.roomInfo.selectedAmenities = snapshot.val().amenities,
+                  this.roomInfo.bookingSlots = snapshot.val().bookingSlots
           console.log(this.roomInfo)
         }) 
       console.log(this.roomInfo)
+        // this.doMath();
     },
     methods: {
-      addRoom: function() {
-        var i = 0;
-        var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
-        var startHours = parseInt(startHoursMinutes[0], 10);
-        var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
-        var closeHours = parseInt(closeHoursMinutes[0], 10);
-        var timeSlotsAVailable = closeHours - startHours;
-        var firstTimeSlot = startHours;
-        
-        while(i<timeSlotsAVailable){
-            this.roomInfo.bookingSlots.push({startingTime: firstTimeSlot,endingTime: ++firstTimeSlot});
-            i++;
-        }
-
-            firebase.database().ref('rooms/' + this.id).update({
-              hostID: this.roomInfo.hostID,
-              name: this.roomInfo.name, 
-              capacity: this.roomInfo.capacity, 
-              description: this.roomInfo.description, 
-              address:this.roomInfo.address, 
-              roomID:this.id,
-              reserved:this.roomInfo.reserved,
-              bookingCounter: this.roomInfo.bookingCounter,
-              openTime: this.roomInfo.openTime,
-              closeTime: this.roomInfo.closeTime,
-              amenities: this.roomInfo.selectedAmenities,
-              bookingSlots: this.roomInfo.bookingSlots})
-
-            this.$router.go(-1)
-      }
+      deleteRoom: function(id) {
+        console.log('room ID ' + id);
+        db.ref('rooms').child(id).remove();
+        alert('Room Deleted!');
+        this.$router.go();
+    },  
+    editRoom: function(id){
+      this.$router.push({
+        name: 'EditRoom',
+        params: { id: id }
+      })
+    }
     },
 
       // post: function()
@@ -157,6 +141,4 @@
     font-size: 11px;
   }
 </style>
-
-
 
