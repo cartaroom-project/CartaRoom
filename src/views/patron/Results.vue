@@ -2,10 +2,6 @@
   <div class="results">
     <ul>
       <h2>Search Results<br /><br /> </h2>
-      Date: <input type="date" v-model="date"><br /> <br /> 
-      Start Time: <input type="time" v-model="startTime"><br /> 
-      End Time: <input type="time" v-model="endTime"><br /> <br /> 
-
       <ul v-for="room of rooms" v-bind:key ="room['.key']">
         Name: {{room.name}} <br />
         Capacity: {{room.capacity}} <br />
@@ -31,10 +27,7 @@ export default {
   name: 'results',
    data () {
     return {
-      rooms: [],
-      startTime: '',
-      endTime: '',
-      date: ''
+      rooms: []
     }
    },
     created () {
