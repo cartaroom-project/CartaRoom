@@ -1,17 +1,22 @@
 <template>
-    <div class="addRoom">
-        <p>Let's add a new room</p>
-        <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
-        <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
-        <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
-        <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
-        Open Time:<br />  <input type="time" v-model="openTime"><br />
-        Close Time:<br />  <input type="time" v-model="closeTime"><br />
-        <!-- <input type = "file" @click="uploadImage"> -->
-        <br>
-        <button @click="addRoom">Add Room</button>
-        <router-link to="/home">Cancel</router-link>
-    </div>
+  <div class="addRoom">
+    <p>Let's add a new room</p>
+    <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
+    <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
+    <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
+    <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
+    Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
+    Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
+     <h3>Ammenaties:</h3>
+            <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
+              <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities">
+              <label :for="amenity.offering">{{amenity.offering}}</label>
+            </li>
+    <!-- <input type = "file" @click="uploadImage"> -->
+      <br>
+    <button @click="addRoom">Add Room</button>
+    <router-link to="/home">Cancel</router-link>
+  </div>
 </template>
 
 <script>
@@ -32,42 +37,79 @@
         }
     });
 
-    export default {
-        name: 'addRoom',
+  export default {
+      name: 'addRoom',
+      
+      data() {
+      return {
+        amenities:[
+          {offering: 'wifi'},
+          {offering: 'projector'},
+          {offering: 'whiteboard'},
+          {offering: 'Ethernet'},
+        ],
+          roomInfo:
+              {
+                  hostID: hostID,
+                  name: '',
+                  capacity: '',
+                  description: '',
+                  address: '',
+                  roomID: roomID,
+                  reserved: 'false',
+                  bookingCounter: 0,
+                  openTime:0,
+                  closeTime:0,
+                  selectedAmenities: [],
+                  bookingSlots: [[]]
+              }
+      }
+    },
+    methods: {
+      addRoom: function() {
+        var i = 0;
+        var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
+        var startHours = parseInt(startHoursMinutes[0], 10);
+        var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
+        var closeHours = parseInt(closeHoursMinutes[0], 10);
+        var timeSlotsAVailable = closeHours - startHours;
+        var firstTimeSlot = startHours;
+        
+        while(i<timeSlotsAVailable){
+            this.roomInfo.bookingSlots.push({startingTime: firstTimeSlot,endingTime: ++firstTimeSlot});
+            i++;
+        }
 
-        data() {
-            return {
-                roomInfo:
-                    {
-                        hostID: hostID,
-                        name: '',
-                        capacity: '',
-                        description: '',
-                        address: '',
-                        roomID: roomID,
-                        reserved: 'false',
-                        bookingCounter: 0,
-                        openTime:'',
-                        closeTime:''
-                    }
-            }
-        },
-        methods: {
-            addRoom: function() {
-                roomID = firebase.database().ref('rooms').push({
-                    hostID: this.roomInfo.hostID,
-                    name: this.roomInfo.name,
-                    capacity: this.roomInfo.capacity,
-                    description: this.roomInfo.description,
-                    address:this.roomInfo.address,
-                    roomID:this.roomInfo.roomID,
-                    reserved:this.roomInfo.reserved,
-                    bookingCounter: this.roomInfo.bookingCounter,
-                    openTime: this.roomInfo.openTime,
-                    closeTime: this.roomInfo.closeTime})
+            roomID = firebase.database().ref('rooms').push({
+              hostID: this.roomInfo.hostID,
+              name: this.roomInfo.name, 
+              capacity: this.roomInfo.capacity, 
+              description: this.roomInfo.description, 
+              address:this.roomInfo.address, 
+              roomID:this.roomInfo.roomID,
+              reserved:this.roomInfo.reserved,
+              bookingCounter: this.roomInfo.bookingCounter,
+              openTime: this.roomInfo.openTime,
+              closeTime: this.roomInfo.closeTime,
+              amenities: this.roomInfo.selectedAmenities,
+              bookingSlots: this.roomInfo.bookingSlots})
 
-                this.roomInfo.room = roomID.key;
+            this.roomInfo.roomID = roomID.key;
 
+            firebase.database().ref('rooms/' + roomID.key).update({              
+              hostID: this.roomInfo.hostID,
+              name: this.roomInfo.name, 
+              capacity: this.roomInfo.capacity, 
+              description: this.roomInfo.description, 
+              address:this.roomInfo.address, 
+              roomID:this.roomInfo.roomID,
+              reserved:this.roomInfo.reserved,
+              bookingCounter: this.roomInfo.bookingCounter,
+              openTime: this.roomInfo.openTime,
+              closeTime: this.roomInfo.closeTime,
+              amenities: this.roomInfo.selectedAmenities,
+              bookingSlots: this.roomInfo.bookingSlots})
+              
                 firebase.database().ref('rooms/' + roomID.key).update({
                     hostID: this.roomInfo.hostID,
                     name: this.roomInfo.name,
@@ -126,10 +168,10 @@
 // *Description--Text#
 // *Capacity--Number#
 // *Hours of operation--Time(Start/End)#
-// Reservable?2d Array?[Add Later]{Hidden}
+// Reservable?2d Array?[Add Later]{Hidden}--time slots, put reserved in currentBookings table cause you can't store each booking here with all dates
 // Room ID{Hidden}#
 // Pictures?[Add Later]
 // Host ID{Hidden}#
-// *Amenities--Dropdown
+// *Amenities--Dropdown#
 // Booking Counter{Hidden}#
 // Reviews[Add Later]{Hidden}
