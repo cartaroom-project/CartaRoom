@@ -12,6 +12,7 @@
       </ul>
       <router-link to="/search">Back to Search</router-link>
     </ul>
+    <Recommended></Recommended>
   </div>
 </template>
 
