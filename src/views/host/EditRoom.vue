@@ -15,7 +15,7 @@
             </li>
     <!-- <input type = "file" @click="uploadImage"> -->
       <br>
-    <button @click="addRoom">Confirm Edit</button><br />
+    <button @click="updateRoom">Confirm Edit</button><br />
     <router-link to="/home">Cancel</router-link>
   </div>
 </template>
@@ -91,7 +91,7 @@
       console.log(this.roomInfo)
     },
     methods: {
-      addRoom: function() {
+      updateRoom: function() {
         var i = 0;
         var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
         var startHours = parseInt(startHoursMinutes[0], 10);

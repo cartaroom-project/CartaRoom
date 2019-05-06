@@ -114,41 +114,45 @@
     },
     methods: {
         doMath: function(){
-        var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
-        var startHours = parseInt(startHoursMinutes[0], 10);
-        console.log('startHours' + startHours);
-        var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
-        var closeHours = parseInt(closeHoursMinutes[0], 10);
-        console.log('closeHours' + closeHours);
-        this.timeSlotsAvailable = closeHours - startHours;
-        console.log(this.timeSlotsAvailable)
-        this.msg = 'Time Slots';
-        this.msg1 = '';
-        },
+          var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
+          var startHours = parseInt(startHoursMinutes[0], 10);
+          console.log('startHours' + startHours);
+          var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
+          var closeHours = parseInt(closeHoursMinutes[0], 10);
+          console.log('closeHours' + closeHours);
+          this.timeSlotsAvailable = closeHours - startHours;
+          console.log(this.timeSlotsAvailable)
+          this.msg = 'Time Slots';
+          this.msg1 = '';
+          },
 
         bookRoom: function(startTime, endTime) {
-         var userInfo = firebase.auth().currentUser.uid;
-         var uniqueKeyIDBooking = '1';
+          var userInfo = firebase.auth().currentUser.uid;
+          var uniqueKeyIDBooking = '1';
 
-            db.ref('users/host/' + this.roomInfo.hostID).once('value').then((snapshot) => {
-            this.hostName = snapshot.val().businessName;
-            console.log('host: ' + this.hostName);
 
-        uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
-        firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
+        // db.ref('')
 
-        uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
-        firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
 
-        alert('Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
-        this.$router.go();
 
-            });
+          db.ref('users/host/' + this.roomInfo.hostID).once('value').then((snapshot) => {
+          this.hostName = snapshot.val().businessName;
+          console.log('host: ' + this.hostName);
+
+          uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
+          firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
+
+          uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
+          firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
+
+          alert('Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
+          this.$router.go();
+          });
 
         console.log(userInfo)
         console.log(this.roomInfo)
         console.log('hostAfter: ' + this.hostName);
-        // //console.log('Start Time: ' + this.startTime)
+        //console.log('Start Time: ' + this.startTime)
 
         // firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
         // uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})

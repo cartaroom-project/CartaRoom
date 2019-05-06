@@ -1,13 +1,12 @@
 <template>
-    <div class="allBookings">
+    <div class="currentBookings">
         <h1>You are a Patron</h1>
         <h2>List of All Bookings</h2>
         <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
             Room Name: {{booking.room.name}} <br />
-            Booker: {{booking.user}} <br />
+            Host: {{booking.host}} <br />
             Date: {{booking.date}} <br />
-            Start Time: {{booking.startTime}} <br />
-            End Time: {{booking.endTime}} <br />
+            Time: {{booking.startTime}}:00 - {{booking.endTime}}:00<br />
         </ul>
     </div>
 </template>
@@ -22,26 +21,27 @@
     //   console.log(error);
     // });
 
-    var userEmail;
+    var userID;
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-            userEmail = user.email;
+            userID = user.uid;
         } else {
             // console.log("No user available");
-            userEmail = "null";
+            userID = "null";
         }
     });
 
     export default {
-        name: 'allBookings',
+        name: 'currentBookings',
         data () {
             return {
-                bookings:[]
+                bookings:[],
+                user: '',
             }
         },
         created () {
-            db.ref('allBookings').orderByChild("user").equalTo(userEmail).once('value').then((snapshot) => {
+            db.ref('allBookings').orderByChild("user").equalTo(userID).once('value').then((snapshot) => {
                 this.bookings = [];
                 snapshot.forEach((doc) => {
                     this.bookings.push(doc.val());
@@ -49,6 +49,12 @@
             }).catch((error) => {
                 console.log(error);
             });
+
+            db.ref('users/patron/' + userID).once('value').then((snapshot) => {
+            this.user = snapshot.val();
+            });
+        },
+        methods: {
         }
     }
 </script>
