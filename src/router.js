@@ -16,6 +16,7 @@ import Search from '@/views/patron/Search';
 import Results from '@/views/patron/Results';
 import CurrentBookingsPatron from '@/views/patron/CurrentBookingsPatron';
 import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
+import HostForm from '@/views/HostForm';
 
 Vue.use(Router);
 
@@ -43,6 +44,11 @@ const router = new Router({
             path: '/about',
             name: 'About',
             component: About,
+        },
+        {
+            path: '/hostForm',
+            name: 'HostForm',
+            component: HostForm,
         },
         {
             path: '/addRoom',
@@ -88,9 +94,6 @@ const router = new Router({
             path: '/search',
             name: 'Search',
             component: Search,
-            meta: {
-                requiresAuth: true
-            }
         },
         {
             path: '/results',

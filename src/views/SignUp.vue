@@ -15,6 +15,19 @@
    <input type="email" v-model="credentials.email" placeholder="Email"><br>
    <input type="password" v-model="credentials.password" placeholder="Password">
      <br>
+
+
+
+     <label>Premium</label>
+    <input type="checkbox" value="premium" v-model="credentials.ispremium"/> <br><br>
+    <input  type="text" placeholder="Full name" v-validate="'required|min:3'" v-model="credentials.fullName"> <br>
+    <input  type="text" placeholder="Business Address" v-model="credentials.businessAddress"> <br>
+    <input  type="text" placeholder="Email" v-model="credentials.email"> <br>
+    <input  type="text" placeholder="Phone Number" v-model="credentials.phoneNumber"> <br> 
+
+
+
+
    <button @click="signUp">Sign Up</button>
    <span>or go back to <router-link to="/login">login</router-link>.</span>
  </div>
@@ -23,6 +36,7 @@
 
  <script>
  import firebase from 'firebase';
+ var HostFormFunction = firebase.functions().httpsCallable('HostFormFunction');
  var SetAccType = firebase.functions().httpsCallable('SetAccType');
 
  export default {
@@ -33,7 +47,12 @@
              {
                  email: '',
                  password: '',
-                 isHost: true
+                 isHost: true,
+                 ispremium: '',
+                 fullName: '',
+                 businessAddress: '',
+                 email: '',
+                 phoneNumber: ''
              }
      }
    },
@@ -42,6 +61,21 @@
        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
           (user) => {
           SetAccType({isHost: this.credentials.isHost})
+          
+            let b = {ispremium: this.credentials.ispremium, 
+                              fullName: this.credentials.fullName,
+                              businessAddress: this.credentials.businessAddress,
+                              email: this.credentials.email,
+                              phoneNumber: this.credentials.phoneNumber
+                              };
+                              console.log(b);
+            HostFormFunction({ispremium: this.credentials.ispremium, 
+                              fullName: this.credentials.fullName,
+                              businessAddress: this.credentials.businessAddress,
+                              email: this.credentials.email,
+                              phoneNumber: this.credentials.phoneNumber
+                              })
+            console.log("ant man")
           this.$router.replace('login')
 
         // Logging in after sign up
