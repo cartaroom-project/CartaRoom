@@ -1,8 +1,11 @@
 <template>
     <div class="sign-up">
         <p>Let's create a new account!</p>
+<!--        for testing to see what shows up-->
         Picked:{{ credentials.isHost }}
         <br>
+
+<!--        buttons to switch between account and adds ishost param-->
         <label for="host">Host</label>
         <input id="host" type="radio" name="accType" v-bind:value="true" v-model="credentials.isHost"/>
 
@@ -10,7 +13,7 @@
         <input id="patron" type="radio" name="accType" v-bind:value="false" v-model="credentials.isHost"/>
 
         <br>
-
+<!--        information for both host and patrons-->
         <p>Let\'s create a new account!</p>
         <p>COMMON INFORMATION</p>
         <input type="email" v-model="credentials.email" placeholder="email"><br>
@@ -20,6 +23,7 @@
         <input v-model="credentials.lastName" placeholder="last name"><br>
         <input v-model="credentials.phone" placeholder="phone"><br>
 
+<!--        patron only information-->
         <p>PATRON ONLY INFORMATION</p>
         <select v-model="patronCredentials.selected" multiple>
         <option>Student</option>
@@ -31,6 +35,7 @@
 
         <button @click="signUp">Sign Up</button>
 
+<!--        host only information-->
         <h3>BUSINESSS INFORMATION</h3>
         <input v-model="hostCredentials.name" placeholder="business name">
         <input v-model="hostCredentials.address" placeholder="business address"><br>
@@ -86,7 +91,7 @@
     methods: {
      signUp: function() {
        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
-          (user) => {
+          () => {
               setAccType({isHost: this.credentials.isHost});
               if(this.credentials.isHost)
               {

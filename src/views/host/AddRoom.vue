@@ -16,7 +16,6 @@
 
 <script>
     import firebase from 'firebase';
-    import axios from 'axios';
 
     var hostID;
     var roomID = '1';

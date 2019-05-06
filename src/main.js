@@ -5,7 +5,6 @@ import App from './App.vue'; //Navbar for non-logged in user
 import App1 from './App1.vue'; //Navbar for logged in user[Host]
 import App2 from './App2.vue'; //Navbar for logged in user[Patron]
 import router from './router';
-import axios from 'axios';
 
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
@@ -39,6 +38,3 @@ firebase.auth().onAuthStateChanged(() => {
 }
 });
 
-axios.defaults.baseURL = 'https://cartaroom-3f36f.firebaseio.com/'
-axios.defaults.headers.common['Authorization'] = 'email'
-axios.defaults.headers.get['Accepts'] = 'application/json'
