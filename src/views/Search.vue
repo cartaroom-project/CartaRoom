@@ -1,16 +1,28 @@
 <template>
-   <div id="search">
-        <h1>Reserve a Room</h1>
-        <form>
-		Location: <input type= "text">
-		<button type="button" value="Submit" onclick="ClickMe()">Search</button>
-		<p id="Search"></p>
-		</form>
+    <div class="search">
+        <h1>Reserve a Room(Patron Home Page)</h1>
+		<input type="text" placeholder="Location">
+		<button @click="search">Search</button>
+       <Recommended></Recommended>
     </div>
 </template>
 
 <script>
-function ClickMe() {
-	document.getElementById("Search").innerHTML = "Searching";
+
+  import Recommended from "../components/Recommended";
+  export default {
+    name: 'search',
+      components: {Recommended},
+      data() {
+      return {
+      }
+    },
+	methods: {
+	search: function(){	
+	//document.getElementById("Search").innerHTML = "Searching";
+	this.$router.replace('results')
+		},
 	}
+  }
+
 </script>
