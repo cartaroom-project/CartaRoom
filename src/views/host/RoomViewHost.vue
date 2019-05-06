@@ -24,6 +24,7 @@
 //   console.log(this.$router);
 // bookingSlots[1].startingTime
   import firebase from 'firebase';
+  import db from '@/firebase.js';
   import axios from 'axios';
 
   var hostID;
@@ -98,7 +99,7 @@
         console.log('room ID ' + id);
         db.ref('rooms').child(id).remove();
         alert('Room Deleted!');
-        this.$router.go();
+        this.$router.go(-1);
     },  
     editRoom: function(id){
       this.$router.push({
