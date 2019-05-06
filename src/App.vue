@@ -8,6 +8,7 @@
             |
             <router-link to="/about">About</router-link>
             <HostNavbar></HostNavbar>
+
             <router-view></router-view>
         </div>
         <v-footer
