@@ -14,7 +14,7 @@ import SignUp from '@/views/SignUp';
 import About from '@/views/About';
 
 import Search from '@/views/Search';
-import Results from '@/views/patron/Results';
+import Results from '@/views/Results';
 import CurrentBookingsPatron from '@/views/patron/CurrentBookingsPatron';
 import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
 import RoomViewPatron from '@/views/patron/RoomViewPatron';
@@ -103,9 +103,6 @@ const router = new Router({
       path: '/results',
       name: 'Results',
       component: Results,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/currentBookingsPatron',
