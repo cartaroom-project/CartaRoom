@@ -1,13 +1,13 @@
 <template>
-    <div class="allBookings">
+    <div class="currentBookings">
         <h1>You are a Host</h1>
-        <h2>List of All Bookings</h2>
+        <h2>List of Current Bookings</h2>
         <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
             Room Name: {{booking.room.name}} <br />
-            Booker: {{booking.user}} <br />
+            Booker: {{booking.userEmail}}<br />
             Date: {{booking.date}} <br />
-            Start Time: {{booking.startTime}} <br />
-            End Time: {{booking.endTime}} <br />
+            Start Time: {{booking.startTime}}:00 <br />
+            End Time: {{booking.endTime}}:00 <br />
         </ul>
     </div>
 </template>
@@ -34,14 +34,14 @@
     });
 
     export default {
-        name: 'allBookings',
+        name: 'currentBookings',
         data () {
             return {
-                bookings:[]
+                bookings:[],
             }
         },
         created () {
-            db.ref('allBookings').orderByChild("room/userID").equalTo(userID).once('value').then((snapshot) => {
+            db.ref('allBookings').orderByChild("room/hostID").equalTo(userID).once('value').then((snapshot) => {
                 this.bookings = [];
                 snapshot.forEach((doc) => {
                     this.bookings.push(doc.val());
@@ -49,6 +49,8 @@
             }).catch((error) => {
                 console.log(error);
             });
+        },
+        methods: {
         }
     }
 </script>

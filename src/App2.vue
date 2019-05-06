@@ -35,16 +35,16 @@
         }
     });
 
-    export default {
-        name: 'home',
-        methods: {
-            logout: function() {
-                firebase.auth().signOut().then(() => {
-                    this.$router.replace('login')
-                })
-            }
-        }
+export default {
+  name: 'home',
+  methods: {
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('/')
+      })
     }
+  }
+}
 </script>
 
 

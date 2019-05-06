@@ -8,6 +8,7 @@ import EditRoom from '@/views/host/EditRoom';
 import CurrentBookings from '@/views/host/CurrentBookings';
 import AllBookings from '@/views/host/AllBookings';
 import AllCustomers from '@/views/host/AllCustomers';
+import RoomViewHost from '@/views/host/RoomViewHost';
 
 import Login from '@/views/Login';
 import SignUp from '@/views/SignUp';
@@ -95,6 +96,14 @@ const router = new Router({
       }
     },
     {
+      path: '/roomViewHost/:id',
+      name: 'RoomViewHost',
+      component: RoomViewHost,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/search',
       name: 'Search',
       component: Search,
@@ -127,7 +136,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
+    }
   ]
 });
 
