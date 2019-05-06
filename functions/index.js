@@ -54,3 +54,23 @@ exports.addHost = functions.https.onCall((data, context) => {
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });
 
+<<<<<<< HEAD
+exports.HostFormFunction = functions.https.onCall((data, context) => {
+    const uid = context.auth.uid;
+    const hostInfo = {
+        ispremium:          data.ispremium,
+        fullName:           data.fullName,
+        businessAddress:    data.businessAddress,
+        email:              data.email,
+        phoneNumber:        data.phoneNumber,
+    }
+    
+    console.log("entered into host cloud function")
+    const ref = admin.database().ref(`users/hostInfo/${uid}`);
+    return ref.set(hostInfo)
+        .catch((error) => {
+            console.log(`Error: ${error}`)
+        });
+});
+=======
+>>>>>>> 3e8330b534d59eeb678e9858c7905bfed7a4e66d

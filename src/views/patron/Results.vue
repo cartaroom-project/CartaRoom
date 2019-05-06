@@ -1,4 +1,4 @@
-
+<template>
     <div class="results">
         <ul>
             <h2>Search Results<br /><br /> </h2>

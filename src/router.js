@@ -13,7 +13,7 @@ import Login from '@/views/Login';
 import SignUp from '@/views/SignUp';
 import About from '@/views/About';
 
-import Search from '@/views/patron/Search';
+import Search from '@/views/Search';
 import Results from '@/views/patron/Results';
 import CurrentBookingsPatron from '@/views/patron/CurrentBookingsPatron';
 import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
@@ -25,11 +25,11 @@ const router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login'
+      redirect: '/search'
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/search'
     },
     {
       path: '/login',
@@ -98,9 +98,6 @@ const router = new Router({
       path: '/search',
       name: 'Search',
       component: Search,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/results',

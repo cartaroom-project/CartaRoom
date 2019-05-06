@@ -9,7 +9,7 @@
 
 <script>
 
-  import Recommended from "../../components/Recommended";
+  import Recommended from "../components/Recommended";
   export default {
     name: 'search',
       components: {Recommended},
