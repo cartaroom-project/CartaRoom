@@ -1,42 +1,52 @@
 <template>
     <div class="sign-up">
-        <p>Let's create a new account!</p>
+        <div class="sign_up">
+        <p id="sign_up">Create Your CartaRoom Account</p>
         Picked:{{ credentials.isHost }}
         <br>
-        <label for="host">Host</label>
-        <input id="host" type="radio" name="accType" v-bind:value="true" v-model="credentials.isHost"/>
+            <div class="search_body">
+        <p class="signtext">Choose the Type of Account <i class="fas fa-info-circle" style="color:white"></i></p>
+        <button class="sign_buttons" id="host" name="accType" v-bind:value="true" v-model="credentials.isHost" v-on:click="credentials.isHost = true">Host</button>
 
-        <label for="patron">Patron</label>
-        <input id="patron" type="radio" name="accType" v-bind:value="false" v-model="credentials.isHost"/>
+        
+        <button class="sign_buttons"id="patron" name="accType" v-bind:value="false" v-model="credentials.isHost" v-on:click="credentials.isHost = false">Patron</button>
 
         <br>
 
-        <p>Let\'s create a new account!</p>
-        <p>COMMON INFORMATION</p>
-        <input type="email" v-model="credentials.email" placeholder="email"><br>
-        <input type="password" v-model="credentials.password" placeholder="password"><br>
-        <input type="password" v-model="credentials.password" placeholder=" confirm password"><br>
-        <input v-model="credentials.firstName" placeholder="first name">
-        <input v-model="credentials.lastName" placeholder="last name"><br>
-        <input v-model="credentials.phone" placeholder="phone"><br>
+        <p class="signtext">Personal Information</p>
+        <span style="display: inline">
+        <input class="sign_input_half" v-model="credentials.firstName" placeholder="first name">
+        <input class="sign_input_half" v-model="credentials.lastName" placeholder="last name">        
+        </span>
+                <input class="sign_input" v-model="credentials.phone" placeholder="phone">
+        <input class="sign_input" type="email" v-model="credentials.email" placeholder="email">
+        <input class="sign_input" type="password" v-model="credentials.password" placeholder="password">
+        <input class="sign_input" type="password" v-model="credentials.password" placeholder="confirm password"><br>
+        <br>
+        
 
-        <p>PATRON ONLY INFORMATION</p>
-        <select v-model="patronCredentials.selected" multiple>
+        <p class="signtext">PATRON INFORMATION</p>
+        <select class="sign_input_half" v-model="patronCredentials.selected">
         <option>Student</option>
         <option>Employed</option>
         <option>Entrepreneur</option>
         </select>
-
+<br>
         <span>Selected: {{ patronCredentials.selected }}</span> <br>
 
-        <button @click="signUp">Sign Up</button>
+        <button class="progressive" @click="signUp">Sign Up</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+        <p class="signtext">BUSINESSS INFORMATION</p>
+        <input class="sign_input" v-model="hostCredentials.name" placeholder="business name">
+        <input class="sign_input" v-model="hostCredentials.address" placeholder="business address"><br>
+        <input class="sign_input" v-model="hostCredentials.phone" placeholder="business phone"><br>
+                <br><br>
 
-        <h3>BUSINESSS INFORMATION</h3>
-        <input v-model="hostCredentials.name" placeholder="business name">
-        <input v-model="hostCredentials.address" placeholder="business address"><br>
-        <input v-model="hostCredentials.phone" placeholder="business phone"><br>
-
-        <select v-model="hostCredentials.selected" multiple>
+        <select class="sign_input_half" v-model="hostCredentials.selected" >
             <option>Coffee Shop</option>
             <option>Library</option>
             <option>Community Centre</option>
@@ -44,8 +54,18 @@
 
         <span>Selected: {{ hostCredentials.selected }}</span> <br>
 
-        <button @click="signUp">Sign Up</button>
-
+        <button class="progressive" @click="signUp">Sign Up</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+            </div>
+        </div>
         <span>or go back to <router-link to="/login">login</router-link>.</span>
     </div>
 </template>
@@ -142,20 +162,136 @@
  <style scoped>
   .sign-up {
     margin-top: 40px;
+margin-left: 160px;
   }
-  input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
-  }
-  button {
-    margin-top: 10px;
-    width: 10%;
-    cursor: pointer;
-  }
-  span {
-    display: block;
-    margin-top: 20px;
-    font-size: 11px;
-  }
+
+ 
+.search_body {
+	width: 961px;
+	background: rgba(218, 229, 227, 0.9);
+
+    /* 1015px for patrons*/
+    /* 1342px for hosts*/ 
+}
+
+.column {
+	float: center;
+	width: 50%;
+}
+
+#sign_up {
+	font-family: Rajdhani;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 120px;
+	width: 1493px;
+	line-height: 153px;
+}
+
+.sign_buttons {
+	width: 241px;
+	height: 70px;
+	left: 271px;
+	top: 706px;
+	margin-left: 155px;
+	background: #FFFFFF;
+	border-radius: 35px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 36px;
+	line-height: 42px;
+	text-align: center;
+	color: #000000;
+}
+
+.progressive {
+	width: 227px;
+	height: 64px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 30px;
+	line-height: 35px;
+	text-align: center;
+	float: right;
+	margin: 65px 30px;
+	color: #000000;
+	background: #FFFFFF;
+	border-radius: 15px;
+}
+
+.signtext {
+	padding-left: 65px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 36px;
+	line-height: 42px;
+	color: #000000;
+}
+
+.sign_input {
+	width: 865px;
+	height: 57px;
+	padding-left: 24px;
+	background: #FFFFFF;
+	border: 0.25px solid #000000;
+	box-sizing: border-box;
+	margin-top: 25px;
+	border-radius: 10px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 30px;
+}
+
+.sign_input_half {
+	width: 383px;
+	height: 57px;
+	background: #FFFFFF;
+	border: 0.25px solid #000000;
+	padding-left: 24px;
+	font-family: Roboto;
+	margin: 0 55px;
+	margin-left: 42px;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 30px;
+	line-height: 35px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+ ::placeholder {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 30px;
+	line-height: 35px;
+	color: #828282;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 30px;
+	line-height: 35px;
+	color: #828282;
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 30px;
+	line-height: 35px;
+	color: #828282;
+}     
+
 </style>
