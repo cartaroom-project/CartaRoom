@@ -6,18 +6,18 @@
         <br>
             <div class="search_body">
         <p class="signtext">Choose the Type of Account <i class="fas fa-info-circle" style="color:white"></i></p>
-        <button class="sign_buttons" id="host" name="accType" v-bind:value="true" v-model="credentials.isHost" v-on:click="credentials.isHost = true">Host</button>
+        <button class="sign_buttons" id="host" name="accType" v-bind:value="true" v-on:click="credentials.isHost = true">Host</button>
 
         
-        <button class="sign_buttons"id="patron" name="accType" v-bind:value="false" v-model="credentials.isHost" v-on:click="credentials.isHost = false">Patron</button>
+        <button class="sign_buttons" id="patron" name="accType" v-bind:value="false"  v-on:click="credentials.isHost = false">Patron</button>
 
         <br>
 
         <p class="signtext">Personal Information</p>
-        <span style="display: inline">
+
         <input class="sign_input_half" v-model="credentials.firstName" placeholder="first name">
         <input class="sign_input_half" v-model="credentials.lastName" placeholder="last name">        
-        </span>
+
                 <input class="sign_input" v-model="credentials.phone" placeholder="phone">
         <input class="sign_input" type="email" v-model="credentials.email" placeholder="email">
         <input class="sign_input" type="password" v-model="credentials.password" placeholder="password">
