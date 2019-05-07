@@ -1,30 +1,33 @@
 <template>
-  <div class="addRoom">
-    <p>Let's add a new room</p>
-    <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
-    <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
-    <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
-    <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
-    Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
-    Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
-     <h3>Amenities:</h3>
-      <p>test: {{roomInfo.selectedAmenities}}</p>
+    <div class="addRoom">
+        <p>Let's add a new room</p>
+        <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
+        <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
+        <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
+        <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
 
-    <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
+        Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br />
+        Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
+
+        <h3>Amenities:</h3>
+        <p>test: {{roomInfo.selectedAmenities}}</p>
+
+        <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
         <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities"><br>
         <label :for="amenity.offering">{{amenity.offering}}</label>
-    </li>
-<!--    <input type = "file" @click="uploadImage">-->
-      <br>
-    <button @click="addRoom">Add Room</button><br>
-    <router-link to="/home">Cancel</router-link>
-  </div>
+        </li>
+
+        <!--    <input type = "file" @click="uploadImage">-->
+        <br>
+
+        <button @click="addRoom">Add Room</button><br>
+        <router-link to="/home">Cancel</router-link>
+    </div>
 </template>
 
 <script>
     import firebase from 'firebase';
     var addRoom = firebase.functions().httpsCallable('addRoom');
-
 
     var hostID;
     var roomID = '1';
