@@ -6,8 +6,7 @@
       Name: {{room.name}} <br />
       Capacity: {{room.capacity}} <br /> 
       Address: {{room.address}} <br />  
-      <button v-on:click="editRoom(room.roomID)">Edit Room</button>
-      <button v-on:click="deleteRoom(room.roomID)">Delete Room</button>
+      <button v-on:click="viewRoom(room.roomID)">View Room</button>
       <br /></ul>
   </div>
 </template>
@@ -52,15 +51,9 @@ export default {
       });
     },
   methods: {
-      deleteRoom: function(id) {
-        console.log('room ID ' + id);
-        db.ref('rooms').child(id).remove();
-        alert('Room Deleted!');
-        this.$router.go();
-    },  
-    editRoom: function(id){
+      viewRoom: function(id){
       this.$router.push({
-        name: 'EditRoom',
+        name: 'RoomViewHost',
         params: { id: id }
       })
     }

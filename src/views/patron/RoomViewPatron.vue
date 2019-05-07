@@ -17,7 +17,7 @@
             <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
                   <ul v-for="index in timeSlotsAvailable" :key="index">
                 <p>{{roomInfo.bookingSlots[index].startingTime}}:00 to {{roomInfo.bookingSlots[index].endingTime}}:00 
-                    <button v-on:click="bookRoom(room)">Book Room</button> 
+                    <button v-on:click="bookRoom(roomInfo.bookingSlots[index].startingTime, roomInfo.bookingSlots[index].endingTime)">Book Room</button> 
                     </p>
                 </ul>
                 <!-- <p>{{roomInfo.bookingSlots[1].startingTime}}:00 to {{roomInfo.bookingSlots[1].endingTime}}:00</p> <br /> -->
@@ -32,9 +32,10 @@
 //   console.log(this.$router);
 // bookingSlots[1].startingTime
   import firebase from 'firebase';
+  import db from '@/firebase.js';
   import axios from 'axios';
 
-  var hostID;
+  var userID;
   var roomID = '1';
 //   var timeSlotsAVailable = 2;
   var storageRef = firebase.storage().ref();
@@ -42,10 +43,10 @@
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
    // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-    hostID = user.uid;
+    userID = user.uid;
   } else {
    // console.log("No user available"); 
-    hostID = 'null';
+    userID = 'null';
   }
 });
 
@@ -60,6 +61,8 @@
           msg: '',
           msg1: 'View time slots',
           date: '',
+          hostName: '',
+          userEmail: '',
         amenities:[
           {offering: 'wifi'},
           {offering: 'projector'},
@@ -68,7 +71,7 @@
         ],
           roomInfo:
               {
-                  hostID: hostID,
+                  hostID: '',
                   name: '',
                   capacity: '',
                   description: '',
@@ -101,39 +104,65 @@
                   this.roomInfo.selectedAmenities = snapshot.val().amenities,
                   this.roomInfo.bookingSlots = snapshot.val().bookingSlots
           console.log(this.roomInfo)
+        });
+        console.log('current user ID: ' + userID) 
+          firebase.database().ref('users/patron/' + userID).once('value').then((snapshot) => {
+          this.room = snapshot.val();
+                  this.userEmail = snapshot.val().email
+                  console.log('userEmail: ' + this.userEmail)
         }) 
-      console.log(this.roomInfo)
-        // this.doMath();
     },
     methods: {
         doMath: function(){
-        var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
-        var startHours = parseInt(startHoursMinutes[0], 10);
-        console.log('startHours' + startHours);
-        var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
-        var closeHours = parseInt(closeHoursMinutes[0], 10);
-        console.log('closeHours' + closeHours);
-        this.timeSlotsAvailable = closeHours - startHours;
-        console.log(this.timeSlotsAvailable)
-        this.msg = 'Time Slots';
-        this.msg1 = '';
-        },
-        bookRoom: function(room) {
-        // var userInfo = firebase.auth().currentUser.email;
-        // var uniqueKeyIDBooking = '1';
+          var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
+          var startHours = parseInt(startHoursMinutes[0], 10);
+          console.log('startHours' + startHours);
+          var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
+          var closeHours = parseInt(closeHoursMinutes[0], 10);
+          console.log('closeHours' + closeHours);
+          this.timeSlotsAvailable = closeHours - startHours;
+          console.log(this.timeSlotsAvailable)
+          this.msg = 'Time Slots';
+          this.msg1 = '';
+          },
 
-        // //console.log(room)
-        // //console.log('Start Time: ' + this.startTime)
+        bookRoom: function(startTime, endTime) {
+          var userInfo = firebase.auth().currentUser.uid;
+          var uniqueKeyIDBooking = '1';
+
+
+        // db.ref('')
+
+
+
+          db.ref('users/host/' + this.roomInfo.hostID).once('value').then((snapshot) => {
+          this.hostName = snapshot.val().businessName;
+          console.log('host: ' + this.hostName);
+
+          uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
+          firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
+
+          uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
+          firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
+
+          alert('Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
+          this.$router.go();
+          });
+
+        console.log(userInfo)
+        console.log(this.roomInfo)
+        console.log('hostAfter: ' + this.hostName);
+        //console.log('Start Time: ' + this.startTime)
 
         // firebase.database().ref('rooms/' + room.uniqueKey).update({userID: room.userID, name: room.name, capacity: room.capacity, description: room.description, address: room.address, uniqueKey: room.uniqueKey, reserved: 'true'})
-        // uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
-        // firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
+        // uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
+        // firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
 
-        // uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: room, user: userInfo, bookingID: '1',startTime: this.startTime,endTime: this.endTime,date: this.date})
-        // firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: room, user: userInfo, bookingID: uniqueKeyIDBooking.key,startTime: this.startTime,endTime: this.endTime,date: this.date})
+        // uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName})
+        // firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName})
 
-        alert('Congrats you have booked the room!');
-        this.$router.go();
+        // alert('Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
+        // this.$router.go();
      }
     //   addRoom: function() {
     //     var i = 0;

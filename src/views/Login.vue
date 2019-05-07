@@ -22,14 +22,16 @@
         methods: {
             login: function () {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                    (user) => {
+                    () => {
                         firebase.auth().currentUser.getIdTokenResult()
                             .then((idTokenResult) => {
                                 console.log(idTokenResult);
                                 // Confirm the user is an Admin.
                                 if (idTokenResult.claims.host) {
+                                    console.log('logged in as host');
                                     this.$router.replace('home')
                                 } else {
+                                    console.log('logged in as patron');
                                     this.$router.replace('search')
                                 }
                             })

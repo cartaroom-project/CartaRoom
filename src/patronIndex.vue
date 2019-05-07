@@ -1,13 +1,13 @@
 <template>
     <div id="app">
         <div id="nav">
-            <!-- renders view after logged in[Host] -->
-            <router-link to="/home">View All Rooms</router-link> |
-            <router-link to="/addRoom">Host a new Room</router-link> |
-            <router-link to="/currentBookings">Current Bookings</router-link> |
-            <router-link to="/allBookings">All Bookings</router-link> |
-            <router-link to="/allCustomers">Customer Database</router-link> <br />
+            <!-- renders view after logged in[Patron] -->
+            <router-link to="/search">Search</router-link> |
+            <router-link to="/currentBookingsPatron">Current Bookings</router-link> |
+            <router-link to="/allBookingsPatron">All Bookings</router-link> <br />
             <button @click="logout">Logout</button>
+        </div>
+        <div id="patronContent">
             <router-view></router-view>
         </div>
 
@@ -37,16 +37,16 @@
         }
     });
 
-    export default {
-        name: 'home',
-        methods: {
-            logout: function() {
-                firebase.auth().signOut().then(() => {
-                    this.$router.replace('login')
-                })
-            }
-        }
+export default {
+  name: 'home',
+  methods: {
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('/')
+      })
     }
+  }
+}
 </script>
 
 

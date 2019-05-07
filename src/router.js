@@ -8,13 +8,14 @@ import EditRoom from '@/views/host/EditRoom';
 import CurrentBookings from '@/views/host/CurrentBookings';
 import AllBookings from '@/views/host/AllBookings';
 import AllCustomers from '@/views/host/AllCustomers';
+import RoomViewHost from '@/views/host/RoomViewHost';
 
 import Login from '@/views/Login';
 import SignUp from '@/views/SignUp';
 import About from '@/views/About';
 
-import Search from '@/views/patron/Search';
-import Results from '@/views/patron/Results';
+import Search from '@/views/Search';
+import Results from '@/views/Results';
 import CurrentBookingsPatron from '@/views/patron/CurrentBookingsPatron';
 import AllBookingsPatron from '@/views/patron/AllBookingsPatron';
 import RoomViewPatron from '@/views/patron/RoomViewPatron';
@@ -25,11 +26,11 @@ const router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login'
+      redirect: '/search'
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/search'
     },
     {
       path: '/login',
@@ -95,20 +96,22 @@ const router = new Router({
       }
     },
     {
-      path: '/search',
-      name: 'Search',
-      component: Search,
+      path: '/roomViewHost/:id',
+      name: 'RoomViewHost',
+      component: RoomViewHost,
       meta: {
         requiresAuth: true
       }
     },
     {
+      path: '/search',
+      name: 'Search',
+      component: Search,
+    },
+    {
       path: '/results',
       name: 'Results',
       component: Results,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/currentBookingsPatron',
@@ -133,7 +136,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
+    }
   ]
 });
 

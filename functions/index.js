@@ -51,6 +51,34 @@ exports.addHost = functions.https.onCall((data, context) => {
     }))
 });
 
+exports.addRoom = functions.https.onCall((data, context) => {
+    const uid = context.auth.uid;
+
+    console.log('beforetest');
+    const roomData = {
+        hostID: data.hostID,
+        name: data.name,
+        capacity: data.capacity,
+        description: data.description,
+        address: data.address,
+        roomID: data.roomID,
+        reserved: data.reserved,
+        bookingCounter: data.bookingCounter,
+        openTime: data.openTime,
+        closeTime: data.closeTime,
+        amenities: data.amenities,
+        bookingSlots: data.bookingSlots
+    };
+
+    console.log('afterdata;');
+    console.log(roomData);
+    const ref = admin.database().ref(`roomtest/${uid}`);
+    return ref.set(roomData).catch((error => {
+        console.log('ERROR: ${error}')
+    }));
+
+});
+
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });
 
