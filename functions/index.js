@@ -10,8 +10,8 @@ exports.setAccType = functions.https.onCall((data, context) => {
         patron: !data.isHost,
         premium: false,
     }).catch(error => {
-            console.log(error);
-        });
+        console.log(error);
+    });
 });
 
 exports.addPatron = functions.https.onCall((data, context) => {
@@ -52,33 +52,42 @@ exports.addHost = functions.https.onCall((data, context) => {
 });
 
 exports.addRoom = functions.https.onCall((data, context) => {
-    const uid = context.auth.uid;
+    console.log(data);
+    const ref = admin.database().ref(`rooms/`);
+    var newRoomID = ref.push(data).key
+    console.log(`key: + ${newRoomID}`)
 
-    console.log('beforetest');
-    const roomData = {
-        hostID: data.hostID,
-        name: data.name,
-        capacity: data.capacity,
-        description: data.description,
-        address: data.address,
-        roomID: data.roomID,
-        reserved: data.reserved,
-        bookingCounter: data.bookingCounter,
-        openTime: data.openTime,
-        closeTime: data.closeTime,
-        amenities: data.amenities,
-        bookingSlots: data.bookingSlots
-    };
-
-    console.log('afterdata;');
-    console.log(roomData);
-    const ref = admin.database().ref(`roomtest/${uid}`);
-    return ref.set(roomData).catch((error => {
-        console.log('ERROR: ${error}')
-    }));
+    admin.database().ref(`rooms/${newRoomID}`).update({
+        roomID:newRoomID
+    })
 
 });
 
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });
 
+
+// {
+//     "rules": {
+//     "users": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "rooms": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "currentBookings": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "allBookings": {
+//         ".read": true,
+//             ".write": true
+//     },
+//       "roomtest": {
+//         ".read": true,
+//             ".write": true
+//     }
+// }
+// }

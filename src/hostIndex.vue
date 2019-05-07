@@ -9,6 +9,7 @@
             <router-link to="/allCustomers">Customer Database</router-link> <br />
             <button @click="logout">Logout</button>
         </div>
+        <HostNavbar></HostNavbar>
         <div id ="hostContent">
             <router-view></router-view>
         </div>
