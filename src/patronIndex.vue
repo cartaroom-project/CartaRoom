@@ -7,6 +7,7 @@
             <router-link to="/allBookingsPatron">All Bookings</router-link> <br />
             <button @click="logout">Logout</button>
         </div>
+        <PatronNavbar></PatronNavbar>
         <div id="patronContent">
             <router-view></router-view>
         </div>
