@@ -1,9 +1,9 @@
 <template>
     <div class="search">
         <h1>Reserve a Room(Patron Home Page)</h1>
-		<input type="text" v-model="criteria" placeholder="Location">
+		<input type="text" v-model="criteria" placeholder="Search Criteria">
 		<button @click="search()">Search</button>
-       <Recommended></Recommended>
+       <!-- <Recommended></Recommended> -->
     </div>
 </template>
 
@@ -12,7 +12,7 @@
   import Recommended from "../components/Recommended";
   export default {
     name: 'search',
-      components: {Recommended},
+      // components: {Recommended},
       data() {
       return {
             criteria: 'hello'

@@ -12,7 +12,7 @@
       </ul>
       <router-link to="/search">Back to Search</router-link>
     </ul>
-    <Recommended></Recommended>
+    <!-- <Recommended></Recommended> -->
   </div>
 </template>
 
@@ -34,11 +34,21 @@ export default {
    },
     created () {
       this.criteria = this.$route.params.criteria;
-        db.ref('rooms').orderByChild("name").equalTo(this.criteria).once('value').then((snapshot) => {
+        db.ref('rooms').orderByChild("name").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
         this.rooms = [];
         snapshot.forEach((doc) => {
           this.rooms.push(doc.val());
         }) 
+
+        db.ref('rooms').orderByChild("description").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
+        snapshot.forEach((doc) => {
+          this.rooms.push(doc.val());
+        }) 
+
+      }).catch((error) => {
+        console.log(error);
+      });
+
       }).catch((error) => {
         console.log(error);
       });
