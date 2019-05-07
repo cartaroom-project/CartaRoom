@@ -6,6 +6,8 @@
             <router-link to="/currentBookingsPatron">Current Bookings</router-link> |
             <router-link to="/allBookingsPatron">All Bookings</router-link> <br />
             <button @click="logout">Logout</button>
+        </div>
+        <div id="patronContent">
             <router-view></router-view>
         </div>
 

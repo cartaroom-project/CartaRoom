@@ -8,16 +8,16 @@
             <router-link to="/allBookings">All Bookings</router-link> |
             <router-link to="/allCustomers">Customer Database</router-link> <br />
             <button @click="logout">Logout</button>
+        </div>
+        <div id ="hostContent">
             <router-view></router-view>
         </div>
-
     </div>
 </template>
 
 
 <script>
     import firebase from 'firebase';
-    import db from '@/firebase.js';
 
     // db.ref('rooms').once('value').then(function(snapshot) {
     //   console.log(snapshot.val());
@@ -48,7 +48,6 @@ export default {
   }
 }
 </script>
-
 
 <style>
     #app {

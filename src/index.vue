@@ -7,14 +7,15 @@
             <router-link to="/sign-up">Sign Up</router-link>
             |
             <router-link to="/about">About</router-link>
-            <HostNavbar></HostNavbar>
 
+        </div>
+
+        <HostNavbar></HostNavbar>
+        <div id="notLoggedInContent">
             <router-view></router-view>
         </div>
-        <v-footer
-                dark
-                height="auto"
-        >
+
+        <v-footer dark height="auto">
             <v-card>
                 <v-card-text class="white--text pt-0">
                     Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum.
@@ -51,7 +52,7 @@
     //   console.log(error);
     // });
 
-    var userID;
+    let userID;
     firebase.auth().onAuthStateChanged(function (user) {
 
         if (user) {
