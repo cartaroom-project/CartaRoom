@@ -16,8 +16,7 @@
     </li>
 <!--    <input type = "file" @click="uploadImage">-->
       <br>
-    <button @click="addRoom">Add Room</button>
-      <button @click="addRoomTest">Add Room Test</button>
+    <button @click="addRoom">Add Room</button><br>
     <router-link to="/home">Cancel</router-link>
   </div>
 </template>
@@ -45,9 +44,9 @@
     data() {
         return {
             amenities:[
-                {offering: 'wifi'},
-                {offering: 'projector'},
-                {offering: 'whiteboard'},
+                {offering: 'Wifi'},
+                {offering: 'Projector'},
+                {offering: 'Whiteboard'},
                 {offering: 'Ethernet'},
             ],
             roomInfo:
@@ -58,7 +57,6 @@
                 description: '',
                 address: '',
                 roomID: roomID,
-                reserved: false,
                 bookingCounter: 0,
                 openTime:0,
                 closeTime:0,
@@ -68,88 +66,30 @@
         }
     },
     methods: {
-          addRoomTest: function()
-          {
-              addRoom({
-                  hostID: this.roomInfo.hostID,
-                  name: this.roomInfo.name,
-                  capacity: this.roomInfo.capacity,
-                  description: this.roomInfo.description,
-                  address:this.roomInfo.address,
-                  roomID:this.roomInfo.roomID,
-                  reserved:this.roomInfo.reserved,
-                  bookingCounter: this.roomInfo.bookingCounter,
-                  openTime: this.roomInfo.openTime,
-                  closeTime: this.roomInfo.closeTime,
-                  amenities: this.roomInfo.selectedAmenities,
-                  bookingSlots: this.roomInfo.bookingSlots});
-              console.log('roomtest');
+        calculateTime: function()
+        {
+            var i = 0;
+            var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
+            var startHours = parseInt(startHoursMinutes[0], 10);
+            var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
+            var closeHours = parseInt(closeHoursMinutes[0], 10);
+            var timeSlotsAvailable = closeHours - startHours;
+            var firstTimeSlot = startHours;
 
-              this.roomInfo.roomID = roomID.key;
-
-              addRoom({
-                  roomID:this.roomInfo.roomID
-              })
-
-          },
-      addRoom: function() {
-        var i = 0;
-        var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
-        var startHours = parseInt(startHoursMinutes[0], 10);
-        var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
-        var closeHours = parseInt(closeHoursMinutes[0], 10);
-        var timeSlotsAvailable = closeHours - startHours;
-        var firstTimeSlot = startHours;
-        
-        while(i<timeSlotsAvailable){
-            this.roomInfo.bookingSlots.push({startingTime: firstTimeSlot,endingTime: ++firstTimeSlot});
-            i++;
-        }
-
-            roomID = firebase.database().ref('rooms').push({
-              hostID: this.roomInfo.hostID,
-              name: this.roomInfo.name, 
-              capacity: this.roomInfo.capacity, 
-              description: this.roomInfo.description, 
-              address:this.roomInfo.address, 
-              roomID:this.roomInfo.roomID,
-              reserved:this.roomInfo.reserved,
-              bookingCounter: this.roomInfo.bookingCounter,
-              openTime: this.roomInfo.openTime,
-              closeTime: this.roomInfo.closeTime,
-              amenities: this.roomInfo.selectedAmenities,
-              bookingSlots: this.roomInfo.bookingSlots})
-
-            this.roomInfo.roomID = roomID.key;
-
-            firebase.database().ref('rooms/' + roomID.key).update({              
-              hostID: this.roomInfo.hostID,
-              name: this.roomInfo.name, 
-              capacity: this.roomInfo.capacity, 
-              description: this.roomInfo.description, 
-              address:this.roomInfo.address, 
-              roomID:this.roomInfo.roomID,
-              reserved:this.roomInfo.reserved,
-              bookingCounter: this.roomInfo.bookingCounter,
-              openTime: this.roomInfo.openTime,
-              closeTime: this.roomInfo.closeTime,
-              amenities: this.roomInfo.selectedAmenities,
-              bookingSlots: this.roomInfo.bookingSlots})
-
-
-                this.$router.replace('home')
+            while(i<timeSlotsAvailable){
+                this.roomInfo.bookingSlots.push({
+                    startingTime: firstTimeSlot,
+                    endingTime: ++firstTimeSlot});
+                i++;
             }
         },
-
-        // post: function()
-        // {
-        //    this.$http.post(firebase.database().ref('users'), this.credentials).then(function (data) {
-        //
-        //        this.submitted=true;
-        //        this.$router.replace('home')
-        //        }
-        //    )
-        // }
+        addRoom: function()
+        {
+            this.calculateTime();
+            addRoom(this.roomInfo);
+            this.$router.replace('home');
+        },
+        }
     }
 </script>
 
