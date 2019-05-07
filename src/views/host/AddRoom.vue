@@ -110,18 +110,6 @@
               amenities: this.roomInfo.selectedAmenities,
               bookingSlots: this.roomInfo.bookingSlots})
               
-                firebase.database().ref('rooms/' + roomID.key).update({
-                    hostID: this.roomInfo.hostID,
-                    name: this.roomInfo.name,
-                    capacity: this.roomInfo.capacity,
-                    description: this.roomInfo.description,
-                    address:this.roomInfo.address,
-                    roomID:this.roomInfo.roomID,
-                    reserved:this.roomInfo.reserved,
-                    bookingCounter: this.roomInfo.bookingCounter,
-                    openTime: this.roomInfo.openTime,
-                    closeTime: this.roomInfo.closeTime})
-
                 this.$router.replace('home')
             }
         },

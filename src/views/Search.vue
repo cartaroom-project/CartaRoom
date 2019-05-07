@@ -1,8 +1,8 @@
 <template>
     <div class="search">
         <h1>Reserve a Room(Patron Home Page)</h1>
-		<input type="text" placeholder="Location">
-		<button @click="search">Search</button>
+		<input type="text" v-model="criteria" placeholder="Location">
+		<button @click="search()">Search</button>
        <Recommended></Recommended>
     </div>
 </template>
@@ -15,12 +15,15 @@
       components: {Recommended},
       data() {
       return {
+            criteria: 'hello'
       }
     },
 	methods: {
 	search: function(){	
-	//document.getElementById("Search").innerHTML = "Searching";
-	this.$router.replace('results')
+      this.$router.push({
+        name: 'Results',
+        params: { criteria: this.criteria }
+      })
 		},
 	}
   }

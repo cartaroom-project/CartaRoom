@@ -28,11 +28,13 @@ export default {
   name: 'results',
    data () {
     return {
-      rooms: []
+      rooms: [],
+      criteria: ''
     }
    },
     created () {
-        db.ref('rooms').once('value').then((snapshot) => {
+      this.criteria = this.$route.params.criteria;
+        db.ref('rooms').orderByChild("name").equalTo(this.criteria).once('value').then((snapshot) => {
         this.rooms = [];
         snapshot.forEach((doc) => {
           this.rooms.push(doc.val());
