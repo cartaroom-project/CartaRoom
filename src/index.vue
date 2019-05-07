@@ -10,12 +10,12 @@
 
         </div>
 
-        <HostNavbar></HostNavbar>
+        
         <div id="notLoggedInContent">
             <router-view></router-view>
         </div>
 
-        <v-footer dark height="auto">
+        <v-footer dark height="auto" style="margin-bottom: 0px; position: relative">
             <v-card>
                 <v-card-text class="white--text pt-0">
                     Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum.

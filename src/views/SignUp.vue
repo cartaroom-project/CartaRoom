@@ -73,6 +73,7 @@
         <br>
             </div>
         </div>
+        <img class="background" src="../assets/banner/SignUp.jpg"/>
         <span>or go back to <router-link to="/login">login</router-link>.</span>
     </div>
 </template>
@@ -167,6 +168,14 @@
 
 
  <style scoped>
+      .background{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   }
   .sign-up {
     margin-top: 40px;
 margin-left: 160px;
