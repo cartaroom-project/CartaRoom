@@ -63,6 +63,37 @@ exports.addRoom = functions.https.onCall((data, context) => {
 
 });
 
+exports.booking = functions.https.onCall((data, context) => {
+
+    const userID = context.auth.uid;
+
+    return admin.database().ref('currentBookings').orderByChild("room/hostID").
+        equalTo(userID).once('value').then((snapshot) => {
+            data.bookings = [];
+            snapshot.forEach((doc) => {
+                data.bookings.push(doc.val());
+            })
+            console.log(data.booking)
+        }).then(() => {
+            console.log('booking cloud functin returning');
+            console.log( { bookings: data.bookings })
+            return { bookings: data.bookings };
+          }).catch((error) => {
+            console.log(error);
+        });
+});
+
+exports.unbook = functions.https.onCall((data, context) => {
+
+    const userID = context.auth.uid;
+    console.log("inside unbook")
+    console.log(data.bk)
+    console.log(data.bk.bookingID)
+    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+});
+
+
+
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });
 
