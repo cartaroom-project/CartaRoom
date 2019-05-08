@@ -90,6 +90,7 @@ exports.unbook = functions.https.onCall((data, context) => {
     console.log(data.bk)
     console.log(data.bk.bookingID)
     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+    return 1;
 });
 
 

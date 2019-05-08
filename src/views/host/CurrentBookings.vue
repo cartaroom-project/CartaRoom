@@ -58,9 +58,10 @@
             unbookRoom: function(booking) {
                 // firebase.database().ref('rooms/' + booking.room.uniqueKey).update({userID: booking.room.userID, name: booking.room.name, capacity: booking.room.capacity, description: booking.room.description, address: booking.room.address, uniqueKey: booking.room.uniqueKey, reserved: 'false'})
                 console.log({bk:booking})
-                unbook({bk: booking})
-                alert('Room Status has been reset');
-                this.$router.go();
+                unbook({bk: booking}).then(() => {
+                    alert('Room Status has been reset');
+                    this.$router.go();
+                })
             }
         }
     }
