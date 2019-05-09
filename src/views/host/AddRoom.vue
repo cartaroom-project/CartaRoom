@@ -86,7 +86,6 @@
             await  this.$router.replace('home');
         }
     }
-}
 </script>
 
 
