@@ -81,7 +81,7 @@
                   bookingCounter: 0,
                   openTime:0,
                   closeTime:0,
-                  selectedAmenities: [],
+                  amenities: [],
                   bookingSlots: [{startingTime: '9:00',endingTime: '10:00'}]
               }
       }
@@ -97,11 +97,10 @@
                   this.roomInfo.description = snapshot.val().description,
                   this.roomInfo.address = snapshot.val().address,
                   this.roomInfo.roomID = snapshot.val().roomID,
-                  this.roomInfo.reserved = snapshot.val().reserved,
                   this.roomInfo.bookingCounter = snapshot.val().bookingCounter,
                   this.roomInfo.openTime = snapshot.val().openTime,
                   this.roomInfo.closeTime = snapshot.val().closeTime,
-                  this.roomInfo.selectedAmenities = snapshot.val().amenities,
+                  this.roomInfo.amenities = snapshot.val().amenities,
                   this.roomInfo.bookingSlots = snapshot.val().bookingSlots
           console.log(this.roomInfo)
         });

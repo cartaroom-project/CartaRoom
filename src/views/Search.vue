@@ -15,7 +15,7 @@
       // components: {Recommended},
       data() {
       return {
-            criteria: 'hello'
+            criteria: ''
       }
     },
 	methods: {
