@@ -75,8 +75,12 @@
             var closeHours = parseInt(closeHoursMinutes[0], 10);
             var timeSlotsAvailable = closeHours - startHours;
             var firstTimeSlot = startHours;
-
-
+            
+            while(i<timeSlotsAvailable){
+               this.roomInfo.bookingSlots.push({
+                   startingTime: firstTimeSlot,
+                   endingTime: ++firstTimeSlot});
+               i++;
             }
         },
         addRoom: async function()
