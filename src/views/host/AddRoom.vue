@@ -8,10 +8,10 @@
     Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
     Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
      <h3>Amenities:</h3>
-      <p>test: {{roomInfo.selectedAmenities}}</p>
+      <p>test: {{roomInfo.amenities}}</p>
 
     <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
-        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities"><br>
+        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities"><br>
         <label :for="amenity.offering">{{amenity.offering}}</label>
     </li>
 <!--    <input type = "file" @click="uploadImage">-->
@@ -60,7 +60,7 @@
                 bookingCounter: 0,
                 openTime:0,
                 closeTime:0,
-                selectedAmenities: [],
+                amenities: [],
                 bookingSlots: [[]]
             }
         }
@@ -79,14 +79,14 @@
 
             }
         },
-        addRoom: function()
+        addRoom: async function()
         {
-            this.calculateTime();
-            addRoom(this.roomInfo);
-            this.$router.replace('home');
-        },
+            await  this.calculateTime();
+            await   addRoom(this.roomInfo);    
+            await  this.$router.replace('home');
         }
     }
+}
 </script>
 
 
