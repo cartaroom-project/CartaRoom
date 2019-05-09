@@ -1,23 +1,23 @@
 <template>
     <div class="sign-up">
+
         <div class="sign_up">
         <p id="sign_up">Create Your CartaRoom Account</p>
         Picked:{{ credentials.isHost }}
         <br>
             <div class="search_body">
         <p class="signtext">Choose the Type of Account <i class="fas fa-info-circle" style="color:white"></i></p>
-        <button class="sign_buttons" id="host" name="accType" v-bind:value="true" v-model="credentials.isHost" v-on:click="credentials.isHost = true">Host</button>
+        <button class="sign_buttons" id="host" name="accType" v-bind:value="true" v-on:click="credentials.isHost = true">Host</button>
 
-        
-        <button class="sign_buttons"id="patron" name="accType" v-bind:value="false" v-model="credentials.isHost" v-on:click="credentials.isHost = false">Patron</button>
+        <button class="sign_buttons" id="patron" name="accType" v-bind:value="false"  v-on:click="credentials.isHost = false">Patron</button>
 
         <br>
 
         <p class="signtext">Personal Information</p>
-        <span style="display: inline">
+
         <input class="sign_input_half" v-model="credentials.firstName" placeholder="first name">
         <input class="sign_input_half" v-model="credentials.lastName" placeholder="last name">        
-        </span>
+
                 <input class="sign_input" v-model="credentials.phone" placeholder="phone">
         <input class="sign_input" type="email" v-model="credentials.email" placeholder="email">
         <input class="sign_input" type="password" v-model="credentials.password" placeholder="password">
@@ -27,12 +27,14 @@
 
         <p class="signtext">PATRON INFORMATION</p>
         <select class="sign_input_half" v-model="patronCredentials.selected">
+
         <option>Student</option>
         <option>Employed</option>
         <option>Entrepreneur</option>
         </select>
 <br>
         <span>Selected: {{ patronCredentials.selected }}</span> <br>
+
 
         <button class="progressive" @click="signUp">Sign Up</button>
 <br>
@@ -45,6 +47,11 @@
         <input class="sign_input" v-model="hostCredentials.address" placeholder="business address"><br>
         <input class="sign_input" v-model="hostCredentials.phone" placeholder="business phone"><br>
                 <br><br>
+
+        <button @click="signUp">Sign Up</button>
+
+
+
 
         <select class="sign_input_half" v-model="hostCredentials.selected" >
             <option>Coffee Shop</option>
@@ -66,6 +73,7 @@
         <br>
             </div>
         </div>
+        <img class="background" src="../assets/banner/SignUp.jpg"/>
         <span>or go back to <router-link to="/login">login</router-link>.</span>
     </div>
 </template>
@@ -106,7 +114,7 @@
     methods: {
      signUp: function() {
        firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
-          (user) => {
+          () => {
               setAccType({isHost: this.credentials.isHost});
               if(this.credentials.isHost)
               {
@@ -160,6 +168,14 @@
 
 
  <style scoped>
+      .background{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   }
   .sign-up {
     margin-top: 40px;
 margin-left: 160px;

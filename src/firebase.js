@@ -18,14 +18,22 @@ export default fb.database();
 
 // Firebase rules:
 // {
-//   "rules": {
+//     "rules": {
 //     "users": {
 //         ".read": true,
-//         ".write": true
+//             ".write": true
 //     },
-//   "rooms": {
+//     "rooms": {
 //         ".read": true,
-//         ".write": true
+//             ".write": true
+//     },
+//     "currentBookings": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "allBookings": {
+//         ".read": true,
+//             ".write": true
 //     }
-//   }
-//  }
+// }
+// }

@@ -10,8 +10,8 @@ exports.setAccType = functions.https.onCall((data, context) => {
         patron: !data.isHost,
         premium: false,
     }).catch(error => {
-            console.log(error);
-        });
+        console.log(error);
+    });
 });
 
 exports.addPatron = functions.https.onCall((data, context) => {
@@ -51,6 +51,75 @@ exports.addHost = functions.https.onCall((data, context) => {
     }))
 });
 
+exports.addRoom = functions.https.onCall((data, context) => {
+    console.log(data);
+    const ref = admin.database().ref(`rooms/`);
+    var newRoomID = ref.push(data).key
+    console.log(`key: + ${newRoomID}`)
+
+    admin.database().ref(`rooms/${newRoomID}`).update({
+        roomID:newRoomID
+    })
+
+});
+
+exports.booking = functions.https.onCall((data, context) => {
+
+    const userID = context.auth.uid;
+
+    return admin.database().ref('currentBookings').orderByChild("room/hostID").
+        equalTo(userID).once('value').then((snapshot) => {
+            data.bookings = [];
+            snapshot.forEach((doc) => {
+                data.bookings.push(doc.val());
+            })
+            console.log(data.booking)
+        }).then(() => {
+            console.log('booking cloud functin returning');
+            console.log( { bookings: data.bookings })
+            return { bookings: data.bookings };
+          }).catch((error) => {
+            console.log(error);
+        });
+});
+
+exports.unbook = functions.https.onCall((data, context) => {
+
+    const userID = context.auth.uid;
+    console.log("inside unbook")
+    console.log(data.bk)
+    console.log(data.bk.bookingID)
+    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+    return 1;
+});
+
+
+
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });
 
+
+// {
+//     "rules": {
+//     "users": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "rooms": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "currentBookings": {
+//         ".read": true,
+//             ".write": true
+//     },
+//     "allBookings": {
+//         ".read": true,
+//             ".write": true
+//     },
+//       "roomtest": {
+//         ".read": true,
+//             ".write": true
+//     }
+// }
+// }

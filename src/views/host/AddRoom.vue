@@ -7,25 +7,27 @@
     <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
     Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
     Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
-     <h3>Ammenaties:</h3>
-            <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
-              <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities">
-              <label :for="amenity.offering">{{amenity.offering}}</label>
-            </li>
-    <!-- <input type = "file" @click="uploadImage"> -->
+     <h3>Amenities:</h3>
+      <p>test: {{roomInfo.selectedAmenities}}</p>
+
+    <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
+        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities"><br>
+        <label :for="amenity.offering">{{amenity.offering}}</label>
+    </li>
+<!--    <input type = "file" @click="uploadImage">-->
       <br>
-    <button @click="addRoom">Add Room</button>
+    <button @click="addRoom">Add Room</button><br>
     <router-link to="/home">Cancel</router-link>
   </div>
 </template>
 
 <script>
     import firebase from 'firebase';
-    import axios from 'axios';
+    var addRoom = firebase.functions().httpsCallable('addRoom');
+
 
     var hostID;
     var roomID = '1';
-    var storageRef = firebase.storage().ref();
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -37,92 +39,53 @@
         }
     });
 
-  export default {
-      name: 'addRoom',
-      
-      data() {
-      return {
-        amenities:[
-          {offering: 'wifi'},
-          {offering: 'projector'},
-          {offering: 'whiteboard'},
-          {offering: 'Ethernet'},
-        ],
-          roomInfo:
-              {
-                  hostID: hostID,
-                  name: '',
-                  capacity: '',
-                  description: '',
-                  address: '',
-                  roomID: roomID,
-                  reserved: 'false',
-                  bookingCounter: 0,
-                  openTime:0,
-                  closeTime:0,
-                  selectedAmenities: [],
-                  bookingSlots: [[]]
-              }
-      }
+    export default {
+    name: 'addRoom',
+    data() {
+        return {
+            amenities:[
+                {offering: 'Wifi'},
+                {offering: 'Projector'},
+                {offering: 'Whiteboard'},
+                {offering: 'Ethernet'},
+            ],
+            roomInfo:
+            {
+                hostID: hostID,
+                name: '',
+                capacity: '',
+                description: '',
+                address: '',
+                roomID: roomID,
+                bookingCounter: 0,
+                openTime:0,
+                closeTime:0,
+                selectedAmenities: [],
+                bookingSlots: [[]]
+            }
+        }
     },
     methods: {
-      addRoom: function() {
-        var i = 0;
-        var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
-        var startHours = parseInt(startHoursMinutes[0], 10);
-        var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
-        var closeHours = parseInt(closeHoursMinutes[0], 10);
-        var timeSlotsAVailable = closeHours - startHours;
-        var firstTimeSlot = startHours;
-        
-        while(i<timeSlotsAVailable){
-            this.roomInfo.bookingSlots.push({startingTime: firstTimeSlot,endingTime: ++firstTimeSlot});
-            i++;
-        }
+        calculateTime: function()
+        {
+            var i = 0;
+            var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
+            var startHours = parseInt(startHoursMinutes[0], 10);
+            var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
+            var closeHours = parseInt(closeHoursMinutes[0], 10);
+            var timeSlotsAvailable = closeHours - startHours;
+            var firstTimeSlot = startHours;
 
-            roomID = firebase.database().ref('rooms').push({
-              hostID: this.roomInfo.hostID,
-              name: this.roomInfo.name, 
-              capacity: this.roomInfo.capacity, 
-              description: this.roomInfo.description, 
-              address:this.roomInfo.address, 
-              roomID:this.roomInfo.roomID,
-              reserved:this.roomInfo.reserved,
-              bookingCounter: this.roomInfo.bookingCounter,
-              openTime: this.roomInfo.openTime,
-              closeTime: this.roomInfo.closeTime,
-              amenities: this.roomInfo.selectedAmenities,
-              bookingSlots: this.roomInfo.bookingSlots})
 
-            this.roomInfo.roomID = roomID.key;
-
-            firebase.database().ref('rooms/' + roomID.key).update({              
-              hostID: this.roomInfo.hostID,
-              name: this.roomInfo.name, 
-              capacity: this.roomInfo.capacity, 
-              description: this.roomInfo.description, 
-              address:this.roomInfo.address, 
-              roomID:this.roomInfo.roomID,
-              reserved:this.roomInfo.reserved,
-              bookingCounter: this.roomInfo.bookingCounter,
-              openTime: this.roomInfo.openTime,
-              closeTime: this.roomInfo.closeTime,
-              amenities: this.roomInfo.selectedAmenities,
-              bookingSlots: this.roomInfo.bookingSlots})
-              
-                this.$router.replace('home')
             }
         },
-
-        // post: function()
-        // {
-        //    this.$http.post(firebase.database().ref('users'), this.credentials).then(function (data) {
-        //
-        //        this.submitted=true;
-        //        this.$router.replace('home')
-        //        }
-        //    )
-        // }
+        addRoom: function()
+        {
+            this.calculateTime();
+            addRoom(this.roomInfo);
+            this.$router.replace('home');
+        },
+        }
     }
 </script>
 
