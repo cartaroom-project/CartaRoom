@@ -63,7 +63,7 @@ exports.addRoom = functions.https.onCall((data, context) => {
 
 });
 
-exports.booking = functions.https.onCall((data, context) => {
+exports.hostBooking = functions.https.onCall((data, context) => {
 
     const userID = context.auth.uid;
 
@@ -83,7 +83,7 @@ exports.booking = functions.https.onCall((data, context) => {
         });
 });
 
-exports.unbook = functions.https.onCall((data, context) => {
+exports.hostUnbook = functions.https.onCall((data, context) => {
 
     const userID = context.auth.uid;
     console.log("inside unbook")
@@ -93,7 +93,33 @@ exports.unbook = functions.https.onCall((data, context) => {
     return 1;
 });
 
+exports.patronBooking = functions.https.onCall((data, context) => {
 
+    const userID = context.auth.uid;
+
+    return admin.database().ref('currentBookings').orderByChild("user").
+        equalTo(userID).once('value').then((snapshot) => {
+            data.bookings = [];
+            snapshot.forEach((doc) => {
+                data.bookings.push(doc.val());
+            })
+        }).then(() => {
+            return { bookings: data.bookings };
+        }).catch((error) => {
+            console.log(error);
+        });
+});
+
+
+exports.patronUnbook = functions.https.onCall((data, context) => {
+
+    const userID = context.auth.uid;
+    console.log("inside unbook")
+    console.log(data.bk)
+    console.log(data.bk.bookingID)
+    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+    return 1;
+});
 
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });
