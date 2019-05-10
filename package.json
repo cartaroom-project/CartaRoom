@@ -10,11 +10,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
-    "firebase": "^5.10.0",
-    "vee-validate": "^2.2.5",
+    "firebase": "^5.11.1",
+    "vee-validate": "^2.2.7",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
-    "vuefire": "^2.0.0-alpha.22"
+    "vuefire": "^2.0.0-alpha.23"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
