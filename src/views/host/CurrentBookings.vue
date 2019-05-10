@@ -10,7 +10,7 @@
             Date: {{booking.date}} <br />
             Start Time: {{booking.startTime}}:00 <br />
             End Time: {{booking.endTime}}:00 <br />
-            <button v-on:click="unbookRoom(booking)">Remove Booking</button> <br />
+            <!-- <button v-on:click="unbookRoom(booking)">Remove Booking</button> <br /> -->
         </li>
         </ul>
         

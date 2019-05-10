@@ -97,9 +97,11 @@
     methods: {
       deleteRoom: function(id) {
         console.log('room ID ' + id);
+        if(window.confirm("Are you sure you want to delete this room?")){
         db.ref('rooms').child(id).remove();
         alert('Room Deleted!');
         this.$router.go(-1);
+        }
     },  
     editRoom: function(id){
       this.$router.push({
