@@ -8,10 +8,17 @@
     <p>Address: {{ roomInfo.address }}</p>
     <p>Open Time: {{ roomInfo.openTime }}</p>
     <p>Close Time: {{ roomInfo.closeTime }}</p>
+<<<<<<< HEAD
+    <h3>Ammenaties:</h3>
+    <ul v-for="amenity in roomInfo.selectedAmenities" v-bind:key="amenity['.key']">
+        {{amenity}}
+    </ul>
+=======
     <h3>Amenities:</h3>
         <ul v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
             {{amenity}} 
         </ul>
+>>>>>>> f14926d99da5dca8f41c0977e99994728bdd26ed
     <h3>{{msg}}</h3>
     Date: <input type="date" v-model="date"><br />
     <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
@@ -29,9 +36,14 @@
 </template>
 
 <script>
+//   console.log(this.$router);
+// bookingSlots[1].startingTime
 import firebase from 'firebase';
 import db from '@/firebase.js';
+import axios from 'axios';
 
+var createRoom = firebase.functions().httpsCallable('createRoom');
+var roomViewPatronCreated = firebase.functions().httpsCallable('roomViewPatronCreated');
 var userID;
 var roomID = '1';
 //   var timeSlotsAVailable = 2;
@@ -92,41 +104,34 @@ export default {
             }
         }
     },
-    created() {
+    async created() {
         this.id = this.$route.params.id;
-        // this.roomInfo.name =  firebase.database().ref('rooms/' + this.id +'/name' )
-        firebase.database().ref('rooms/' + this.id).once('value').then((snapshot) => {
-            this.room = snapshot.val();
-            this.roomInfo.hostID = snapshot.val().hostID,
-                this.roomInfo.name = snapshot.val().name,
-                this.roomInfo.capacity = snapshot.val().capacity,
-                this.roomInfo.description = snapshot.val().description,
-                this.roomInfo.address = snapshot.val().address,
-                this.roomInfo.roomID = snapshot.val().roomID,
-                this.roomInfo.bookingCounter = snapshot.val().bookingCounter,
-                this.roomInfo.openTime = snapshot.val().openTime,
-                this.roomInfo.closeTime = snapshot.val().closeTime,
-                this.roomInfo.amenities = snapshot.val().amenities,
-                this.roomInfo.bookingSlots = snapshot.val().bookingSlots
-            console.log(this.roomInfo)
+
+        await createRoom({
+            id: this.id,
+            roomInfo: this.roomInfo
+        }).then((result) => {
+            this.roomInfo = result.data.roomInfo
+        }).catch(function (error) {
+            console.log(error);
         });
-        console.log('current user ID: ' + userID)
-        firebase.database().ref('users/patron/' + userID).once('value').then((snapshot) => {
-            this.room = snapshot.val();
-            this.userEmail = snapshot.val().email
-            console.log('userEmail: ' + this.userEmail)
-        })
+
+        await roomViewPatronCreated({
+            userEmail: this.userEmail
+        }).then((result) => {
+            this.userEmail = result.data.userEmail;
+        }).catch(function (error) {
+            console.log(error);
+        });
     },
+    
     methods: {
         doMath: function () {
             var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
             var startHours = parseInt(startHoursMinutes[0], 10);
-            console.log('startHours' + startHours);
             var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
             var closeHours = parseInt(closeHoursMinutes[0], 10);
-            console.log('closeHours' + closeHours);
             this.timeSlotsAvailable = closeHours - startHours;
-            console.log(this.timeSlotsAvailable)
             this.msg = 'Time Slots';
             this.msg1 = '';
         },
