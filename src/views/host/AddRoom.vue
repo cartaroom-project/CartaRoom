@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <div class="addRoom">
         <div class="banner">
             <br>
@@ -59,28 +58,6 @@
             <router-link to="/home">Cancel</router-link>
         </div>
     </div>
-=======
-<div class="addRoom">
-    <p>Let's add a new room</p>
-    <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
-    <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
-    <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
-    <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
-    Open Time:<br /> <input type="time" v-model="roomInfo.openTime"><br />
-    Close Time:<br /> <input type="time" v-model="roomInfo.closeTime"><br />
-    <h3>Amenities:</h3>
-    <p>test: {{roomInfo.amenities}}</p>
-
-    <li v-for="amenity in amenities" v-bind:key="amenity['.key']">
-        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities"><br>
-        <label :for="amenity.offering">{{amenity.offering}}</label>
-    </li>
-    <!--    <input type = "file" @click="uploadImage">-->
-    <br>
-    <button @click="addRoom">Add Room</button><br>
-    <router-link to="/home">Cancel</router-link>
-</div>
->>>>>>> 0960d87a91a89e500760fcb20a28b22e8b365171
 </template>
 
 <script>
