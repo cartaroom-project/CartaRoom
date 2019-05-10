@@ -7,6 +7,7 @@
             Host: {{booking.host}} <br />
             Date: {{booking.date}} <br />
             Time: {{booking.startTime}}:00 - {{booking.endTime}}:00<br />
+            Status: {{booking.status}} <br />
         </ul>
     </div>
 </template>

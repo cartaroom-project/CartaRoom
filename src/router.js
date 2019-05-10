@@ -109,7 +109,7 @@ const router = new Router({
       component: Search,
     },
     {
-      path: '/results',
+      path: '/results/:criteria',
       name: 'Results',
       component: Results,
     },

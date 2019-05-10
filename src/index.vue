@@ -88,6 +88,7 @@
 
     #nav {
         padding: 30px;
+        text-align: right;
     }
 
     #nav a {
