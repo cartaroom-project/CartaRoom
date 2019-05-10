@@ -82,10 +82,12 @@
 
     methods: {
       deleteRoom: function(id) {
-        hostDeleteRoom({id:id}).then(() => {
+       if(window.confirm("Are you sure you want to delete this room?")){
+          hostDeleteRoom({id:id}).then(() => {
           alert('Room Deleted!');
           this.$router.go(-1);
         })
+        }
     },  
 
     editRoom: function(id){
