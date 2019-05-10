@@ -7,7 +7,7 @@
         <br>
         <br>
         <h3 class="login_label">Email</h3>
-        <input class="login_text"type="text" v-model="email" placeholder="Email"><br>
+        <input class="login_text" type="text" v-model="email" placeholder="Email"><br>
         <h3 class="login_label">Password</h3>
         <input class="login_text" type="password" v-model="password" placeholder="Password"><br>
       </div>

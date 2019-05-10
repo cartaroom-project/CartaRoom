@@ -32,17 +32,15 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
-export default {
-    name: 'currentBookings',
-    data() {
-        return {
-            bookings: [],
-        }
-    },
-    created() {
-        booking({
-            bookings: this.bookings
-        }).then((result) => {
+    export default {
+        name: 'currentBookings',
+        data () {
+            return {
+                bookings:[],
+            }
+        },
+        async created () {
+            await booking({bookings:this.bookings}).then((result) => {
             this.bookings = result.data.bookings
         }).catch(function (error) {
             console.log(error);

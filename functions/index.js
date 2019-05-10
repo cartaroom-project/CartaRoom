@@ -75,8 +75,6 @@ exports.hostBooking = functions.https.onCall((data, context) => {
             })
             console.log(data.booking)
         }).then(() => {
-            console.log('booking cloud functin returning');
-            console.log( { bookings: data.bookings })
             return { bookings: data.bookings };
           }).catch((error) => {
             console.log(error);
@@ -86,9 +84,6 @@ exports.hostBooking = functions.https.onCall((data, context) => {
 exports.hostUnbook = functions.https.onCall((data, context) => {
 
     const userID = context.auth.uid;
-    console.log("inside unbook")
-    console.log(data.bk)
-    console.log(data.bk.bookingID)
     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
     return 1;
 });
@@ -114,14 +109,23 @@ exports.patronBooking = functions.https.onCall((data, context) => {
 exports.patronUnbook = functions.https.onCall((data, context) => {
 
     const userID = context.auth.uid;
-    console.log("inside unbook")
-    console.log(data.bk)
-    console.log(data.bk.bookingID)
     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
     return 1;
 });
 
-exports.deleteUserData = functions.auth.user().onDelete((user) => {
+
+exports.hostDeleteRoom = functions.https.onCall((data, context) => {
+    admin.database().ref('rooms').child(data.id).remove();
+});
+
+exports.createRoom =functions.https.onCall((data, context) => {
+    return admin.database().ref('rooms/' + data.id).once('value').then((snapshot) => {
+        data.roomInfo = snapshot.val();
+    }).then(() => {
+        return { roomInfo: data.roomInfo };
+    }).catch((error) => {
+        console.log(error);
+    });
 });
 
 
