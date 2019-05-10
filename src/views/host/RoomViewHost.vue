@@ -24,7 +24,7 @@
   import firebase from 'firebase';
   import db from '@/firebase.js';
   import axios from 'axios';
-  var hostViewRoomCreated = firebase.functions().httpsCallable('hostViewRoomCreated');
+  var createRoom = firebase.functions().httpsCallable('createRoom');
   var hostDeleteRoom = firebase.functions().httpsCallable('hostDeleteRoom');
 
   var hostID;
@@ -72,8 +72,7 @@
     
     async created() {
             this.id = this.$route.params.id;
-
-            await hostViewRoomCreated({id: this.id}).then((result) => {
+            await createRoom({id: this.id, roomInfo: this.roomInfo}).then((result) => {
                 this.roomInfo = result.data.roomInfo
             }).catch(function(error) {
                 console.log(error);
