@@ -19,15 +19,15 @@
                 </div>
                 <div class="column">
                     <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name">
-                    <br>
+                    
                     <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="capacity">
-                    <br>
+                   
                     <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
-                    <br>
+                  
                     <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
-                    <br />
+                   
                     <input class="input_time" type="time" v-model="roomInfo.openTime">
-                    <br />
+                   
                     <input class="input_time" type="time" v-model="roomInfo.closeTime">
                     
                 </div>
@@ -40,10 +40,10 @@
                 <div class="column">
                 <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
                 <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
-                <br>
-                <p :for="amenity.offering">{{amenity.offering}}</p>
+                
+                <label :for="amenity.offering">{{amenity.offering}}</label>
                     </ul>
-                    </div>
+                </div>
             </div>
             <!--    <input type = "file" @click="uploadImage">-->
             <br>
@@ -201,7 +201,7 @@ export default {
 }
     .input_time{
         margin: 10px 0;
-        width: 125px;
+        width: 225px;
         padding-left: 15px;
         background: #FFFFFF;
         border: 0.25px solid #000000;
@@ -212,7 +212,7 @@ export default {
         font-weight: 300;
         font-size: 20px;
         line-height: 35px;
-        margin-right: 700px;
+        margin-right: 600px;
     }
 
     button {
@@ -240,7 +240,7 @@ export default {
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
         width: 1200px;
-        height: 800px;
+        height: 850px;
 }
 
 </style>
