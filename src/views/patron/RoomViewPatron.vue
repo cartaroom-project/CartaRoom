@@ -129,12 +129,15 @@
           var userInfo = firebase.auth().currentUser.uid;
           var uniqueKeyIDBooking = '1';
 
-
         //This creates a string with all the neccessary info needed to see if a time slot is already taken or not
         var bookingInfo = startTime.toString() +'->'+ endTime.toString()+ '->' + this.date + '->' + this.roomInfo.roomID;
         console.log('bookingInfo:' + bookingInfo);
 
+        if(this.date===''){
+          alert('Please select a date before moving on');
+        }
 
+        else{
         db.ref('currentBookings').orderByChild("bookingInfo").equalTo(bookingInfo).once('value').then((snapshot) => {
               if (snapshot.exists()){
               alert('TIME SLOT NOT AVAILABLE FOR:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00\n' + 'PLEASE SELECT ANOTHER DATE/TIME');
@@ -148,6 +151,11 @@
           uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo,status: 'not completed'})
           firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({bookingID: uniqueKeyIDBooking.key})
 
+          //updates room booking counter
+          db.ref('rooms/' + this.roomInfo.roomID).once('value').then((snapshot) => {
+          firebase.database().ref('rooms/' + this.roomInfo.roomID).update({bookingCounter: ++snapshot.val().bookingCounter})
+          });
+
           uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, allbookingID: '1', initialBookingID: uniqueKeyIDBooking.key,startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo,status: 'not completed'})
           firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({allbookingID: uniqueKeyIDBooking.key})
 
@@ -156,6 +164,7 @@
           });
         }
         });
+        }
         // console.log(userInfo)
         // console.log(this.roomInfo)
         // console.log('hostAfter: ' + this.hostName);
