@@ -1,56 +1,61 @@
 <template>
-  <div class="addRoom">
+<div class="addRoom">
     <p>Let's add a new room</p>
     <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
     <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
     <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
     <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
-    Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
-    Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
-     <h3>Amenities:</h3>
-      <p>test: {{roomInfo.amenities}}</p>
+    Open Time:<br /> <input type="time" v-model="roomInfo.openTime"><br />
+    Close Time:<br /> <input type="time" v-model="roomInfo.closeTime"><br />
+    <h3>Amenities:</h3>
+    <p>test: {{roomInfo.amenities}}</p>
 
-    <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
+    <li v-for="amenity in amenities" v-bind:key="amenity['.key']">
         <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities"><br>
         <label :for="amenity.offering">{{amenity.offering}}</label>
     </li>
-<!--    <input type = "file" @click="uploadImage">-->
-      <br>
+    <!--    <input type = "file" @click="uploadImage">-->
+    <br>
     <button @click="addRoom">Add Room</button><br>
     <router-link to="/home">Cancel</router-link>
-  </div>
+</div>
 </template>
 
 <script>
-    import firebase from 'firebase';
-    var addRoom = firebase.functions().httpsCallable('addRoom');
+import firebase from 'firebase';
+var addRoom = firebase.functions().httpsCallable('addRoom');
 
+var hostID;
+var roomID = '1';
 
-    var hostID;
-    var roomID = '1';
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+        hostID = user.uid;
+    } else {
+        // console.log("No user available");
+        hostID = 'null';
+    }
+});
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-            hostID = user.uid;
-        } else {
-            // console.log("No user available");
-            hostID = 'null';
-        }
-    });
-
-    export default {
+export default {
     name: 'addRoom',
     data() {
         return {
-            amenities:[
-                {offering: 'Wifi'},
-                {offering: 'Projector'},
-                {offering: 'Whiteboard'},
-                {offering: 'Ethernet'},
+            amenities: [{
+                    offering: 'Wifi'
+                },
+                {
+                    offering: 'Projector'
+                },
+                {
+                    offering: 'Whiteboard'
+                },
+                {
+                    offering: 'Ethernet'
+                },
             ],
-            roomInfo:
-            {
+            roomInfo: {
                 hostID: hostID,
                 name: '',
                 capacity: '',
@@ -58,16 +63,17 @@
                 address: '',
                 roomID: roomID,
                 bookingCounter: 0,
-                openTime:0,
-                closeTime:0,
+                openTime: 0,
+                closeTime: 0,
                 amenities: [],
-                bookingSlots: [[]]
+                bookingSlots: [
+                    []
+                ]
             }
         }
     },
     methods: {
-        calculateTime: function()
-        {
+        calculateTime: function () {
             var i = 0;
             var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
             var startHours = parseInt(startHoursMinutes[0], 10);
@@ -75,47 +81,47 @@
             var closeHours = parseInt(closeHoursMinutes[0], 10);
             var timeSlotsAvailable = closeHours - startHours;
             var firstTimeSlot = startHours;
-            
-            while(i<timeSlotsAvailable){
-               this.roomInfo.bookingSlots.push({
-                   startingTime: firstTimeSlot,
-                   endingTime: ++firstTimeSlot});
-               i++;
+
+            while (i < timeSlotsAvailable) {
+                this.roomInfo.bookingSlots.push({
+                    startingTime: firstTimeSlot,
+                    endingTime: ++firstTimeSlot
+                });
+                i++;
             }
         },
-        addRoom: async function()
-        {
-            await  this.calculateTime();
-            await   addRoom(this.roomInfo);    
-            await  this.$router.replace('home');
+        addRoom: async function () {
+            await this.calculateTime();
+            await addRoom(this.roomInfo);
+            await this.$router.replace('home');
         }
     }
 }
 </script>
 
-
-
 <style scoped>
-    .sign-up {
-        margin-top: 40px;
-    }
-    input {
-        margin: 10px 0;
-        width: 20%;
-        padding: 15px;
-    }
-    button {
-        margin-top: 10px;
-        width: 10%;
-        cursor: pointer;
-    }
-    span {
-        display: block;
-        margin-top: 20px;
-        font-size: 11px;
-    }
-</style>
+.sign-up {
+    margin-top: 40px;
+}
 
+input {
+    margin: 10px 0;
+    width: 20%;
+    padding: 15px;
+}
+
+button {
+    margin-top: 10px;
+    width: 10%;
+    cursor: pointer;
+}
+
+span {
+    display: block;
+    margin-top: 20px;
+    font-size: 11px;
+}
+</style>
 
 // Needed fields:
 // *Name--Text#
