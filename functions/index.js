@@ -60,11 +60,44 @@ exports.addRoom = functions.https.onCall((data, context) => {
     admin.database().ref(`rooms/${newRoomID}`).update({
         roomID:newRoomID
     })
+});
 
+exports.createRoom = functions.https.onCall((data, context) => {
+    console.log(data)
+
+    return admin.database().ref('rooms/' + data).once('value').then((snapshot) => {
+        data.roomInfo = snapshot.val()
+    }).then(()=>{
+        return{roomInfo:data.roomInfo}
+    })
+});
+
+
+exports.updateRoom = functions.https.onCall((data, context) => {
+    var roomID = data.roomID;
+    console.log('roomID:' + roomID)
+    console.log('data1: ' + data);
+    admin.database().ref(`rooms/${roomID}`).update(data)
 });
 
 exports.hostBooking = functions.https.onCall((data, context) => {
+    const userID = context.auth.uid;
 
+    return admin.database().ref('currentBookings').orderByChild("room/hostID").
+    equalTo(userID).once('value').then((snapshot) => {
+        data.bookings = [];
+        snapshot.forEach((doc) => {
+            data.bookings.push(doc.val());
+        });
+        console.log(data.booking)
+    }).then(() => {
+        return { bookings: data.bookings };
+    }).catch((error) => {
+        console.log(error);
+    });
+});
+
+exports.booking = functions.https.onCall((data, context) => {
     const userID = context.auth.uid;
 
     return admin.database().ref('currentBookings').orderByChild("room/hostID").
@@ -72,8 +105,8 @@ exports.hostBooking = functions.https.onCall((data, context) => {
             data.bookings = [];
             snapshot.forEach((doc) => {
                 data.bookings.push(doc.val());
-            })
-            console.log(data.booking)
+            });
+            console.log(data.booking);
         }).then(() => {
             return { bookings: data.bookings };
           }).catch((error) => {
@@ -82,7 +115,6 @@ exports.hostBooking = functions.https.onCall((data, context) => {
 });
 
 exports.hostUnbook = functions.https.onCall((data, context) => {
-
     const userID = context.auth.uid;
     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
     return 1;

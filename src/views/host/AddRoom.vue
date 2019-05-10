@@ -52,12 +52,12 @@
             <button><router-link to="/home">Cancel</router-link></button>
         </div>
     </div>
-
 </template>
 
 <script>
 import firebase from 'firebase';
 var addRoom = firebase.functions().httpsCallable('addRoom');
+
 
 var hostID;
 var roomID = '1';
