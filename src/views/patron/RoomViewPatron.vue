@@ -151,6 +151,11 @@
           uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo,status: 'not completed'})
           firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({bookingID: uniqueKeyIDBooking.key})
 
+          //updates room booking counter
+          db.ref('rooms/' + this.roomInfo.roomID).once('value').then((snapshot) => {
+          firebase.database().ref('rooms/' + this.roomInfo.roomID).update({bookingCounter: ++snapshot.val().bookingCounter})
+          });
+
           uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, allbookingID: '1', initialBookingID: uniqueKeyIDBooking.key,startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo,status: 'not completed'})
           firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({allbookingID: uniqueKeyIDBooking.key})
 

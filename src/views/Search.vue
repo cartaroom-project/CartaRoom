@@ -24,7 +24,7 @@
         name: 'Results',
         params: { criteria: this.criteria }
       })
-		},
+		}
 	}
   }
 
