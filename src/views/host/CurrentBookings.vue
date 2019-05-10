@@ -39,8 +39,8 @@
                 bookings:[],
             }
         },
-        created () {
-            booking({bookings:this.bookings}).then((result) => {
+        async created () {
+            await booking({bookings:this.bookings}).then((result) => {
             this.bookings = result.data.bookings
             }).catch(function(error) {
                 console.log(error);
