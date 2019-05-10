@@ -62,17 +62,6 @@ exports.addRoom = functions.https.onCall((data, context) => {
     })
 });
 
-exports.createRoom = functions.https.onCall((data, context) => {
-    console.log(data)
-
-    return admin.database().ref('rooms/' + data).once('value').then((snapshot) => {
-        data.roomInfo = snapshot.val()
-    }).then(()=>{
-        return{roomInfo:data.roomInfo}
-    })
-});
-
-
 exports.updateRoom = functions.https.onCall((data, context) => {
     var roomID = data.roomID;
     console.log('roomID:' + roomID)
@@ -121,7 +110,6 @@ exports.hostUnbook = functions.https.onCall((data, context) => {
 });
 
 exports.patronBooking = functions.https.onCall((data, context) => {
-
     const userID = context.auth.uid;
 
     return admin.database().ref('currentBookings').orderByChild("user").
@@ -137,28 +125,16 @@ exports.patronBooking = functions.https.onCall((data, context) => {
         });
 });
 
-
 exports.patronUnbook = functions.https.onCall((data, context) => {
-
     const userID = context.auth.uid;
     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
     return 1;
 });
 
-
 exports.hostDeleteRoom = functions.https.onCall((data, context) => {
     admin.database().ref('rooms').child(data.id).remove();
 });
 
-exports.createRoom =functions.https.onCall((data, context) => {
-    return admin.database().ref('rooms/' + data.id).once('value').then((snapshot) => {
-        data.roomInfo = snapshot.val();
-    }).then(() => {
-        return { roomInfo: data.roomInfo };
-    }).catch((error) => {
-        console.log(error);
-    });
-});
 
 
 // {

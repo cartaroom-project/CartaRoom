@@ -14,12 +14,6 @@
 import firebase from 'firebase';
 import db from '@/firebase.js';
 
-// db.ref('rooms').once('value').then(function(snapshot) {
-//   console.log(snapshot.val());
-// }).catch((error) => {
-//   console.log(error);
-// });
-
 var userID;
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
