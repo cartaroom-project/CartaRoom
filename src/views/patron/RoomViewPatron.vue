@@ -8,10 +8,17 @@
     <p>Address: {{ roomInfo.address }}</p>
     <p>Open Time: {{ roomInfo.openTime }}</p>
     <p>Close Time: {{ roomInfo.closeTime }}</p>
+<<<<<<< HEAD
     <h3>Ammenaties:</h3>
     <ul v-for="amenity in roomInfo.selectedAmenities" v-bind:key="amenity['.key']">
         {{amenity}}
     </ul>
+=======
+    <h3>Amenities:</h3>
+        <ul v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
+            {{amenity}} 
+        </ul>
+>>>>>>> f14926d99da5dca8f41c0977e99994728bdd26ed
     <h3>{{msg}}</h3>
     Date: <input type="date" v-model="date"><br />
     <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
@@ -131,58 +138,69 @@ export default {
 
         bookRoom: function (startTime, endTime) {
             var userInfo = firebase.auth().currentUser.uid;
-
             var uniqueKeyIDBooking = '1';
 
             //This creates a string with all the neccessary info needed to see if a time slot is already taken or not
             var bookingInfo = startTime.toString() + '->' + endTime.toString() + '->' + this.date + '->' + this.roomInfo.roomID;
             console.log('bookingInfo:' + bookingInfo);
 
-            db.ref('currentBookings').orderByChild("bookingInfo").equalTo(bookingInfo).once('value').then((snapshot) => {
-                if (snapshot.exists()) {
-                    alert('TIME SLOT NOT AVAILABLE FOR:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00' + " - " + endTime + ':00\n' + 'PLEASE SELECT ANOTHER DATE/TIME');
-                } else {
-                    db.ref('users/host/' + this.roomInfo.hostID).once('value').then((snapshot) => {
-                        this.hostName = snapshot.val().businessName;
+            if (this.date === '') {
+                alert('Please select a date before moving on');
+            } else {
+                db.ref('currentBookings').orderByChild("bookingInfo").equalTo(bookingInfo).once('value').then((snapshot) => {
+                    if (snapshot.exists()) {
+                        alert('TIME SLOT NOT AVAILABLE FOR:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00' + " - " + endTime + ':00\n' + 'PLEASE SELECT ANOTHER DATE/TIME');
+                    } else {
+                        db.ref('users/host/' + this.roomInfo.hostID).once('value').then((snapshot) => {
+                            this.hostName = snapshot.val().businessName;
+                            console.log('host: ' + this.hostName);
 
-                        uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({
-                            room: this.roomInfo,
-                            user: userInfo,
-                            userEmail: this.userEmail,
-                            bookingID: '1',
-                            startTime: startTime,
-                            endTime: endTime,
-                            date: this.date,
-                            host: this.hostName,
-                            bookingInfo: bookingInfo,
-                            status: 'not completed'
-                        })
-                        firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({
-                            bookingID: uniqueKeyIDBooking.key
-                        })
+                            uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({
+                                room: this.roomInfo,
+                                user: userInfo,
+                                userEmail: this.userEmail,
+                                bookingID: '1',
+                                startTime: startTime,
+                                endTime: endTime,
+                                date: this.date,
+                                host: this.hostName,
+                                bookingInfo: bookingInfo,
+                                status: 'not completed'
+                            })
+                            firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({
+                                bookingID: uniqueKeyIDBooking.key
+                            })
 
-                        uniqueKeyIDBooking = firebase.database().ref('allBookings').push({
-                            room: this.roomInfo,
-                            user: userInfo,
-                            userEmail: this.userEmail,
-                            allbookingID: '1',
-                            initialBookingID: uniqueKeyIDBooking.key,
-                            startTime: startTime,
-                            endTime: endTime,
-                            date: this.date,
-                            host: this.hostName,
-                            bookingInfo: bookingInfo,
-                            status: 'not completed'
-                        })
-                        firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({
-                            allbookingID: uniqueKeyIDBooking.key
-                        })
+                            //updates room booking counter
+                            db.ref('rooms/' + this.roomInfo.roomID).once('value').then((snapshot) => {
+                                firebase.database().ref('rooms/' + this.roomInfo.roomID).update({
+                                    bookingCounter: ++snapshot.val().bookingCounter
+                                })
+                            });
 
-                        alert('BOOKING CONFIRMED\n' + 'Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00' + " - " + endTime + ':00');
-                        this.$router.push('CurrentBookingsPatron');
-                    });
-                }
-            });
+                            uniqueKeyIDBooking = firebase.database().ref('allBookings').push({
+                                room: this.roomInfo,
+                                user: userInfo,
+                                userEmail: this.userEmail,
+                                allbookingID: '1',
+                                initialBookingID: uniqueKeyIDBooking.key,
+                                startTime: startTime,
+                                endTime: endTime,
+                                date: this.date,
+                                host: this.hostName,
+                                bookingInfo: bookingInfo,
+                                status: 'not completed'
+                            })
+                            firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({
+                                allbookingID: uniqueKeyIDBooking.key
+                            })
+
+                            alert('BOOKING CONFIRMED\n' + 'Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00' + " - " + endTime + ':00');
+                            this.$router.push('CurrentBookingsPatron');
+                        });
+                    }
+                });
+            }
             // console.log(userInfo)
             // console.log(this.roomInfo)
             // console.log('hostAfter: ' + this.hostName);
