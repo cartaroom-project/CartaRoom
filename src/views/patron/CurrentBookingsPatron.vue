@@ -73,6 +73,7 @@
             },
                 cancelBooking: function(booking) {
                 // console.log('bookingID: ' + booking.bookingInfo)
+                        if(window.confirm("Are you sure you want to cancel this reservation?")){
                 db.ref('allBookings').orderByChild("initialBookingID").equalTo(booking.bookingID).once('value').then((snapshot) => {
                    snapshot.forEach((doc) => {
                      db.ref('allBookings').child(doc.key).update({status: 'Cancelled'});
@@ -81,6 +82,7 @@
                 db.ref('currentBookings').child(booking.bookingID).remove();
                  alert('Reservation has been cancelled');
                  this.$router.go();
+                        }
             }
         }
     }
