@@ -60,8 +60,57 @@ exports.addRoom = functions.https.onCall((data, context) => {
     admin.database().ref(`rooms/${newRoomID}`).update({
         roomID:newRoomID
     })
-
 });
+
+exports.createRoom = functions.https.onCall((data, context) => {
+    console.log(data)
+
+    return admin.database().ref('rooms/' + data).once('value').then((snapshot) => {
+        data.roomInfo = snapshot.val()
+    }).then(()=>{
+        return{roomInfo:data.roomInfo}
+    })
+});
+
+exports.updateRoom = functions.https.onCall((data, context) => {
+    var roomID = data.roomID;
+    console.log('roomID:' + roomID)
+    console.log('data1: ' + data);
+
+    console.log('data2: ' + data);
+    admin.database().ref(`rooms/${roomID}`).update(data)
+});
+
+exports.booking = functions.https.onCall((data, context) => {
+    const userID = context.auth.uid;
+
+    return admin.database().ref('currentBookings').orderByChild("room/hostID").
+        equalTo(userID).once('value').then((snapshot) => {
+            data.bookings = [];
+            snapshot.forEach((doc) => {
+                data.bookings.push(doc.val());
+            });
+            console.log(data.booking);
+        }).then(() => {
+            console.log('booking cloud functin returning');
+            console.log( { bookings: data.bookings })
+            return { bookings: data.bookings };
+          }).catch((error) => {
+            console.log(error);
+        });
+});
+
+exports.unbook = functions.https.onCall((data, context) => {
+
+    const userID = context.auth.uid;
+    console.log("inside unbook")
+    console.log(data.bk)
+    console.log(data.bk.bookingID)
+    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+    return 1;
+});
+
+
 
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
 });

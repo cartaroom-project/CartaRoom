@@ -11,7 +11,7 @@
     <p>Total Bookings: {{ roomInfo.bookingCounter }}</p>
      <h3>Ammenaties:</h3>
             <ul v-for="amenity in roomInfo.selectedAmenities"  v-bind:key ="amenity['.key']">
-                {{amenity}} 
+                {{amenity}}
             </ul>
       <br />
       <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
@@ -50,9 +50,9 @@
           id: 0,
           room: {},
         amenities:[
-          {offering: 'wifi'},
-          {offering: 'projector'},
-          {offering: 'whiteboard'},
+          {offering: 'Wifi'},
+          {offering: 'Projector'},
+          {offering: 'Whiteboard'},
           {offering: 'Ethernet'},
         ],
           roomInfo:

@@ -1,19 +1,17 @@
 <template>
-    <div class="addRoom">
-        <p>Let's add a new room</p>
-        <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
-        <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
-        <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
-        <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
+  <div class="addRoom">
+    <p>Let's add a new room</p>
+    <input type="text" v-model="roomInfo.name" placeholder="Name"><br>
+    <input type="number" v-model="roomInfo.capacity" placeholder="Capacity"><br>
+    <input type="text" v-model="roomInfo.description" placeholder="Description"><br>
+    <input type="text" v-model="roomInfo.address" placeholder="Address"><br>
+    Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br /> 
+    Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
+     <h3>Amenities:</h3>
+      <p>test: {{roomInfo.amenities}}</p>
 
-        Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br />
-        Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
-
-        <h3>Amenities:</h3>
-        <p>test: {{roomInfo.selectedAmenities}}</p>
-
-        <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
-        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities"><br>
+    <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
+        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities"><br>
         <label :for="amenity.offering">{{amenity.offering}}</label>
         </li>
 
@@ -63,7 +61,7 @@
                 bookingCounter: 0,
                 openTime:0,
                 closeTime:0,
-                selectedAmenities: [],
+                amenities: [],
                 bookingSlots: [[]]
             }
         }
@@ -78,22 +76,22 @@
             var closeHours = parseInt(closeHoursMinutes[0], 10);
             var timeSlotsAvailable = closeHours - startHours;
             var firstTimeSlot = startHours;
-
+            
             while(i<timeSlotsAvailable){
-                this.roomInfo.bookingSlots.push({
-                    startingTime: firstTimeSlot,
-                    endingTime: ++firstTimeSlot});
-                i++;
+               this.roomInfo.bookingSlots.push({
+                   startingTime: firstTimeSlot,
+                   endingTime: ++firstTimeSlot});
+               i++;
             }
         },
-        addRoom: function()
+        addRoom: async function()
         {
-            this.calculateTime();
-            addRoom(this.roomInfo);
-            this.$router.replace('home');
-        },
+            await  this.calculateTime();
+            await   addRoom(this.roomInfo);    
+            await  this.$router.replace('home');
         }
     }
+}
 </script>
 
 
