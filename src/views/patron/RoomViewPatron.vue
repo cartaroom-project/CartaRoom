@@ -28,7 +28,6 @@
 </div>
 </template>
 
- 
 <script>
 //   console.log(this.$router);
 // bookingSlots[1].startingTime
@@ -36,6 +35,7 @@ import firebase from 'firebase';
 import db from '@/firebase.js';
 import axios from 'axios';
 
+var createRoom = firebase.functions().httpsCallable('createRoom');
 var roomViewPatronCreated = firebase.functions().httpsCallable('roomViewPatronCreated');
 var userID;
 var roomID = '1';
@@ -97,21 +97,27 @@ export default {
             }
         }
     },
-    created() {
+    async created() {
         this.id = this.$route.params.id;
-        roomViewPatronCreated({roomInfo: this.roomInfo, room: this.room})
 
-        // // this.roomInfo.name =  firebase.database().ref('rooms/' + this.id +'/name' )
-        // firebase.database().ref('rooms/' + this.id).once('value').then((snapshot) => {
-        //     this.roomInfo = snapshot.val();
-        // });
-        // console.log('current user ID: ' + userID)
-        // firebase.database().ref('users/patron/' + userID).once('value').then((snapshot) => {
-        //     this.room = snapshot.val();
-        //     this.userEmail = snapshot.val().email
-        //     console.log('userEmail: ' + this.userEmail)
-        // })
+        await createRoom({
+            id: this.id,
+            roomInfo: this.roomInfo
+        }).then((result) => {
+            this.roomInfo = result.data.roomInfo
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        await roomViewPatronCreated({
+            userEmail: this.userEmail
+        }).then((result) => {
+            this.userEmail = result.data.userEmail;
+        }).catch(function (error) {
+            console.log(error);
+        });
     },
+    
     methods: {
         doMath: function () {
             var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
@@ -185,7 +191,6 @@ export default {
 }
 </script>
 
- 
 <style scoped>
 .sign-up {
     margin-top: 40px;
