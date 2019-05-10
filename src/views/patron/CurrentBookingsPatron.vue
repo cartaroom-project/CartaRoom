@@ -9,7 +9,9 @@
             Date: {{booking.date}} <br />
             Start Time: {{booking.startTime}}:00 <br />
             End Time: {{booking.endTime}}:00 <br />
-            <button v-on:click="unbookRoom(booking)">Remove Booking</button> <br />
+            Status: {{booking.status}} <br />
+            <button v-on:click="simulateFinish(booking)">Simulate Finish</button> 
+            <button v-on:click="cancelBooking(booking)">Cancel Booking</button><br />
         </ul>
     </div>
 </template>
@@ -58,12 +60,27 @@
             });
         },
         methods: {
-            unbookRoom: function(booking) {
-                // firebase.database().ref('rooms/' + booking.room.uniqueKey).update({userID: booking.room.userID, name: booking.room.name, capacity: booking.room.capacity, description: booking.room.description, address: booking.room.address, uniqueKey: booking.room.uniqueKey, reserved: 'false'})
-                 db.ref('currentBookings').child(booking.bookingID).remove();
-                 alert('Room Status has been reset');
+            simulateFinish: function(booking) {
+                console.log('bookingID: ' + booking.bookingInfo)
+                db.ref('allBookings').orderByChild("bookingInfo").equalTo(booking.bookingInfo).once('value').then((snapshot) => {
+                   snapshot.forEach((doc) => {
+                     db.ref('allBookings').child(doc.key).update({status: 'Completed'});
+                     })
+                });
+                db.ref('currentBookings').child(booking.bookingID).remove();
+                 alert('Room has been used(simulated)');
                  this.$router.go();
-                console.log('userInfo: ' + this.user);
+            },
+                cancelBooking: function(booking) {
+                console.log('bookingID: ' + booking.bookingInfo)
+                db.ref('allBookings').orderByChild("bookingInfo").equalTo(booking.bookingInfo).once('value').then((snapshot) => {
+                   snapshot.forEach((doc) => {
+                     db.ref('allBookings').child(doc.key).update({status: 'Cancelled'});
+                     })
+                });
+                db.ref('currentBookings').child(booking.bookingID).remove();
+                 alert('Reservation has been cancelled');
+                 this.$router.go();
             }
         }
     }

@@ -145,14 +145,14 @@
           this.hostName = snapshot.val().businessName;
           console.log('host: ' + this.hostName);
 
-          uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo})
-          firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo})
+          uniqueKeyIDBooking = firebase.database().ref('currentBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo,status: 'not completed'})
+          firebase.database().ref('currentBookings/' + uniqueKeyIDBooking.key).update({bookingID: uniqueKeyIDBooking.key})
 
-          uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: '1',startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo})
-          firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, bookingID: uniqueKeyIDBooking.key, startTime: startTime,endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo})
+          uniqueKeyIDBooking = firebase.database().ref('allBookings').push({room: this.roomInfo, user: userInfo,userEmail: this.userEmail, allbookingID: '1', initialBookingID: uniqueKeyIDBooking.key,startTime: startTime, endTime: endTime,date: this.date,host: this.hostName,bookingInfo: bookingInfo,status: 'not completed'})
+          firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({allbookingID: uniqueKeyIDBooking.key})
 
           alert('BOOKING CONFIRMED\n'+ 'Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
-           this.$router.go();
+           this.$router.replace('CurrentBookingsPatron');
           });
         }
         });
