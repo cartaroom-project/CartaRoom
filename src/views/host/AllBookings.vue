@@ -8,6 +8,7 @@
             Date: {{booking.date}} <br />
             Start Time: {{booking.startTime}}:00 <br />
             End Time: {{booking.endTime}}:00 <br />
+            Status: {{booking.status}} <br />
         </ul>
     </div>
 </template>
