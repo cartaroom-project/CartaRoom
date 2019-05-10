@@ -8,17 +8,10 @@
     <p>Address: {{ roomInfo.address }}</p>
     <p>Open Time: {{ roomInfo.openTime }}</p>
     <p>Close Time: {{ roomInfo.closeTime }}</p>
-<<<<<<< HEAD
      <h3>Amenities:</h3>
             <ul v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
                 {{amenity}} 
             </ul>
-=======
-    <h3>Ammenaties:</h3>
-    <ul v-for="amenity in roomInfo.selectedAmenities" v-bind:key="amenity['.key']">
-        {{amenity}}
-    </ul>
->>>>>>> 0960d87a91a89e500760fcb20a28b22e8b365171
     <h3>{{msg}}</h3>
     Date: <input type="date" v-model="date"><br />
     <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
@@ -36,69 +29,24 @@
 </template>
 
 <script>
-//   console.log(this.$router);
-// bookingSlots[1].startingTime
-<<<<<<< HEAD
-  import firebase from 'firebase';
-  import db from '@/firebase.js';
-=======
-import firebase from 'firebase';
-import db from '@/firebase.js';
-import axios from 'axios';
->>>>>>> 0960d87a91a89e500760fcb20a28b22e8b365171
+    import firebase from 'firebase';
+    import db from '@/firebase.js';
 
-var userID;
-var roomID = '1';
-//   var timeSlotsAVailable = 2;
-var storageRef = firebase.storage().ref();
+    var userID;
+    var roomID = '1';
+    //   var timeSlotsAVailable = 2;
+    var storageRef = firebase.storage().ref();
 
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-        userID = user.uid;
-    } else {
-        // console.log("No user available"); 
-        userID = 'null';
-    }
-});
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+            userID = user.uid;
+        } else {
+            // console.log("No user available");
+            userID = 'null';
+        }
+    });
 
-<<<<<<< HEAD
-  export default {
-      name: 'addRoom',
-      
-      data() {
-      return {
-          id: 0,
-          room: {},
-          timeSlotsAvailable : 0,
-          msg: '',
-          msg1: 'View time slots',
-          date: '',
-          hostName: '',
-          userEmail: '',
-        amenities:[
-          {offering: 'Wifi'},
-          {offering: 'Projector'},
-          {offering: 'Whiteboard'},
-          {offering: 'Ethernet'},
-        ],
-          roomInfo:
-              {
-                  hostID: '',
-                  name: '',
-                  capacity: '',
-                  description: '',
-                  address: '',
-                  roomID: roomID,
-                  reserved: 'false',
-                  bookingCounter: 0,
-                  openTime:0,
-                  closeTime:0,
-                  amenities: [],
-                  bookingSlots: [{startingTime: '9:00',endingTime: '10:00'}]
-              }
-      }
-=======
 export default {
     name: 'addRoom',
 
@@ -143,7 +91,6 @@ export default {
                 }]
             }
         }
->>>>>>> 0960d87a91a89e500760fcb20a28b22e8b365171
     },
     created() {
         this.id = this.$route.params.id;

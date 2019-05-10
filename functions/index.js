@@ -110,7 +110,6 @@ exports.hostUnbook = functions.https.onCall((data, context) => {
 });
 
 exports.patronBooking = functions.https.onCall((data, context) => {
-
     const userID = context.auth.uid;
 
     return admin.database().ref('currentBookings').orderByChild("user").
@@ -127,7 +126,6 @@ exports.patronBooking = functions.https.onCall((data, context) => {
 });
 
 exports.patronUnbook = functions.https.onCall((data, context) => {
-
     const userID = context.auth.uid;
     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
     return 1;

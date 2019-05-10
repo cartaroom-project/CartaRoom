@@ -21,24 +21,25 @@
 </template>
 
 <script>
-  import firebase from 'firebase';
-  import db from '@/firebase.js';
-  var createRoom = firebase.functions().httpsCallable('createRoom');
-  var hostDeleteRoom = firebase.functions().httpsCallable('hostDeleteRoom');
+import firebase from 'firebase';
+import db from '@/firebase.js';
 
-  var hostID;
-  var roomID = '1';
-  var storageRef = firebase.storage().ref();
+    var createRoom = firebase.functions().httpsCallable('createRoom');
+    var hostDeleteRoom = firebase.functions().httpsCallable('hostDeleteRoom');
 
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    hostID = user.uid;
-  } else {
-    hostID = 'null';
-  }
-});
+    var hostID;
+    var roomID = '1';
+    var storageRef = firebase.storage().ref();
 
-  export default {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            hostID = user.uid;
+        } else {
+            hostID = 'null';
+        }
+    });
+
+    export default {
       name: 'addRoom',
       
       data() {
@@ -46,10 +47,10 @@
           id: 0,
           room: {},
         amenities:[
-          {offering: 'Wifi'},
-          {offering: 'Projector'},
-          {offering: 'Whiteboard'},
-          {offering: 'Ethernet'},
+            {offering: 'Wifi'},
+            {offering: 'Projector'},
+            {offering: 'Whiteboard'},
+            {offering: 'Ethernet'},
         ],
           roomInfo:
               {
