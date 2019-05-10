@@ -3,15 +3,15 @@
         <h1>You are a Host</h1>
         <h2>List of Current Bookings</h2>
         <ul>
-        <li v-for="booking of bookings" v-bind:key ="booking['.key']">
+        <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
             Room Name: {{booking.room.name}} <br />
             Booker: {{booking.userEmail}}<br />
             Host: {{booking.host}} <br />
             Date: {{booking.date}} <br />
             Start Time: {{booking.startTime}}:00 <br />
-            End Time: {{booking.endTime}}:00 <br />
+            End Time: {{booking.endTime}}:00 <br /><br />
             <!-- <button v-on:click="unbookRoom(booking)">Remove Booking</button> <br /> -->
-        </li>
+        </ul>
         </ul>
         
     </div>

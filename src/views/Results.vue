@@ -40,14 +40,14 @@ export default {
           this.rooms.push(doc.val());
         }) 
 
-        db.ref('rooms').orderByChild("description").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
-        snapshot.forEach((doc) => {
-          this.rooms.push(doc.val());
-        }) 
+        // db.ref('rooms').orderByChild("description").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
+        // snapshot.forEach((doc) => {
+        //   this.rooms.push(doc.val());
+        // }) 
 
-      }).catch((error) => {
-        console.log(error);
-      });
+      // }).catch((error) => {
+      //   console.log(error);
+      // });
 
       }).catch((error) => {
         console.log(error);

@@ -129,12 +129,15 @@
           var userInfo = firebase.auth().currentUser.uid;
           var uniqueKeyIDBooking = '1';
 
-
         //This creates a string with all the neccessary info needed to see if a time slot is already taken or not
         var bookingInfo = startTime.toString() +'->'+ endTime.toString()+ '->' + this.date + '->' + this.roomInfo.roomID;
         console.log('bookingInfo:' + bookingInfo);
 
+        if(this.date===''){
+          alert('Please select a date before moving on');
+        }
 
+        else{
         db.ref('currentBookings').orderByChild("bookingInfo").equalTo(bookingInfo).once('value').then((snapshot) => {
               if (snapshot.exists()){
               alert('TIME SLOT NOT AVAILABLE FOR:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00\n' + 'PLEASE SELECT ANOTHER DATE/TIME');
@@ -156,6 +159,7 @@
           });
         }
         });
+        }
         // console.log(userInfo)
         // console.log(this.roomInfo)
         // console.log('hostAfter: ' + this.hostName);
