@@ -118,7 +118,7 @@ exports.hostDeleteRoom = functions.https.onCall((data, context) => {
     admin.database().ref('rooms').child(data.id).remove();
 });
 
-exports.hostViewRoomCreated =functions.https.onCall((data, context) => {
+exports.createRoom =functions.https.onCall((data, context) => {
     return admin.database().ref('rooms/' + data.id).once('value').then((snapshot) => {
         data.roomInfo = snapshot.val();
     }).then(() => {
