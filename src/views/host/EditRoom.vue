@@ -1,27 +1,51 @@
 <template>
-    <div class="editRoom">
-        <p>Let's Edit a room</p>
-        <h1>{{roomInfo.name}}</h1>
-        <input type="text" v-model="roomInfo.name"><br>
-        <input type="number" v-model="roomInfo.capacity"><br>
-        <input type="text" v-model="roomInfo.description"><br>
-        <input type="text" v-model="roomInfo.address"><br>
-        Open Time:<br />  <input type="time" v-model="roomInfo.openTime"><br />
-        Close Time:<br />  <input type="time" v-model="roomInfo.closeTime"><br />
-
-        <h3>Amenities:</h3>
-        <p>test: {{roomInfo.amenities}}</p>
-        <li v-for="amenity in amenities"  v-bind:key ="amenity['.key']">
-        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
-        <label :for="amenity.offering">{{amenity.offering}}</label>
-        </li>
-
-        <!-- <input type = "file" @click="uploadImage"> -->
-        <br>
-
-        <button @click="updateRoom">Confirm Edit</button><br />
-        <router-link to="/home">Cancel</router-link>
+<div class="editRoom">
+    <div class="banner">
+            <br>
+            <p class="banner_text">Edit Your Room</p>
+        </div>
+    
+    <h1>{{roomInfo.name}}</h1>
+    <div class="edit">
+        <div class="row">
+            <div class="column">
+                <label>Name</label>
+                <label>Capacity</label>
+                <label>Description</label>
+                <label>Location</label>
+                <label>Open Time</label>
+                <label>Close Time</label>
+            </div>
+            <div class="column">
+                <input class="input_add" type="text" v-model="roomInfo.name">
+                <input class="input_add" type="number" v-model="roomInfo.capacity">
+                <input class="input_add" type="text" v-model="roomInfo.description">
+                <input class="input_add" type="text" v-model="roomInfo.address">
+                <input class="input_time" type="time" v-model="roomInfo.openTime">
+                <input class="input_time" type="time" v-model="roomInfo.closeTime">
+            </div>
+        </div>
+        <div class="row">
+            <div class="columnX">
+            <label>Ammenaties:</label>
+            </div>
+            <div class="column">
+                <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
+            <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities">
+            <label :for="amenity.offering">{{amenity.offering}}</label>
+                </ul>
+            </div>
+        </div>
+    
+    
+   
+    <!-- <input type = "file" @click="uploadImage"> -->
+    <br>
+    <button @click="updateRoom">Confirm</button>
+        <button><router-link to="/home">Cancel</router-link> </button>
     </div>
+</div>
+
 </template>
 
 <script>
@@ -110,15 +134,114 @@
 
  
 <style scoped>
+    
+    label {
+        margin-left: 30%;
+        margin-top: 20px;
+        margin-bottom: 15px;        
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+}
+        .banner_text {
+        font-family: Rajdhani;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 110px;
+        line-height: 191px;
+        text-align: center;
+        color: #000000;
+}
+    
+        .banner {
+        height: 450px;
+        width: 100%;
+        background-image: url(../../assets/banner/Host2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+    
 .sign-up {
     margin-top: 40px;
 }
 
-input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
+    .input_add {
+        margin: 10px 0;
+        width: 725px;
+        padding-left: 15px;
+        background: #FFFFFF;
+        border: 0.25px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 100px;
 }
+    .input_time{
+        margin: 10px 0;
+        width: 225px;
+        padding-left: 15px;
+        background: #FFFFFF;
+        border: 0.25px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 600px;
+    }
+
+    button {
+        margin-top: 10px;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 177px;
+        color: #000000;
+        margin: 0px 20px;
+        float: right;
+    }
+        .row {
+        display: flex;
+}
+    .column {
+        flex: 50%;
+        padding: 10px;
+        
+} 
+    .columnX {
+        flex:13%;
+      
+        
+}
+
+    .edit {
+        margin-left: 25%;
+        padding-top: 44px;
+        margin-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width: 1200px;
+        height: 850px;
+}
+    
 
 button {
     margin-top: 10px;
