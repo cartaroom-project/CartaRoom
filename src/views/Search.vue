@@ -4,7 +4,7 @@
          <h1 class="heading_one">Reserve a Room</h1>
          <div id="search_text">
             <p class="label_head">where</p>
-            <input class="search_input big" type="text" placeholder="Location">
+            <input class="search_input big" type="text" placeholder="Location" v-model="criteria">
             <br>
             <div style="display: inline-flex;">
                <p class="label_head">when</p>
@@ -30,13 +30,16 @@
        components: {Recommended},
        data() {
        return {
+          criteria: ''
        }
      },
    methods: {
-   search: function(){	
-   //document.getElementById("Search").innerHTML = "Searching";
-   this.$router.replace('results')
-   },
+      search: function(){    
+         this.$router.push({
+         name: 'Results',
+         params: { criteria: this.criteria }
+         })
+      }
    }
    }
    

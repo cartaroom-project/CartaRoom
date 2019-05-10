@@ -1,7 +1,7 @@
 <template>
     <div class="currentBookings">
         <h1>You are a Host</h1>
-        <h2>List of Current Bookings</h2>
+        <h2>List of All Bookings</h2>
         <ul v-for="booking of bookings" v-bind:key ="booking['.key']">
             Room Name: {{booking.room.name}} <br />
             Booker: {{booking.userEmail}}<br />
