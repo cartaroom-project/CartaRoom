@@ -81,12 +81,12 @@ exports.hostBooking = functions.https.onCall((data, context) => {
         });
 });
 
-exports.hostUnbook = functions.https.onCall((data, context) => {
+// exports.hostUnbook = functions.https.onCall((data, context) => {
 
-    const userID = context.auth.uid;
-    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
-    return 1;
-});
+//     const userID = context.auth.uid;
+//     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+//     return 1;
+// });
 
 exports.patronBooking = functions.https.onCall((data, context) => {
 
@@ -106,12 +106,12 @@ exports.patronBooking = functions.https.onCall((data, context) => {
 });
 
 
-exports.patronUnbook = functions.https.onCall((data, context) => {
+// exports.patronUnbook = functions.https.onCall((data, context) => {
 
-    const userID = context.auth.uid;
-    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
-    return 1;
-});
+//     const userID = context.auth.uid;
+//     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
+//     return 1;
+// });
 
 
 exports.hostDeleteRoom = functions.https.onCall((data, context) => {
@@ -128,6 +128,52 @@ exports.createRoom =functions.https.onCall((data, context) => {
     });
 });
 
+
+exports.bookingStatus = functions.https.onCall((data, context) =>  {
+
+    admin.database().ref('allBookings').orderByChild("initialBookingID").
+        equalTo(data.bookingID).once('value').then((snapshot) => {
+            snapshot.forEach((doc) => {
+                admin.database().ref('allBookings').child(doc.key).update({status: data.statMsg});
+            })
+
+            if(data.statMsg == "completed")
+            {
+                admin.database().ref('rooms/' + data.roomID).once('value').then((snapshot) => {
+                    admin.database().ref('rooms/' + data.roomID).update({
+                        bookingCounter: ++snapshot.val().bookingCounter
+                    })
+                });
+            }
+        });
+
+    admin.database().ref('currentBookings').child(data.bookingID).remove();
+});
+
+exports.roomViewPatronCreated =functions.https.onCall((data, context) => {
+    return admin.database().ref('rooms/' + this.id).once('value').then((snapshot) => {
+        data.roomInfo = snapshot.val();
+    })
+    
+    // .then(() => {
+    //     return { roomInfo: data.roomInfo };
+    // }).catch((error) => {
+    //     console.log(error);
+    // });
+
+
+            // this.roomInfo.name =  firebase.database().ref('rooms/' + this.id +'/name' )
+            firebase.database().ref('rooms/' + this.id).once('value').then((snapshot) => {
+                this.roomInfo = snapshot.val();
+            });
+
+            console.log('current user ID: ' + userID)
+            firebase.database().ref('users/patron/' + userID).once('value').then((snapshot) => {
+                this.room = snapshot.val();
+                this.userEmail = snapshot.val().email
+                console.log('userEmail: ' + this.userEmail)
+            })
+});
 
 // {
 //     "rules": {
