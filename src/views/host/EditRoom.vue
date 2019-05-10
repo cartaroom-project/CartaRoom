@@ -45,134 +45,91 @@
         <button><router-link to="/home">Cancel</router-link> </button>
     </div>
 </div>
+
 </template>
 
- 
 <script>
 //   console.log(this.$router);
-import firebase from 'firebase';
-import axios from 'axios';
+    import firebase from 'firebase';
+    var updateRoom = firebase.functions().httpsCallable('updateRoom');
+    var createRoom = firebase.functions().httpsCallable('createRoom');
 
-var hostID;
-var roomID = '1';
-var storageRef = firebase.storage().ref();
+    var hostID;
+    var roomID = '1';
+    var storageRef = firebase.storage().ref();
 
-firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-        hostID = user.uid;
+     // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+    hostID = user.uid;
     } else {
-        // console.log("No user available"); 
-        hostID = 'null';
+   // console.log("No user available"); 
+    hostID = 'null';
     }
-});
+    });
 
-export default {
-    name: 'addRoom',
-
-    data() {
-        return {
-            id: 0,
-            room: {},
-            amenities: [{
-                    offering: 'wifi'
-                },
-                {
-                    offering: 'projector'
-                },
-                {
-                    offering: 'whiteboard'
-                },
-                {
-                    offering: 'Ethernet'
-                },
-            ],
-            roomInfo: {
-                hostID: hostID,
-                name: '',
-                capacity: '',
-                description: '',
-                address: '',
-                roomID: roomID,
-                reserved: 'false',
-                bookingCounter: 0,
-                openTime: 0,
-                closeTime: 0,
-                selectedAmenities: [],
-                bookingSlots: [
-                    []
-                ]
+    export default {
+        name: 'addRoom',
+        data() {
+            return {
+                id: 0,
+                room: {},
+                amenities: [
+                    {offering: 'Wifi'},
+                    {offering: 'Projector'},
+                    {offering: 'Whiteboard'},
+                    {offering: 'Ethernet'},
+                ],
+                roomInfo:
+                    {
+                        hostID: hostID,
+                        name: '',
+                        capacity: '',
+                        description: '',
+                        address: '',
+                        roomID: roomID,
+                        bookingCounter: 0,
+                        openTime: 0,
+                        closeTime: 0,
+                        amenities: [],
+                        bookingSlots: [[]]
+                    }
             }
-        }
-    },
-    created() {
-        this.id = this.$route.params.id;
-        // this.roomInfo.name =  firebase.database().ref('rooms/' + this.id +'/name' )
-        firebase.database().ref('rooms/' + this.id).once('value').then((snapshot) => {
-            this.room = snapshot.val();
-            this.roomInfo.hostID = snapshot.val().hostID,
-                this.roomInfo.name = snapshot.val().name,
-                this.roomInfo.capacity = snapshot.val().capacity,
-                this.roomInfo.description = snapshot.val().description,
-                this.roomInfo.address = snapshot.val().address,
-                this.roomInfo.roomID = snapshot.val().roomID,
-                this.roomInfo.reserved = snapshot.val().reserved,
-                this.roomInfo.bookingCounter = snapshot.val().bookingCounter,
-                this.roomInfo.openTime = snapshot.val().openTime,
-                this.roomInfo.closeTime = snapshot.val().closeTime,
-                //   this.roomInfo.selectedAmenities = snapshot.val().amenities,
-                // this.roomInfo.bookingSlots = snapshot.val().bookingSlots
-                console.log(this.roomInfo)
-        })
-        console.log(this.roomInfo)
-    },
-    methods: {
-        updateRoom: function () {
-            var i = 0;
-            var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
-            var startHours = parseInt(startHoursMinutes[0], 10);
-            var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
-            var closeHours = parseInt(closeHoursMinutes[0], 10);
-            var timeSlotsAVailable = closeHours - startHours;
-            var firstTimeSlot = startHours;
+        },
+        async created() {
+            this.id = this.$route.params.id;
+            await createRoom({id: this.id, roomInfo: this.roomInfo}).then((result) => {
+                this.roomInfo = result.data.roomInfo
+            });
 
-            while (i < timeSlotsAVailable) {
-                this.roomInfo.bookingSlots.push({
-                    startingTime: firstTimeSlot,
-                    endingTime: ++firstTimeSlot
+        },
+        methods: {
+            calculateTime: function () {
+                this.roomInfo.bookingSlots = [[]];
+                var i = 0;
+                var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
+                var startHours = parseInt(startHoursMinutes[0], 10);
+                var closeHoursMinutes = this.roomInfo.closeTime.split(/[.:]/);
+                var closeHours = parseInt(closeHoursMinutes[0], 10);
+                var timeSlotsAVailable = closeHours - startHours;
+                var firstTimeSlot = startHours;
+
+                while (i < timeSlotsAVailable) {
+                    this.roomInfo.bookingSlots.push({startingTime: firstTimeSlot, endingTime: ++firstTimeSlot});
+                    i++;
+                }
+            },
+            updateRoom: async function () {
+                await this.calculateTime();
+                await updateRoom(this.roomInfo).then(()=> {
+                    this.$router.go(-1);
                 });
-                i++;
+                console.log(this.id);
+                console.log('test')
             }
-
-            firebase.database().ref('rooms/' + this.id).update({
-                hostID: this.roomInfo.hostID,
-                name: this.roomInfo.name,
-                capacity: this.roomInfo.capacity,
-                description: this.roomInfo.description,
-                address: this.roomInfo.address,
-                roomID: this.id,
-                reserved: this.roomInfo.reserved,
-                bookingCounter: this.roomInfo.bookingCounter,
-                openTime: this.roomInfo.openTime,
-                closeTime: this.roomInfo.closeTime,
-                amenities: this.roomInfo.selectedAmenities,
-                bookingSlots: this.roomInfo.bookingSlots
-            })
-
-            this.$router.go(-1)
         }
-    },
+    }
 
-    // post: function()
-    // {
-    //    this.$http.post(firebase.database().ref('users'), this.credentials).then(function (data) {
-    //
-    //        this.submitted=true;
-    //        this.$router.replace('home')
-    //        }
-    //    )
-    // }
-}
 </script>
 
  
