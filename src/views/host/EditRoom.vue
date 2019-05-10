@@ -103,7 +103,6 @@
 </script>
 
 
-
 <style scoped>
     .sign-up {
         margin-top: 40px;
