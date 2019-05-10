@@ -29,33 +29,27 @@
                     <input class="input_time" type="time" v-model="roomInfo.openTime">
                     <br />
                     <input class="input_time" type="time" v-model="roomInfo.closeTime">
-                    <br />
+                    
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+         
             <div class="row">
-            <h3>Amenities:</h3>
-            <p>test: {{roomInfo.amenities}}</p>
-            <li v-for="amenity in amenities" v-bind:key="amenity['.key']">
+                <div class="columnX">
+            <label>Amenities:</label>
+            <p>test: {{roomInfo.amenities}}</p>                    </div>
+                <div class="column">
+                <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
                 <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
                 <br>
                 <p :for="amenity.offering">{{amenity.offering}}</p>
-            </li>
+                    </ul>
+                    </div>
             </div>
             <!--    <input type = "file" @click="uploadImage">-->
             <br>
-            <button @click="addRoom">Add Room</button>
-            <br>
-            <router-link to="/home">Cancel</router-link>
+            <button @click="addRoom">Continue</button>
+            
+            <button><router-link to="/home">Cancel</router-link></button>
         </div>
     </div>
 </template>
@@ -138,6 +132,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
     label {
         margin-left: 30%;
@@ -159,7 +154,12 @@ export default {
     .column {
         flex: 50%;
         padding: 10px;
-        height: 300px; /* Should be removed. Only for demonstration */
+        
+} 
+    .columnX {
+        flex:13%;
+      
+        
 }
     .banner_text {
         font-family: Rajdhani;
@@ -216,17 +216,30 @@ export default {
 
     button {
         margin-top: 10px;
-        width: 10%;
         cursor: pointer;
-}
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 177px;
+        color: #000000;
+        margin: 0px 20px;
+        float: right;
+    }
 
     .add {
         margin-left: 25%;
         padding-top: 44px;
+        margin-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
         width: 1200px;
-        height: 1000px;
+        height: 800px;
 }
 
 </style>
