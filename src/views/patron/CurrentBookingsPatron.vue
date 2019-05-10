@@ -61,8 +61,8 @@
         },
         methods: {
             simulateFinish: function(booking) {
-                console.log('bookingID: ' + booking.bookingInfo)
-                db.ref('allBookings').orderByChild("bookingInfo").equalTo(booking.bookingInfo).once('value').then((snapshot) => {
+                // console.log('bookingID: ' + booking.bookingInfo)
+                db.ref('allBookings').orderByChild("initialBookingID").equalTo(booking.bookingID).once('value').then((snapshot) => {
                    snapshot.forEach((doc) => {
                      db.ref('allBookings').child(doc.key).update({status: 'Completed'});
                      })
@@ -72,8 +72,8 @@
                  this.$router.go();
             },
                 cancelBooking: function(booking) {
-                console.log('bookingID: ' + booking.bookingInfo)
-                db.ref('allBookings').orderByChild("bookingInfo").equalTo(booking.bookingInfo).once('value').then((snapshot) => {
+                // console.log('bookingID: ' + booking.bookingInfo)
+                db.ref('allBookings').orderByChild("initialBookingID").equalTo(booking.bookingID).once('value').then((snapshot) => {
                    snapshot.forEach((doc) => {
                      db.ref('allBookings').child(doc.key).update({status: 'Cancelled'});
                      })

@@ -152,7 +152,7 @@
           firebase.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({allbookingID: uniqueKeyIDBooking.key})
 
           alert('BOOKING CONFIRMED\n'+ 'Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00'+" - " + endTime + ':00');
-           this.$router.replace('CurrentBookingsPatron');
+           this.$router.push('CurrentBookingsPatron');
           });
         }
         });
