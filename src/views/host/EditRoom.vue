@@ -81,6 +81,7 @@
         },
         methods: {
             calculateTime: function () {
+                this.roomInfo.bookingSlots = [[]];
                 var i = 0;
                 var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
                 var startHours = parseInt(startHoursMinutes[0], 10);
@@ -104,30 +105,30 @@
             }
         }
     }
+
 </script>
 
-
-
- <style scoped>
-  .sign-up {
+ 
+<style scoped>
+.sign-up {
     margin-top: 40px;
-  }
-  input {
+}
+
+input {
     margin: 10px 0;
     width: 20%;
     padding: 15px;
-  }
-  button {
+}
+
+button {
     margin-top: 10px;
     width: 10%;
     cursor: pointer;
-  }
-  span {
+}
+
+span {
     display: block;
     margin-top: 20px;
     font-size: 11px;
-  }
+}
 </style>
-
-
-
