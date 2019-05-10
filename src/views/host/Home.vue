@@ -1,4 +1,5 @@
 <template>
+
     <div class="home">
         <div class="banner">
             <h1>You are a Host</h1>
@@ -13,55 +14,60 @@
             
         </ul>
     </div>
+
 </template>
 <script>
-    import firebase from 'firebase';
-    import db from '@/firebase.js';
-    
-    // db.ref('rooms').once('value').then(function(snapshot) {
-    //   console.log(snapshot.val());
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
-    
-      var userID;
-      firebase.auth().onAuthStateChanged(function(user) {
-    
-      if (user) {
-       // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+
+import firebase from 'firebase';
+import db from '@/firebase.js';
+
+// db.ref('rooms').once('value').then(function(snapshot) {
+//   console.log(snapshot.val());
+// }).catch((error) => {
+//   console.log(error);
+// });
+
+var userID;
+firebase.auth().onAuthStateChanged(function (user) {
+
+    if (user) {
+        // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
         userID = user.uid;
-      } else {
-       // console.log("No user available"); 
+    } else {
+        // console.log("No user available"); 
         userID = "null";
-      }
-    });
-    
-    export default {
-      name: 'home',
-       data () {
+    }
+});
+
+export default {
+    name: 'home',
+    data() {
         return {
-          rooms: []
+            rooms: []
         }
-       },
-        created () {
-            db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
+    },
+    created() {
+        db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
             this.rooms = [];
             snapshot.forEach((doc) => {
-              this.rooms.push(doc.val());
-            }) 
-          }).catch((error) => {
+                this.rooms.push(doc.val());
+            })
+        }).catch((error) => {
             console.log(error);
-          });
-        },
-      methods: {
-          viewRoom: function(id){
-          this.$router.push({
-            name: 'RoomViewHost',
-            params: { id: id }
-          })
+        });
+    },
+    methods: {
+        viewRoom: function (id) {
+            this.$router.push({
+                name: 'RoomViewHost',
+                params: {
+                    id: id
+                }
+            })
         }
-      }
     }
+}
+
 </script>
 
 <style>
