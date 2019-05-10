@@ -114,20 +114,12 @@ exports.booking = functions.https.onCall((data, context) => {
         });
 });
 
-<<<<<<< HEAD
 // exports.hostUnbook = functions.https.onCall((data, context) => {
 
 //     const userID = context.auth.uid;
 //     admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
 //     return 1;
 // });
-=======
-exports.hostUnbook = functions.https.onCall((data, context) => {
-    const userID = context.auth.uid;
-    admin.database().ref('currentBookings').child(data.bk.bookingID).remove();
-    return 1;
-});
->>>>>>> f14926d99da5dca8f41c0977e99994728bdd26ed
 
 exports.patronBooking = functions.https.onCall((data, context) => {
 
