@@ -1,14 +1,14 @@
 <template>
-  <div class="home">
-      <h1>You are a Host</h1>
-      <h2>List of All rooms</h2>
-      <ul v-for="room of rooms" v-bind:key ="room['.key']">
-      Name: {{room.name}} <br />
-      Capacity: {{room.capacity}} <br /> 
-      Address: {{room.address}} <br />  
-      <button v-on:click="viewRoom(room.roomID)">View Room</button>
-      <br /></ul>
-  </div>
+<div class="home">
+    <h1>You are a Host</h1>
+    <h2>List of All rooms</h2>
+    <ul v-for="room of rooms" v-bind:key="room['.key']">
+        Name: {{room.name}} <br />
+      Capacity: {{room.capacity}} <br />
+      Address: {{room.address}} <br />
+        <button v-on:click="viewRoom(room.roomID)">View Room</button>
+        <br /></ul>
+</div>
 </template>
 
 <script>
@@ -21,42 +21,44 @@ import db from '@/firebase.js';
 //   console.log(error);
 // });
 
-  var userID;
-  firebase.auth().onAuthStateChanged(function(user) {
+var userID;
+firebase.auth().onAuthStateChanged(function (user) {
 
-  if (user) {
-   // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-    userID = user.uid;
-  } else {
-   // console.log("No user available"); 
-    userID = "null";
-  }
+    if (user) {
+        // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+        userID = user.uid;
+    } else {
+        // console.log("No user available"); 
+        userID = "null";
+    }
 });
 
 export default {
-  name: 'home',
-   data () {
-    return {
-      rooms: []
-    }
-   },
-    created () {
-        db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
-        this.rooms = [];
-        snapshot.forEach((doc) => {
-          this.rooms.push(doc.val());
-        }) 
-      }).catch((error) => {
-        console.log(error);
-      });
+    name: 'home',
+    data() {
+        return {
+            rooms: []
+        }
     },
-  methods: {
-      viewRoom: function(id){
-      this.$router.push({
-        name: 'RoomViewHost',
-        params: { id: id }
-      })
+    created() {
+        db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
+            this.rooms = [];
+            snapshot.forEach((doc) => {
+                this.rooms.push(doc.val());
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+    },
+    methods: {
+        viewRoom: function (id) {
+            this.$router.push({
+                name: 'RoomViewHost',
+                params: {
+                    id: id
+                }
+            })
+        }
     }
-  }
 }
 </script>

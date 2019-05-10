@@ -1,26 +1,26 @@
 <template>
-    <div class="editRoom">
-        <p>Room View</p>
-        <h1>Room: {{ roomInfo.name }}</h1>
-        <p>Name: {{ roomInfo.name }}</p>
-        <p>Capacity: {{ roomInfo.capacity }}</p>
-        <p>Description: {{ roomInfo.description }}</p>
-        <p>Address: {{ roomInfo.address }}</p>
-        <p>Open Time: {{ roomInfo.openTime }}</p>
-        <p>Close Time: {{ roomInfo.closeTime }}</p>
-        <p>Total Bookings: {{ roomInfo.bookingCounter }}</p>
-        <h3>Amenities:</h3>
-            <ul v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
-            {{amenity}}
-            </ul>
-        <br />
-        <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
-        <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button><br />
-        <router-link to="/home">Cancel</router-link>
-    </div>
+<div class="editRoom">
+    <p>Room View</p>
+    <h1>Room: {{ roomInfo.name }}</h1>
+    <p>Name: {{ roomInfo.name }}</p>
+    <p>Capacity: {{ roomInfo.capacity }}</p>
+    <p>Description: {{ roomInfo.description }}</p>
+    <p>Address: {{ roomInfo.address }}</p>
+    <p>Open Time: {{ roomInfo.openTime }}</p>
+    <p>Close Time: {{ roomInfo.closeTime }}</p>
+    <p>Total Bookings: {{ roomInfo.bookingCounter }}</p>
+    <h3>Ammenaties:</h3>
+        <ul v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
+        {{amenity}}
+        </ul>
+    <br />
+    <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
+    <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button><br />
+    <router-link to="/home">Cancel</router-link>
+</div>
 </template>
 
- <script>
+<script>
   import firebase from 'firebase';
   import db from '@/firebase.js';
   var createRoom = firebase.functions().httpsCallable('createRoom');
@@ -95,29 +95,30 @@
     }
     },
 
-    }
+}
 </script>
 
-
-
- <style scoped>
-  .sign-up {
+ 
+<style scoped>
+.sign-up {
     margin-top: 40px;
-  }
-  input {
+}
+
+input {
     margin: 10px 0;
     width: 20%;
     padding: 15px;
-  }
-  button {
+}
+
+button {
     margin-top: 10px;
     width: 10%;
     cursor: pointer;
-  }
-  span {
+}
+
+span {
     display: block;
     margin-top: 20px;
     font-size: 11px;
-  }
+}
 </style>
-
