@@ -22,69 +22,66 @@
             </div>
             <button v-on:click="viewRoom(room.roomID)">View Room</button>
             <br />
-
-    </div>
+        </div>
     </div>
 </template>
 <script>
-
-import firebase from 'firebase';
-import db from '@/firebase.js';
-
-// db.ref('rooms').once('value').then(function(snapshot) {
-//   console.log(snapshot.val());
-// }).catch((error) => {
-//   console.log(error);
-// });
-
-var userID;
-firebase.auth().onAuthStateChanged(function (user) {
-
-    if (user) {
-        // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
-        userID = user.uid;
-    } else {
-        // console.log("No user available"); 
-        userID = "null";
-    }
-});
-
-export default {
-    name: 'home',
-    data() {
-        return {
-            rooms: []
+    import firebase from 'firebase';
+    import db from '@/firebase.js';
+    
+    // db.ref('rooms').once('value').then(function(snapshot) {
+    //   console.log(snapshot.val());
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
+    
+    var userID;
+    firebase.auth().onAuthStateChanged(function (user) {
+    
+        if (user) {
+            // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
+            userID = user.uid;
+        } else {
+            // console.log("No user available"); 
+            userID = "null";
         }
-    },
-    created() {
-        db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
-            this.rooms = [];
-            snapshot.forEach((doc) => {
-                this.rooms.push(doc.val());
-            })
-        }).catch((error) => {
-            console.log(error);
-        });
-    },
-    methods: {
-        viewRoom: function (id) {
-            this.$router.push({
-                name: 'RoomViewHost',
-                params: {
-                    id: id
-                }
-            })
+    });
+    
+    export default {
+        name: 'home',
+        data() {
+            return {
+                rooms: []
+            }
+        },
+        created() {
+            db.ref('rooms').orderByChild("hostID").equalTo(userID).once('value').then((snapshot) => {
+                this.rooms = [];
+                snapshot.forEach((doc) => {
+                    this.rooms.push(doc.val());
+                })
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+        methods: {
+            viewRoom: function (id) {
+                this.$router.push({
+                    name: 'RoomViewHost',
+                    params: {
+                        id: id
+                    }
+                })
+            }
         }
     }
-}
-
+    
 </script>
-
 <style scoped>
     .banner{
-        height: 450px;
+    height: 450px;
     }
- img{
+    img{
     padding-top: 15px;
     padding-left: 40px;
     width: 75%;
@@ -145,21 +142,20 @@ export default {
     border-radius: 10px;
     margin-right: 100px;
     }
-       button {
-
-        cursor: pointer;
-        background: #FFFFFF;
-        border-radius: 15px;
-        height: 44px;
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 35px;
-        text-align: center;
-        width: 177px;
-        color: #000000;
-        margin: 0px 20px;
-        float: right;
+    button {
+    cursor: pointer;
+    background: #FFFFFF;
+    border-radius: 15px;
+    height: 44px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+    width: 177px;
+    color: #000000;
+    margin: 0px 20px;
+    float: right;
     }
 </style>
