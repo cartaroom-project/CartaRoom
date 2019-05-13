@@ -9,6 +9,7 @@
     <p>Open Time: {{ roomInfo.openTime }}</p>
     <p>Close Time: {{ roomInfo.closeTime }}</p>
 
+
     <h3>Ammenaties:</h3>
     <ul v-for="amenity in roomInfo.selectedAmenities" v-bind:key="amenity['.key']">
         {{amenity}}
@@ -171,11 +172,11 @@ export default {
                             })
 
                             //updates room booking counter
-                            db.ref('rooms/' + this.roomInfo.roomID).once('value').then((snapshot) => {
-                                firebase.database().ref('rooms/' + this.roomInfo.roomID).update({
-                                    bookingCounter: ++snapshot.val().bookingCounter
-                                })
-                            });
+                            // db.ref('rooms/' + this.roomInfo.roomID).once('value').then((snapshot) => {
+                            //     firebase.database().ref('rooms/' + this.roomInfo.roomID).update({
+                            //         bookingCounter: ++snapshot.val().bookingCounter
+                            //     })
+                            // });
 
                             uniqueKeyIDBooking = firebase.database().ref('allBookings').push({
                                 room: this.roomInfo,

@@ -94,14 +94,39 @@
       },
     
       methods: {
-        deleteRoom: function(id) {
-         if(window.confirm("Are you sure you want to delete this room?")){
-            hostDeleteRoom({id:id}).then(() => {
-            alert('Room Deleted!');
-            this.$router.go(-1);
-          })
-          }
-      },  
+        deleteRoom: function (id) {
+            db.ref('currentBookings').orderByChild("room/roomID").equalTo(id).once('value').then((snapshot) => {
+                if (snapshot.exists()) {
+                    if (window.confirm("Room currently has bookings, do you want to continue?")) {
+                        if (window.confirm("Are you sure you want to delete this room?")) {
+                            hostDeleteRoom({
+                                id: id
+                            }).then(() => {
+                                //changes booking status to 'room deleted' and removes from current bookings
+                                snapshot.forEach((doc) => {
+                                    bookingStatus({
+                                        bookingID: doc.key,
+                                        roomID: id,
+                                        statMsg: 'room deleted'
+                                    });
+                                });
+                                alert('Room Deleted!');
+                                this.$router.go(-1);
+                            })
+                        }
+                    }
+                } else {
+                    if (window.confirm("Are you sure you want to delete this room?")) {
+                        hostDeleteRoom({
+                            id: id
+                        }).then(() => {
+                            alert('Room Deleted!');
+                            this.$router.go(-1);
+                        })
+                    }
+                }
+            });
+        },  
     
       editRoom: function(id){
         this.$router.push({
