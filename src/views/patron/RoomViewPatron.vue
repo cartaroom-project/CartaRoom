@@ -8,17 +8,16 @@
     <p>Address: {{ roomInfo.address }}</p>
     <p>Open Time: {{ roomInfo.openTime }}</p>
     <p>Close Time: {{ roomInfo.closeTime }}</p>
-<<<<<<< HEAD
+
     <h3>Ammenaties:</h3>
     <ul v-for="amenity in roomInfo.selectedAmenities" v-bind:key="amenity['.key']">
         {{amenity}}
     </ul>
-=======
+
     <h3>Amenities:</h3>
         <ul v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
             {{amenity}} 
         </ul>
->>>>>>> f14926d99da5dca8f41c0977e99994728bdd26ed
     <h3>{{msg}}</h3>
     Date: <input type="date" v-model="date"><br />
     <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
