@@ -1,77 +1,75 @@
 <template>
-<div class="currentBookings">
-    <div class="banner">
-        <br>
-        <p class="banner_text">Current Bookings</p>
-    </div>
-    <div class="current" v-for="booking of bookings" v-bind:key="booking['.key']">
-        <div class="row">
-            <div class="column">
-                <img src="../../assets/banner/image.png">
-            </div>
-            <div class="column">
-                <label>Name</label>
-                <label>Booked By</label>
-                <label>Host</label>
-                <label>Date</label>
-                <label>Start Time</label>
-                <label>End Time</label>
-            </div>
-            <div class="column">
-                <p class="info">{{ booking.room.name }}</p>
-                <p class="info">{{ booking.userEmail }}</p>
-                <p class="info">{{ booking.host }}</p>
-                <p class="info">{{ booking.date }}</p>
-                <p class="info">{{ booking.startTime}}:00</p>
-                <p class="info">{{ booking.endTime}}:00</p>
+    <div class="currentBookings">
+        <div class="banner">
+            <br>
+            <p class="banner_text">Current Bookings</p>
+        </div>
+        <div class="current" v-for="booking of bookings" v-bind:key="booking['.key']">
+            <div class="row">
+                <div class="column">
+                    <img src="../../assets/banner/image.png">
+                </div>
+                <div class="column">
+                    <label>Name</label>
+                    <label>Booked By</label>
+                    <label>Host</label>
+                    <label>Date</label>
+                    <label>Start Time</label>
+                    <label>End Time</label>
+                </div>
+                <div class="column">
+                    <p class="info">{{ booking.room.name }}</p>
+                    <p class="info">{{ booking.userEmail }}</p>
+                    <p class="info">{{ booking.host }}</p>
+                    <p class="info">{{ booking.date }}</p>
+                    <p class="info">{{ booking.startTime}}:00</p>
+                    <p class="info">{{ booking.endTime}}:00</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </template>
-
 <script>
-import firebase from 'firebase';
-import db from '@/firebase.js';
-var booking = firebase.functions().httpsCallable('hostBooking');
-var unbook = firebase.functions().httpsCallable('hostUnbook');
-
-var userID;
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        userID = user.uid;
-    } else {
-        userID = "null";
-    }
-});
-
-    export default {
-        name: 'currentBookings',
-        data () {
-            return {
-                bookings:[],
-            }
+    import firebase from 'firebase';
+    import db from '@/firebase.js';
+    var booking = firebase.functions().httpsCallable('hostBooking');
+    var unbook = firebase.functions().httpsCallable('hostUnbook');
+    
+    var userID;
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            userID = user.uid;
+        } else {
+            userID = "null";
+        }
+    });
+    
+        export default {
+            name: 'currentBookings',
+            data () {
+                return {
+                    bookings:[],
+                }
+            },
+            async created () {
+                await booking({bookings:this.bookings}).then((result) => {
+                this.bookings = result.data.bookings
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
-        async created () {
-            await booking({bookings:this.bookings}).then((result) => {
-            this.bookings = result.data.bookings
-        }).catch(function (error) {
-            console.log(error);
-        });
-    },
-    methods: {
-        unbookRoom: function (booking) {
-            unbook({
-                bk: booking
-            }).then(() => {
-                alert('Room Status has been reset');
-                this.$router.go();
-            })
+        methods: {
+            unbookRoom: function (booking) {
+                unbook({
+                    bk: booking
+                }).then(() => {
+                    alert('Room Status has been reset');
+                    this.$router.go();
+                })
+            }
         }
     }
-}
 </script>
-
 <style scoped>
     img{
     padding-top: 75px;
