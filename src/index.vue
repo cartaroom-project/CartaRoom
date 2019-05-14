@@ -1,16 +1,12 @@
 <template>
     <div id="app">
         <div id="nav">
+            <img id="logo" src="./assets/Final_CartaRoom.png"/>
             <!-- renders view before login -->
-            <router-link to="/login">Login</router-link>
-            |
-            <router-link to="/sign-up">Sign Up</router-link>
-            |
-            <router-link to="/about">About</router-link>
-
+            <router-link to="/login"><button class="navButtons">LOGIN</button></router-link>
+            <router-link to="/sign-up"><button class="navButtons">SIGN UP</button></router-link>
         </div>
 
-        
         <div id="notLoggedInContent">
             <router-view></router-view>
         </div>
@@ -87,7 +83,8 @@
     }
 
     #nav {
-        padding: 30px;
+        max-width:100%;
+        background-color:red;
         text-align: right;
     }
 
@@ -99,4 +96,30 @@
     #nav a.router-link-exact-active {
         color: #42b983;
     }
+
+    #nav img {
+        aligh:left;
+    }
+    #logo {
+        max-width: 25%;
+        align:left;
+    }
+
+    .navButtons {
+        background: rgba(47, 69, 80, 1);
+        border: 1px solid #828282;
+        margin-left: 20px;
+        height: 35px;
+        width: 90px;
+
+        box-sizing: border-box;
+        border-radius: 10px;
+        color: white;
+
+        font-family: Roboto;
+        font-weight: normal;
+        font-size: 16px;
+        text-align: center;
+    }
+
 </style>
