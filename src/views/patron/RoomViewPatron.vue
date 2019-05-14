@@ -218,7 +218,7 @@ export default {
 
                 await updateUIDAllBookingViewRoomPatron(info2).then(() => {
                     alert('BOOKING CONFIRMED\n' + 'Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00' + " - " + endTime + ':00');
-                    this.$router.push('CurrentBookingsPatron');
+                    this.$router.push({name: 'CurrentBookingsPatron'});
                 })
             }
         }
