@@ -38,8 +38,8 @@ export default {
             bookings: [],
         }
     },
-    created() {
-        booking({
+    async created() {
+        await booking({
             bookings: this.bookings
         }).then((result) => {
             this.bookings = result.data.bookings
