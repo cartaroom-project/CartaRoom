@@ -20,7 +20,8 @@
     max-width: 20%;
     padding: 16px;
 }
-    .search_button{
+
+.search_button{
    background: rgba(84, 142, 255, 0.8);
    
    width:202px;
