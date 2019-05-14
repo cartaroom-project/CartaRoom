@@ -19,46 +19,42 @@
                 </div>
                 <div class="column">
                     <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name">
-                    <br>
                     <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="capacity">
-                    <br>
                     <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
-                    <br>
                     <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
-                    <br />
                     <input class="input_time" type="time" v-model="roomInfo.openTime">
-                    <br />
                     <input class="input_time" type="time" v-model="roomInfo.closeTime">
-
                 </div>
             </div>
-
             <div class="row">
                 <div class="columnX">
                     <label>Amenities:</label>
-                    <p>test: {{roomInfo.amenities}}</p>                    </div>
+                    <p>test: {{roomInfo.amenities}}</p>
+                </div>
                 <div class="column">
                     <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
                         <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
-                        <br>
-                        <p :for="amenity.offering">{{amenity.offering}}</p>
+                        <label :for="amenity.offering">{{amenity.offering}}</label>
                     </ul>
                 </div>
             </div>
             <!--    <input type = "file" @click="uploadImage">-->
             <br>
             <button @click="addRoom">Continue</button>
-
-            <button><router-link to="/home">Cancel</router-link></button>
+            <button>
+                <router-link to="/home">Cancel</router-link>
+            </button>
         </div>
     </div>
 </template>
-
 <script>
     import firebase from 'firebase';
     var addRoom = firebase.functions().httpsCallable('addRoom');
+
+
     var hostID;
     var roomID = '1';
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
@@ -68,6 +64,7 @@
             hostID = 'null';
         }
     });
+
     export default {
         name: 'addRoom',
         data() {
@@ -111,6 +108,7 @@
                 var closeHours = parseInt(closeHoursMinutes[0], 10);
                 var timeSlotsAvailable = closeHours - startHours;
                 var firstTimeSlot = startHours;
+
                 while (i < timeSlotsAvailable) {
                     this.roomInfo.bookingSlots.push({
                         startingTime: firstTimeSlot,
@@ -127,8 +125,6 @@
         }
     }
 </script>
-
-
 <style scoped>
     label {
         margin-left: 30%;
@@ -149,12 +145,9 @@
     .column {
         flex: 50%;
         padding: 10px;
-
     }
     .columnX {
         flex:13%;
-
-
     }
     .banner_text {
         font-family: Rajdhani;
@@ -192,7 +185,7 @@
     }
     .input_time{
         margin: 10px 0;
-        width: 125px;
+        width: 225px;
         padding-left: 15px;
         background: #FFFFFF;
         border: 0.25px solid #000000;
@@ -203,7 +196,7 @@
         font-weight: 300;
         font-size: 20px;
         line-height: 35px;
-        margin-right: 700px;
+        margin-right: 600px;
     }
     button {
         margin-top: 10px;
@@ -229,10 +222,9 @@
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
         width: 1200px;
-        height: 800px;
+        height: 850px;
     }
 </style>
-
 // Needed fields:
 // *Name--Text#
 // *Location--Text#
