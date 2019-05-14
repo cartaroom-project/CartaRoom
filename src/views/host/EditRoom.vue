@@ -30,7 +30,7 @@
                 </div>
                 <div class="column">
                     <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
-                        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.selectedAmenities">
+                        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
                         <label :for="amenity.offering">{{amenity.offering}}</label>
                     </ul>
                 </div>
