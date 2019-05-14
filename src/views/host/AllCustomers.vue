@@ -26,13 +26,13 @@
 <script>
     import firebase from 'firebase';
     import db from '@/firebase.js';
-    
+
     // db.ref('rooms').once('value').then(function(snapshot) {
     //   console.log(snapshot.val());
     // }).catch((error) => {
     //   console.log(error);
     // });
-    
+
     var userID;
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -43,7 +43,7 @@
             userID = "null";
         }
     });
-    
+
     export default {
         name: 'currentBookings',
         data() {
@@ -66,64 +66,64 @@
 </script>
 <style scoped>
     img{
-    padding-top: 10px;
-    padding-left: 40px;
-    width: 75%;
+        padding-top: 10px;
+        padding-left: 40px;
+        width: 75%;
     }
     .banner_text {
-    font-family: Rajdhani;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 110px;
-    line-height: 191px;
-    text-align: center;
-    color: #000000;
+        font-family: Rajdhani;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 110px;
+        line-height: 191px;
+        text-align: center;
+        color: #000000;
     }
     .banner {
-    height: 450px;
-    width: 100%;
-    background-image: url(../../assets/banner/Customer.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
+        height: 450px;
+        width: 100%;
+        background-image: url(../../assets/banner/Customer.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     label {
-    margin-left: 30%;
-    padding-top: 15px;
-    padding-bottom: 6px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+        margin-left: 30%;
+        padding-top: 15px;
+        padding-bottom: 6px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
     }
     .customer{
-    margin-left: 25%;
-    padding-top: 44px;
-    padding-bottom: 44px;
-    margin-top: 45px;
-    margin-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width: 1200px;
+        margin-left: 25%;
+        padding-top: 44px;
+        padding-bottom: 44px;
+        margin-top: 45px;
+        margin-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width: 1200px;
     }
     .row {
-    display: flex;
+        display: flex;
     }
     .column {
-    flex: 33%;
-    padding: 10px;
+        flex: 33%;
+        padding: 10px;
     }
     .info{
-    border: 0.25px solid #000000;
-    width: 625px;
-    font-size: 20px;
-    line-height: 35px;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin-right: 100px;
+        border: 0.25px solid #000000;
+        width: 625px;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 10px;
+        margin-right: 100px;
     }
 </style>

@@ -50,11 +50,11 @@
 <script>
     import firebase from 'firebase';
     var addRoom = firebase.functions().httpsCallable('addRoom');
-    
-    
+
+
     var hostID;
     var roomID = '1';
-    
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // console.log(user.uid); //a@a.com = gbEw7s5ic1drxG3vgFWD3DAMb972
@@ -64,14 +64,14 @@
             hostID = 'null';
         }
     });
-    
+
     export default {
         name: 'addRoom',
         data() {
             return {
                 amenities: [{
-                        offering: 'Wifi'
-                    },
+                    offering: 'Wifi'
+                },
                     {
                         offering: 'Projector'
                     },
@@ -108,7 +108,7 @@
                 var closeHours = parseInt(closeHoursMinutes[0], 10);
                 var timeSlotsAvailable = closeHours - startHours;
                 var firstTimeSlot = startHours;
-    
+
                 while (i < timeSlotsAvailable) {
                     this.roomInfo.bookingSlots.push({
                         startingTime: firstTimeSlot,
@@ -127,102 +127,102 @@
 </script>
 <style scoped>
     label {
-    margin-left: 30%;
-    margin-top: 20px;
-    margin-bottom: 15px;        
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+        margin-left: 30%;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
     }
     .row {
-    display: flex;
+        display: flex;
     }
     .column {
-    flex: 50%;
-    padding: 10px;
-    } 
+        flex: 50%;
+        padding: 10px;
+    }
     .columnX {
-    flex:13%;
+        flex:13%;
     }
     .banner_text {
-    font-family: Rajdhani;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 110px;
-    line-height: 191px;
-    text-align: center;
-    color: #000000;
+        font-family: Rajdhani;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 110px;
+        line-height: 191px;
+        text-align: center;
+        color: #000000;
     }
     .banner {
-    height: 450px;
-    width: 100%;
-    background-image: url(../../assets/banner/Host2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+        height: 450px;
+        width: 100%;
+        background-image: url(../../assets/banner/Host2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     .sign-up {
-    margin-top: 40px;
+        margin-top: 40px;
     }
     .input_add {
-    margin: 10px 0;
-    width: 725px;
-    padding-left: 15px;
-    background: #FFFFFF;
-    border: 0.25px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 35px;
-    margin-right: 100px;
+        margin: 10px 0;
+        width: 725px;
+        padding-left: 15px;
+        background: #FFFFFF;
+        border: 0.25px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 100px;
     }
     .input_time{
-    margin: 10px 0;
-    width: 225px;
-    padding-left: 15px;
-    background: #FFFFFF;
-    border: 0.25px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 35px;
-    margin-right: 600px;
+        margin: 10px 0;
+        width: 225px;
+        padding-left: 15px;
+        background: #FFFFFF;
+        border: 0.25px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 600px;
     }
     button {
-    margin-top: 10px;
-    cursor: pointer;
-    background: #FFFFFF;
-    border-radius: 15px;
-    height: 44px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
-    width: 177px;
-    color: #000000;
-    margin: 0px 20px;
-    float: right;
+        margin-top: 10px;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 177px;
+        color: #000000;
+        margin: 0px 20px;
+        float: right;
     }
     .add {
-    margin-left: 25%;
-    padding-top: 44px;
-    margin-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width: 1200px;
-    height: 850px;
+        margin-left: 25%;
+        padding-top: 44px;
+        margin-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width: 1200px;
+        height: 850px;
     }
 </style>
 // Needed fields:
