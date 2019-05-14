@@ -187,12 +187,78 @@ exports.roomViewPatronCreated =functions.https.onCall((data, context) => {
 
     return admin.database().ref('users/patron/' + context.auth.uid).once('value').then((snapshot) => {
             data.userEmail = snapshot.val().email
-            console.log('userEmail from cloud function: ' + data.userEmail)
     }).then(() => {
          return { userEmail: data.userEmail };
      }).catch((error) => {
          console.log(error);
     });
+});
+
+exports.checkBookingExist =functions.https.onCall((data, context) => {
+
+    return  admin.database().ref('currentBookings').orderByChild("bookingInfo").equalTo(data.bookingInfo).once('value').then((snapshot) => {
+        if (snapshot.exists()) 
+        {   
+            data.snapshotExist = true;
+        } else {
+            data.snapshotExist = false;
+        }
+    }).then(() => {
+        return {
+            snapshotExist: data.snapshotExist
+        };
+    }).catch((error) => {
+        console.log(error);
+    });
+});
+
+exports.getHostNameRoomViewPatron =functions.https.onCall((data, context) => {
+
+    return  admin.database().ref('users/host/' + data.hostID).once('value').then((snapshot) => {
+                data.hostName = snapshot.val().businessName;
+                console.log('host: ' + data.hostName);
+    }).then(() => {
+        // console.log({
+        //     hostName: data.hostName
+        // });
+
+        return {
+            hostName: data.hostName
+        };
+    }).catch((error) => {
+        console.log(error);
+    });
+});
+
+exports.updateUIDBookingViewRoomPatron =functions.https.onCall((data, context) => {
+
+
+    //console.log(data);
+    data.uniqueKeyIDBooking = admin.database().ref('currentBookings').push(data.info);
+
+    return admin.database().ref('currentBookings/' + data.uniqueKeyIDBooking.key).update({
+        bookingID: data.uniqueKeyIDBooking.key
+    }).then(() => {
+        // console.log({
+        //     uniqueKeyIDBooking: data.uniqueKeyIDBooking.key
+        // });
+
+        return {
+            uniqueKeyIDBooking: data.uniqueKeyIDBooking.key
+        };
+    }).catch((error) => {
+        console.log(error);
+    });
+});
+
+exports.updateUIDAllBookingViewRoomPatron =functions.https.onCall((data, context) => {
+
+    console.log(data);
+    const uniqueKeyIDBooking = admin.database().ref('allBookings').push(data);
+    console.log("uniqueKeyIDBooking: " + uniqueKeyIDBooking);
+    admin.database().ref('allBookings/' + uniqueKeyIDBooking.key).update({
+        allbookingID: uniqueKeyIDBooking.key
+    })
 });
 
 // {
