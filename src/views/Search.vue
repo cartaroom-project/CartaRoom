@@ -16,18 +16,20 @@
             <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests">
             <button id="search_button" @click="search">Search</button>
          </div>
-         
       </div>
     <div id="second">
-       </div>
+       <h3>this is some text</h3>
+       <p></p>
+    </div>
       <Recommended></Recommended>
    </div>
 </template>
 <script>
    import Recommended from "../components/Recommended";
+   import HostNavbar from "../components/HostNavbar";
    export default {
      name: 'search',
-       components: {Recommended},
+       components: {HostNavbar, Recommended},
        data() {
        return {
           criteria: ''
@@ -50,11 +52,12 @@
    font-style: normal;
    font-weight: 600;
    font-size: 72px;
-   padding-top: 250px;
    line-height: 92px;
+      margin-top:0px;
    }
    #first{
    background-image: url(../assets/banner/Search.jpg);
+      position:relative;
    height: 874px;
    width: 100%;
    background-repeat: no-repeat;
