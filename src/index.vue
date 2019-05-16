@@ -1,12 +1,6 @@
 <template>
 <div id="app">
-    <div id="nav">
-        <img id="logo" src="./assets/Final_CartaRoom.png"/>
-        <!-- renders view before login -->
-        <router-link to="/login"><button class="navButtons">LOGIN</button></router-link>
-        <router-link to="/sign-up"><button class="navButtons">SIGN UP</button></router-link>
-    </div>
-
+    <NotLoginNavBar></NotLoginNavBar>
     <div id="notLoggedInContent">
         <router-view></router-view>
     </div>
@@ -20,6 +14,7 @@
 import firebase from 'firebase';
 import db from '@/firebase.js';
 import Footer from "./components/Footer";
+import NotLoginNavBar from "./components/NotLoginNavBar";
 
 // db.ref('rooms').once('value').then(function(snapshot) {
 //   console.log(snapshot.val());
@@ -42,7 +37,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 export default {
     name: 'home',
     components: {
-        Footer
+        Footer,NotLoginNavBar
     },
     methods: {
         logout: function () {
