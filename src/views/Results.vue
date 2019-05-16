@@ -4,9 +4,9 @@
         <h2>Search Results<br /><br /> </h2>
             <ul v-for="room of rooms" v-bind:key="room['.key']">
                 Name: {{room.name}} <br />
-        Capacity: {{room.capacity}} <br />
-        Address: {{room.address}} <br />
-        Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br>
+                Capacity: {{room.capacity}} <br />
+                Address: {{room.address}} <br />
+                Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br>
                 <button v-on:click="viewRoom(room.roomID)">View Room</button>
                 <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
             </ul>
@@ -40,14 +40,14 @@ export default {
                 this.rooms.push(doc.val());
             })
 
-        // db.ref('rooms').orderByChild("description").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
-        // snapshot.forEach((doc) => {
-        //   this.rooms.push(doc.val());
-        // }) 
+            // db.ref('rooms').orderByChild("description").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
+            // snapshot.forEach((doc) => {
+            //   this.rooms.push(doc.val());
+            // }) 
 
-      // }).catch((error) => {
-      //   console.log(error);
-      // });
+            // }).catch((error) => {
+            //   console.log(error);
+            // });
 
         }).catch((error) => {
             console.log(error);
