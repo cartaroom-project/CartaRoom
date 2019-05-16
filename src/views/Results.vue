@@ -1,17 +1,31 @@
 <template>
-<div class="results">
-    <ul>
-        <h2>Search Results<br /><br /> </h2>
-            <ul v-for="room of rooms" v-bind:key="room['.key']">
-                Name: {{room.name}} <br />
-        Capacity: {{room.capacity}} <br />
-        Address: {{room.address}} <br />
-        Hours of Operation: {{room.openTime}} to {{room.closeTime}} <br>
-                <button v-on:click="viewRoom(room.roomID)">View Room</button>
+<div class="result">
+     <img src="../assets/banner/map.png">
+    <div class="results"  v-for="room of rooms" v-bind:key="room['.key']">
+    <div class="row">
+        <div class="column">
+            <label>Room Name</label>
+            <label>Room Capacity</label>
+            <label>Address</label>
+            <label>Hours Of Operation</label>
+        </div>
+        <div clss="column" >
+            <p class="info">{{ room.name }}</p>
+            <p class="info">{{ room.capacity }}</p>
+            <p class="info">{{ room.address }}</p>
+            <p class="info">{{ room.openTime }} to {{ room.closeTime }}</p>
+            <button v-on:click="viewRoom(room.roomID)">View Room</button>
+        </div>      
+
+     </div>
+
+                
                 <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
-            </ul>
-            <router-link to="/search">Back to Search</router-link>
-    </ul>
+    </div>
+    <br>
+   
+
+    <button id="stuck"><router-link to="/search">Back to Search</router-link></button>
     <!-- <Recommended></Recommended> -->
 </div>
 </template>
@@ -78,3 +92,93 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+label {
+    
+        margin-bottom: 20px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    button {
+        margin-top: 10px;
+        width: 10%;
+        cursor: pointer;
+    }
+    span {
+        display: block;
+        margin-top: 20px;
+        font-size: 11px;
+    }
+    button {
+        margin-top: 10px;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 177px;
+        color: #000000;
+
+    }
+    #stuck{
+        position: fixed;
+        margin-right: 100px;
+    }
+    
+    .results{
+        margin: 0 auto;
+    padding-top: 25px;
+
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background: rgba(218, 229, 227, 0.9);
+    border-radius: 15px;
+    width: 400px;
+    float:left;
+        margin-left:  50px 
+        
+        
+    }
+        .info{
+        border: 0.25px solid #000000;
+        width: 155px;
+        font-size: 15px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 10px;
+        margin-right: 40px;
+    }
+        .row {
+            left: 0;    
+        display: inline-flex;
+            padding-bottom: 30px;
+    }
+    .column {
+        flex: 25%;
+        padding: 10px;
+    }
+    
+    img{
+        float: right;
+        right: 0;
+        margin-right: 50px;
+        margin-top: 80px;
+        height: 50%;
+        width: 25%;
+        position: fixed;
+    }
+
+</style>

@@ -10,7 +10,7 @@
         <div class="add">
             <div class="row">
                 <div class="column">
-                    <label>Name</label>
+                    <label>Room Name</label>
                     <label>Capacity</label>
                     <label>Description</label>
                     <label>Location</label>
