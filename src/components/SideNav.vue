@@ -1,30 +1,30 @@
 <template>
     <div id="mySidenav" class="sidenav">
-            <router-link to="#">
-                <i class='fas fa-plus' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
-                <h3 class="NavTitle" style="display: none;">New Room</h3>
+            <router-link to="/home">
+                <i class='fas fa-door-open' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <h3 class="NavTitle" style="display: none;">View All Rooms</h3>
             </router-link>
             <br>
-            <router-link to="#">
-                <i class='fas fa-door-open' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
-                <h3 class="NavTitle" style="display: none;">All Rooms</h3>
+            <router-link to="/addRoom">
+                <i class='fas fa-plus' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <h3 class="NavTitle" style="display: none;">Add room</h3>
             </router-link>
             <br> 
-            <router-link to="#">
-                <i class="fas fa-address-book" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
-                <h3 class="NavTitle" style="display: none;">Customers</h3>
+            <router-link to="/currentBookings">
+                <i class="fas fa-concierge-bell" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <h3 class="NavTitle" style="display: none;">Current Bookings</h3>
             </router-link>
             <br>
-            <router-link to="#">
-                <i class="far fa-chart-bar" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
-                <h3 class="NavTitle" style="display: none;">Analytics</h3>
+            <router-link to="/allBookings">
+                <i class="fas fa-user-clock" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <h3 class="NavTitle" style="display: none;">All Bookings</h3>
             </router-link>
             <br>
-            <router-link to="#">
-                <i class="far fa-calendar-alt" style="position: relative"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                <h3 class="NavTitle" style="display: none;">History</h3>
+            <router-link to="/allCustomers">
+                <i class="fas fa-address-book" style="position: relative"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                <h3 class="NavTitle" style="display: none;">Customer Database</h3>
             </router-link>
-            <router-link id ="bottom" to="#">
+            <router-link id ="bottom" to="/about">
                 <i class="fas fa-info" style="position: relative;">&nbsp;&nbsp;&nbsp;&nbsp;</i>
                 <h3 class="NavTitle" style="display: none;">About</h3>
             </router-link>

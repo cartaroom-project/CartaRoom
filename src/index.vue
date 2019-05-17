@@ -62,7 +62,6 @@ export default {
 
 #nav {
     max-width: 100%;
-    background-color: red;
     text-align: right;
 }
 

@@ -1,34 +1,29 @@
 <template>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-
     <div class="header">
+
             <a class="logo">
-              <router-link to="/search">
-                <img  href="/search" src="../assets/Final_CartaRoom.png">
+              <router-link to="/home">
+                <img src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
                 </router-link>
             </a>
         <div class="header-right">
-            <router-link to="/login"><button class="navButtons">LOGIN</button></router-link>
-            <router-link to="/sign-up"><button class="navButtons">SIGN UP</button></router-link>
+            <button class="navButtons" @click="logout">LOGOUT</button>
         </div>
     </div>
-</body>
-
-</html>
 </template>
 
 
 <script>
+import firebase from 'firebase';
 export default {
-    name: "NotLoginNavBar"
+    name: "LoginNavbarHost",
+    methods: {
+        logout: function () {
+            firebase.auth().signOut().then(() => {
+                this.$router.replace('/')
+            })
+        }
+    }
 }
 
 </script>
