@@ -12,7 +12,7 @@
     <div class="header">
 
             <a class="logo">
-                <img src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
+                <img src="../assets/Final_CartaRoom.png">
             </a>
         <div class="header-right">
             <router-link to="/login"><button class="navButtons">LOGIN</button></router-link>
