@@ -11,9 +11,10 @@
                 <label>Name</label>
                 <label>Capacity</label>
                 <label>Description</label>
-                <label>Location</label>
+                <label>Business Address</label>
                 <label>Open Time</label>
                 <label>Close Time</label>
+                <label>Amenities</label>
             </div>
             <div class="column">
                 <input class="input_add" type="text" v-model="roomInfo.name">
@@ -22,25 +23,28 @@
                 <input class="input_add" type="text" v-model="roomInfo.address">
                 <input class="input_time" type="time" v-model="roomInfo.openTime">
                 <input class="input_time" type="time" v-model="roomInfo.closeTime">
-                </div>
-            </div>
-            <div class="row">
-                <div class="columnX">
-                    <label>Amenities:</label>
-                </div>
-                <div class="column">
+                <div id="test">
                     <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
-                        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
-                        <label :for="amenity.offering">{{amenity.offering}}</label>
+                        <label class="switch">
+                            <input class="amenity" type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
+                            <span class="slider" :for="amenity.offering"></span>
+                            <p>{{amenity.offering}}</p>
+                        </label>
                     </ul>
+
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="columnButtons">
+                <button @click="updateRoom">Confirm</button>
+                <button>
+                    <router-link to="/home">Cancel</router-link>
+                </button>
+            </div>
+
+        </div>
             <!-- <input type = "file" @click="uploadImage"> -->
-            <br>
-            <button @click="updateRoom">Confirm</button>
-            <button>
-                <router-link to="/home">Cancel</router-link>
-            </button>
         </div>
     </div>
 </template>
@@ -113,9 +117,7 @@ export default {
     },
     methods: {
         calculateTime: function () {
-            this.roomInfo.bookingSlots = [
-                []
-            ];
+            this.roomInfo.bookingSlots = [[]];
             var i = 0;
             var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
             var startHours = parseInt(startHoursMinutes[0], 10);
@@ -145,7 +147,10 @@ export default {
 </script>
 
 <style scoped>
-label {
+    .columnButtons {
+        float: right;
+    }
+.column label {
     margin-left: 30%;
     margin-top: 20px;
     margin-bottom: 15px;
@@ -158,7 +163,6 @@ label {
     align-items: center;
     color: #000000;
 }
-
 .banner_text {
     font-family: Rajdhani;
     font-style: normal;
@@ -177,13 +181,9 @@ label {
     background-size: cover;
 }
 
-.sign-up {
-    margin-top: 40px;
-}
-
 .input_add {
     margin: 10px 0;
-    width: 725px;
+    width: 250%;
     padding-left: 15px;
     background: #FFFFFF;
     border: 0.25px solid #000000;
@@ -195,11 +195,12 @@ label {
     font-size: 20px;
     line-height: 35px;
     margin-right: 100px;
+    word-break: break-word;
 }
 
 .input_time {
     margin: 10px 0;
-    width: 225px;
+    width: auto;
     padding-left: 15px;
     background: #FFFFFF;
     border: 0.25px solid #000000;
@@ -213,8 +214,11 @@ label {
     margin-right: 600px;
 }
 
-button {
-    margin-top: 10px;
+.columnButtons {
+    width:100%;
+}
+
+.columnButtons button {
     cursor: pointer;
     background: #FFFFFF;
     border-radius: 15px;
@@ -225,10 +229,16 @@ button {
     font-size: 18px;
     line-height: 35px;
     text-align: center;
-    width: 177px;
+    width: 15%;
     color: #000000;
     margin: 0px 20px;
     float: right;
+    margin-bottom: 20px;
+
+}
+
+.columnButtons a {
+    text-decoration: none;
 }
 
 .row {
@@ -236,22 +246,25 @@ button {
 }
 
 .column {
-    flex: 50%;
+    width:25%;
     padding: 10px;
 }
 
 .columnX {
-    flex: 13%;
+    border: 2px solid black;
+    background-color:red;
+    width:75%;
 }
 
 .edit {
-    margin-left: 25%;
+    margin-left:auto;
+    margin-right:auto;
     padding-top: 44px;
     margin-bottom: 45px;
     background: rgba(218, 229, 227, 0.9);
     border-radius: 15px;
-    width: 1200px;
-    height: 850px;
+    width:70%;
+    height:60%;
 }
 
 button {
@@ -265,4 +278,64 @@ span {
     margin-top: 20px;
     font-size: 11px;
 }
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    float:left;
+}
+
+.switch p {
+    margin-left:75px;
+    margin-top:40px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .2s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+
 </style>

@@ -123,6 +123,7 @@ button {
     margin-left: 50px
 }
 
+
 .info {
     border: 0.25px solid #000000;
     width: 155px;
@@ -154,4 +155,5 @@ img {
     width: 25%;
     position: fixed;
 }
+
 </style>
