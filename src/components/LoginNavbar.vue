@@ -1,14 +1,4 @@
 <template>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-
     <div class="header">
 
             <a class="logo">
@@ -18,13 +8,11 @@
             <button class="navButtons" @click="logout">LOGOUT</button>
         </div>
     </div>
-</body>
-
-</html>
 </template>
 
 
 <script>
+import firebase from 'firebase';
 export default {
     name: "LoginNavbar",
     methods: {
