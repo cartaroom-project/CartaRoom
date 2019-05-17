@@ -18,7 +18,7 @@
          </div>
       </div>
     <div id="second">
-       <h3>this is some text</h3>
+       <WhyCartaRoom></WhyCartaRoom>
        <p></p>
     </div>
       <Recommended></Recommended>
@@ -27,9 +27,11 @@
 <script>
    import Recommended from "../components/Recommended";
    import HostNavbar from "../components/HostNavbar";
+   import WhyCartaRoom from "../components/WhyCartaRoom";
+
    export default {
      name: 'search',
-       components: {HostNavbar, Recommended},
+       components: {HostNavbar, Recommended, WhyCartaRoom},
        data() {
        return {
           criteria: ''
@@ -68,7 +70,7 @@
          background-position: center;
    }
     #second{
-        height: 760px;  
+        height: 450px;  
     }
    #search_text{
    left: 25%;
