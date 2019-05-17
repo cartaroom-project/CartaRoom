@@ -1,12 +1,12 @@
 <template>
     <div id="mySidenav" class="sidenav">
             <router-link to="/home">
-                <i class='fas fa-plus' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <i class='fas fa-door-open' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
                 <h3 class="NavTitle" style="display: none;">View All Rooms</h3>
             </router-link>
             <br>
             <router-link to="/addRoom">
-                <i class='fas fa-door-open' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <i class='fas fa-plus' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
                 <h3 class="NavTitle" style="display: none;">Add room</h3>
             </router-link>
             <br> 
