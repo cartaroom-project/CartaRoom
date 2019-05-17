@@ -3,27 +3,23 @@
     <div class="banner">
         <br>
         <p class="banner_text">Let's add a new room</p>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="add">
-        <div class="row">
-            <div class="column">
-                <label>Name</label>
-                <label>Capacity</label>
-                <label>Description</label>
-                <label>Location</label>
-                <label>Open Time</label>
-                <label>Close Time</label>
-            </div>
-            <div class="column">
-                <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name">
-                <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="capacity">
-                <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
-                <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
-                <input class="input_time" type="time" v-model="roomInfo.openTime">
-                <input class="input_time" type="time" v-model="roomInfo.closeTime">
+        </div>
+        <div class="add">
+            <div class="row">
+                <div class="column">
+                    <label>Room Name</label>
+                    <label>Capacity</label>
+                    <label>Description</label>
+                    <label>Location</label>
+                    <label>Open Time</label>
+                    <label>Close Time</label>
+                </div>
+                <div class="column">
+                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name">
+                    <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="capacity">
+                    <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
+                    <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
+                    <input class="input_time" type="time" v-model="roomInfo.openTime">
                 </div>
             </div>
             <div class="row">
