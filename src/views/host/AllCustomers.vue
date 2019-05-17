@@ -82,9 +82,11 @@
     .banner {
         height: 450px;
         width: 100%;
-        background-image: url(../../assets/banner/Customer.jpeg);
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Customer.jpeg");
         background-repeat: no-repeat;
         background-size: cover;
+        margin-top:-150px;
+        padding-top:150px;
     }
     label {
         margin-left: 30%;
