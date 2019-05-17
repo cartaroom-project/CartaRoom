@@ -12,7 +12,7 @@
     <div class="header">
             <a class="logo">
               <router-link to="/search">
-                <img  href="/search" src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
+                <img  href="/search" src="../assets/Final_CartaRoom.png">
                 </router-link>
             </a>
         <div class="header-right">
