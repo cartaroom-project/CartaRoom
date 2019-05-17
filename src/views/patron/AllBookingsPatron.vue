@@ -89,8 +89,10 @@
     color: #000000;
     }
     .banner {
-    height: 450px;
-    width: 100%;
+        height: 400px;
+        width: 100%;
+        margin-top: -150px;
+        padding-top: 150px;
     background-image: url(../../assets/banner/Patron.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -109,7 +111,8 @@
     color: #000000;
     }
     .books{
-    margin-left: 25%;
+    left: 25%;
+        margin: 0 auto;
     padding-top: 44px;
     margin-top: 45px;
     margin-bottom: 45px;
