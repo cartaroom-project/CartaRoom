@@ -2,9 +2,14 @@
     <div class="header">
 
             <a class="logo">
+              <router-link to="/search">
                 <img src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
+                </router-link>
             </a>
         <div class="header-right">
+          <router-link to="/search">Search</router-link>
+          <router-link to="/currentBookingsPatron">Current Bookings</router-link>
+          <router-link to="/allBookingsPatron">All Bookings</router-link>
             <button class="navButtons" @click="logout">LOGOUT</button>
         </div>
     </div>
@@ -14,7 +19,7 @@
 <script>
 import firebase from 'firebase';
 export default {
-    name: "LoginNavbar",
+    name: "LoginNavbarPatron",
     methods: {
         logout: function () {
             firebase.auth().signOut().then(() => {
