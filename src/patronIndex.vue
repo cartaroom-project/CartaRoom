@@ -2,12 +2,9 @@
 <div id="app">
     <div id="nav">
         <!-- renders view after logged in[Patron] -->
-        <router-link to="/search">Search</router-link> |
-        <router-link to="/currentBookingsPatron">Current Bookings</router-link> |
-        <router-link to="/allBookingsPatron">All Bookings</router-link> <br />
-        <button @click="logout">Logout</button>
+        <LoginNavbarPatron></LoginNavbarPatron>
     </div>
-    <PatronNavbar></PatronNavbar>
+    
     <div id="patronContent">
         <router-view></router-view>
     </div>
@@ -21,6 +18,7 @@
 import Footer from "./components/Footer";
 import firebase from 'firebase';
 import db from '@/firebase.js';
+import LoginNavbarPatron from "./components/LoginNavbarPatron";
 
 // db.ref('rooms').once('value').then(function(snapshot) {
 //   console.log(snapshot.val());
@@ -41,9 +39,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 export default {
-    components: {
-        Footer
-    },
+    components: {Footer,LoginNavbarPatron},
     name: 'home',
     methods: {
         logout: function () {
