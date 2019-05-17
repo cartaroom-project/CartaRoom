@@ -10,9 +10,10 @@
 <body>
 
     <div class="header">
-
             <a class="logo">
-                <img src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
+              <router-link to="/search">
+                <img  href="/search" src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
+                </router-link>
             </a>
         <div class="header-right">
             <router-link to="/login"><button class="navButtons">LOGIN</button></router-link>
