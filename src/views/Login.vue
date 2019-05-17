@@ -7,11 +7,12 @@
         <h3 class="login_label">Password</h3>
         <input class="login_text" type="password" v-model="password" placeholder="Password">
       </div>
-        <button class="log_final_button" @click="login">Login</button>
-        <p>
+        <p id="noacc">
             You don't have an account ? You can
             <router-link to="/sign-up">create one</router-link>
         </p>
+        <button class="log_final_button" @click="login">Login</button>
+
         <img class="background" src="../assets/banner/LoginV2.png"/>
    </div>
 </template>
@@ -98,7 +99,7 @@ export default {
       font-size: 20px;
       line-height: 28px;
       /* identical to box height */
-      padding-left: 45px;
+      padding-left: 20px;
       text-align: left;
       color: #FFFFFF;
   }
@@ -125,7 +126,7 @@ export default {
       width: 127px;
       height: 40px;
       background: #000000;
-      margin-top: 25px;
+      margin-right: 25%;
       border-radius: 15px;
       font-family: Roboto;
       font-style: normal;
@@ -138,7 +139,7 @@ export default {
 
   #login_body {
       background: rgba(0, 0, 0, 0.54);
-      width: 560px;
+      width: 400px;
       height: 295px;
       margin-left: 242px;
       top: 200px;
@@ -156,6 +157,10 @@ export default {
     
     h3{
         margin-bottom: 0px;
+    }
+
+    #noacc {
+        padding-right: 45%;
     }
 
 </style>

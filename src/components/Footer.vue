@@ -89,4 +89,7 @@ i {
     padding-right: 15px;
 }
 
+.footer {
+    padding-top: 6.8%;
+}
 </style>
