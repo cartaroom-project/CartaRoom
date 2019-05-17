@@ -1,8 +1,10 @@
 <template>
+
 <div id="app">
     <NotLoginNavBar></NotLoginNavBar>
     <div id="notLoggedInContent">
         <router-view></router-view>
+
     </div>
     <v-footer dark height="auto" style="margin-bottom: 0px; position: relative">
         <Footer></Footer>
