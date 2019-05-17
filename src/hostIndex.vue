@@ -9,7 +9,7 @@
         <router-link to="/allCustomers">Customer Database</router-link> <br />
         <button @click="logout">Logout</button>
     </div>
-    <HostNavbar></HostNavbar>
+    <SideNav></SideNav>
     <div id="hostContent">
         <router-view></router-view>
     </div>
@@ -22,6 +22,7 @@
 <script>
 import firebase from 'firebase';
 import Footer from "./components/Footer";
+import SideNav from "./components/SideNav";
 
 // db.ref('rooms').once('value').then(function(snapshot) {
 //   console.log(snapshot.val());
@@ -42,9 +43,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 export default {
-    components: {
-        Footer
-    },
+    components: {Footer, SideNav},
     name: 'home',
     methods: {
         logout: function () {
