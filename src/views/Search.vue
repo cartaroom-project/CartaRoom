@@ -8,17 +8,17 @@
             <br>
             <div style="display: inline-flex;">
                <p class="label_head">when</p>
-               <p style="padding-left: 467px;" class="label_head">how many</p>
+               <p style="padding-left: 290px;" class="label_head">how many</p>
             </div>
             <br>
-            <input class="search_input small" style="margin-left: 60px; " type="text" placeholder="Date">
+            <input class="search_input small" style="margin-left: 40px; " type="text" placeholder="Date">
             <input class="search_input small" type="text" placeholder="Time">
             <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests">
             <button id="search_button" @click="search">Search</button>
          </div>
       </div>
     <div id="second">
-       <h3>this is some text</h3>
+       <WhyCartaRoom></WhyCartaRoom>
        <p></p>
     </div>
       <Recommended></Recommended>
@@ -27,9 +27,11 @@
 <script>
    import Recommended from "../components/Recommended";
    import HostNavbar from "../components/HostNavbar";
+   import WhyCartaRoom from "../components/WhyCartaRoom";
+
    export default {
      name: 'search',
-       components: {HostNavbar, Recommended},
+       components: {HostNavbar, Recommended, WhyCartaRoom},
        data() {
        return {
           criteria: ''
@@ -51,73 +53,75 @@
    font-family: "Rajdhani";
    font-style: normal;
    font-weight: 600;
-   font-size: 72px;
+   font-size: 52px;
    line-height: 92px;
       margin-top:0px;
    }
    #first{
-   background-image: url(../assets/banner/Search.jpg);
-      position:relative;
-   height: 874px;
-   width: 100%;
+   background-image: url("../assets/banner/Search.jpg");
+   height: 474px;
    background-repeat: no-repeat;
+       margin-top: -150px;
+       padding-top: 150px;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;
    background-size: cover;
+         background-position: center;
    }
     #second{
-        height: 760px;  
+        height: 450px;  
     }
    #search_text{
    left: 25%;
    text-align: left;
-   position: absolute;
+    margin: 0 auto;
    background: #FFFFFF;
    border: 0.25px solid #828282;
    box-sizing: border-box;
    border-radius: 15px;
-   width: 1106px; 
-   height: 309px;
+   width: 700px; 
+   height: 200px;
    }
    .search_input{
    background: #FFFFFF;
    border: 1px solid #828282;
    box-sizing: border-box;
    border-radius: 10px;
-   padding-left: 24px;
-   font-family: Roboto;
+   padding-left: 20px;
+   font-family: Rboto;
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    }
    .small{
-   height: 47px;
-   width: 238px;
+   height: 37px;
+   width: 138px;
+
    }
    .big{
-   width: 765px;
-   height: 47px;
-   margin-left: 60px;
+   width: 620px;
+   height: 37px;
+   margin-left: 40px;
    }
    .label_head{
    font-family: Roboto;
    font-style: normal;
    font-weight: normal;
-   font-size: 24px;
+   font-size: 14px;
    line-height: 28px;
    text-align: left;
-   padding-left: 60px;
+   padding-left: 40px;
+       margin-bottom: 0px;
    }
    #search_button{
    background: rgba(84, 142, 255, 0.8);
-   position: absolute;
    margin-left: 90px;
    border-radius: 5px;
    font-family: Roboto;
    font-style: normal;
    font-weight: 500;
-   font-size: 27px;
+   font-size: 17px;
    text-align: center;
    color: #FFFFFF;
    height: 47px;
@@ -126,21 +130,21 @@
    font-family: Roboto;
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    color: #828282;
    }
    :-ms-input-placeholder { /* Internet Explorer 10-11 */
    font-family: Roboto;
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    color: #828282;
    }
    ::-ms-input-placeholder { /* Microsoft Edge */
    font-family: Roboto;
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    color: #828282;
    }
 </style>
