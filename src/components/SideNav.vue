@@ -11,17 +11,17 @@
             </router-link>
             <br> 
             <router-link to="/currentBookings">
-                <i class="fas fa-address-book" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <i class="fas fa-concierge-bell" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
                 <h3 class="NavTitle" style="display: none;">Current Bookings</h3>
             </router-link>
             <br>
             <router-link to="/allBookings">
-                <i class="far fa-chart-bar" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <i class="fas fa-user-clock" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
                 <h3 class="NavTitle" style="display: none;">All Bookings</h3>
             </router-link>
             <br>
             <router-link to="/allCustomers">
-                <i class="far fa-calendar-alt" style="position: relative"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fas fa-address-book" style="position: relative"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                 <h3 class="NavTitle" style="display: none;">Customer Database</h3>
             </router-link>
             <router-link id ="bottom" to="/about">
