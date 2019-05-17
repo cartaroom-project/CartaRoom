@@ -1,7 +1,7 @@
 <template>
 <div class="result">
      <img src="../assets/banner/map.png">
-    <div class="results"  v-for="room of rooms" v-bind:key="room['.key']">
+    <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
     <div class="row">
         <div class="column">
             <label>Room Name</label>
@@ -24,7 +24,7 @@
     <br>
    
 
-    <button id="stuck"><router-link to="/search">Back to Search</router-link></button>
+    <button><router-link to="/search">Back to Search</router-link></button>
     <!-- <Recommended></Recommended> -->
 </div>
 </template>
