@@ -2,11 +2,11 @@
 <div id="app">
     <div id="nav">
         <!-- renders view after logged in[Host] -->
-        <LoginNavbar></LoginNavbar>
+        <LoginNavbarHost></LoginNavbarHost>
     </div>
-    <SideNav></SideNav>
     <div id="hostContent">
         <router-view></router-view>
+        <SideNav></SideNav>
     </div>
     <v-footer dark height="auto" style="margin-bottom: 0px; position: relative">
         <Footer></Footer>
@@ -18,7 +18,7 @@
 import firebase from 'firebase';
 import Footer from "./components/Footer";
 import SideNav from "./components/SideNav";
-import LoginNavbar from "./components/LoginNavbar";
+import LoginNavbarHost from "./components/LoginNavbarHost";
 
 // db.ref('rooms').once('value').then(function(snapshot) {
 //   console.log(snapshot.val());
@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 export default {
-    components: {Footer, SideNav,LoginNavbar},
+    components: {Footer, SideNav,LoginNavbarHost},
     name: 'home',
     methods: {
         logout: function () {
