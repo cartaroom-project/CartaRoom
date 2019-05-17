@@ -1,7 +1,6 @@
 <template>
     <div class="currentBookings">
         <div class="banner">
-            <br>
             <p class="banner_text">All Current Bookings</p>
         </div>
         <div class="books" v-for="booking of bookings" v-bind:key="booking['.key']">
@@ -100,81 +99,84 @@
 </script>
 <style scoped>
     img{
-    padding-top: 75px;
-    padding-left: 40px;
-    width: 75%;
+        padding-top: 75px;
+        padding-left: 40px;
+        width: 75%;
     }
     .banner_text {
-    font-family: Rajdhani;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 110px;
-    line-height: 191px;
-    text-align: center;
-    color: #000000;
+        font-family: Rajdhani;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 110px;
+        line-height: 191px;
+        text-align: center;
+        color: #000000;
     }
     .banner {
-    height: 450px;
-    width: 100%;
-    background-image: url(../../assets/banner/Patron.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+        height: 400px;
+        width: 100%;
+        margin-top: -150px;
+        padding-top: 150px;
+        background-image: url(../../assets/banner/Patron.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     label {
-    margin-left: 30%;
-    padding-top: 15px;
-    padding-bottom: 6px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+        margin-left: 30%;
+        padding-top: 15px;
+        padding-bottom: 6px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
     }
     .books{
-    margin-left: 25%;
-    padding-top: 44px;
-    margin-top: 45px;
-    margin-bottom: 45px;
-    padding-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width: 1200px;
+        left: 25%;
+        margin:0 auto;
+        padding-top: 44px;
+        margin-top: 45px;
+        margin-bottom: 45px;
+        padding-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width: 1200px;
     }
     .row {
-    display: flex;
+        display: flex;
     }
     .column {
-    flex: 33%;
-    padding: 10px;
+        flex: 33%;
+        padding: 10px;
     }
     .info{
-    border: 0.25px solid #000000;
-    width: 625px;
-    font-size: 20px;
-    line-height: 35px;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin-right: 100px;
+        border: 0.25px solid #000000;
+        width: 625px;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 10px;
+        margin-right: 100px;
     }
     button {
-    margin-top: 10px;
-    cursor: pointer;
-    background: #FFFFFF;
-    border-radius: 15px;
-    height: 44px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
-    width: 177px;
-    color: #000000;
-    margin: 0px 20px;
-    float: right;
+        margin-top: 10px;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 177px;
+        color: #000000;
+        margin: 0px 20px;
+        float: right;
     }
 </style>
