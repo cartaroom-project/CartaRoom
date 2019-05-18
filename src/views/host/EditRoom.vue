@@ -42,7 +42,6 @@
                     <router-link to="/home">Cancel</router-link>
                 </button>
             </div>
-
         </div>
             <!-- <input type = "file" @click="uploadImage"> -->
         </div>
@@ -233,14 +232,14 @@ export default {
     text-align: center;
     width: 15%;
     color: #000000;
-    margin: 0px 20px;
+    margin: 25px 25px;
     float: right;
-    margin-bottom: 20px;
 
 }
 
 .columnButtons a {
     text-decoration: none;
+    color:black;
 }
 
 .row {
