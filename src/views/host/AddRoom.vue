@@ -20,6 +20,7 @@
                     <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
                     <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
                     <input class="input_time" type="time" v-model="roomInfo.openTime">
+                    <input class="input_time" type="time" v-model="roomInfo.closeTime">
                 </div>
             </div>
             <div class="row">

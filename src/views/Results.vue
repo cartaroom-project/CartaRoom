@@ -1,6 +1,6 @@
 <template>
 <div class="result">
-    <img src="../assets/banner/map.png">
+    <!-- <img src="../assets/banner/map.png"> -->
     <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
         <div class="row">
             <div class="column">
@@ -19,8 +19,8 @@
         </div>
         <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
     </div>
-    <br>
-    <button><router-link to="/search">Back to Search</router-link></button>
+    <!-- <br> -->
+    <!-- <button><router-link to="/search">Back to Search</router-link></button> -->
     <!-- <Recommended></Recommended> -->
 </div>
 </template>
@@ -50,7 +50,6 @@ export default {
     },
     methods: {
         viewRoom: function (id) {
-            alert("button clicked!");
             this.$router.push({
                 name: 'RoomViewPatron',
                 params: {
