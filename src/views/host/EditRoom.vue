@@ -7,34 +7,67 @@
     <h1>{{roomInfo.name}}</h1>
     <div class="edit">
         <div class="row">
-            <div class="column">
+            <div class="column1">
                 <label>Name</label>
-                <label>Capacity</label>
-                <label>Description</label>
-                <label>Business Address</label>
-                <label>Open Time</label>
-                <label>Close Time</label>
-                <label>Amenities</label>
             </div>
-            <div class="column">
+            <div class="column2">
                 <input class="input_add" type="text" v-model="roomInfo.name">
-                <input class="input_add" type="number" v-model="roomInfo.capacity">
-                <input class="input_add" type="text" v-model="roomInfo.description">
-                <input class="input_add" type="text" v-model="roomInfo.address">
-                <input class="input_time" type="time" v-model="roomInfo.openTime">
-                <input class="input_time" type="time" v-model="roomInfo.closeTime">
-                <div id="test">
-                    <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
-                        <label class="switch">
-                            <input class="amenity" type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
-                            <span class="slider" :for="amenity.offering"></span>
-                            <p>{{amenity.offering}}</p>
-                        </label>
-                    </ul>
-
-                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="column1">
+                <label>Capacity</label>
+            </div>
+            <div class="columnCapacity">
+                <input class="input_number" type="number" v-model="roomInfo.capacity">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column1">
+                <label>Description</label>
+            </div>
+            <div class="column2">
+                <textarea class="input_add" type="text" cols="40" rows="4" v-model="roomInfo.description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column1">
+                <label>Address</label>
+            </div>
+            <div class="column2">
+                <input class="input_add" type="text" v-model="roomInfo.address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column1">
+                <label>Business Hours</label>
+            </div>
+            <div class="column2">
+                Open: <input class="input_time" type="time" v-model="roomInfo.openTime">
+                Close: <input class="input_time" type="time" v-model="roomInfo.closeTime">
+            </div>
+        </div>
+        <div class="row">
+            <div id="line">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column1">
+                <label>Amenities</label>
+            </div>
+            <div class="columnAmenities">
+                <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
+                    <label class="switch">
+                        <input class="amenity" type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
+                        <span class="slider" :for="amenity.offering"></span>
+                        <p>{{amenity.offering}}</p>
+                    </label>
+                </ul>
+            </div>
+        </div>
+
         <div class="row">
             <div class="columnButtons">
                 <button @click="updateRoom">Confirm</button>
@@ -149,19 +182,56 @@ export default {
     .columnButtons {
         float: right;
     }
-.column label {
-    margin-left: 30%;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
+
+    .column1 {
+        width:40%;
+        align-items: center;
+    }
+    .column1 label{
+        float: right;
+        padding-right: 10%;
+    }
+
+    .column2 {
+        width:60%;
+
+    }
+
+    .columnCapacity{
+        width:60%;
+
+    }
+    .input_number{
+        margin: 10px 5%;
+        padding-left: 15px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 90%;
+        word-break: break-word;
+        border: 0.75px solid darkgrey;
+        width: 10%;
+        border-radius: 5px;
+
+    }
+
+    .columnAmenities {
+        width:60%;
+        height:75px;
+        margin-left:-60px;
+    }
+    .columnAmenities ul{
+        display:inline-block;
+        margin-right: 20px;
+        margin-top:0;
+        margin-bottom: 0;
+        vertical-align:middle;
+    }
+
+
 .banner_text {
     font-family: Rajdhani;
     font-style: normal;
@@ -184,78 +254,67 @@ export default {
 
 .input_add {
     margin: 10px 0;
-    width: 250%;
     padding-left: 15px;
     background: #FFFFFF;
-    border: 0.25px solid #000000;
     box-sizing: border-box;
-    border-radius: 10px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
     line-height: 35px;
     margin-right: 100px;
     word-break: break-word;
+    border: 0.75px solid darkgrey;
+    width: 75%;
+    border-radius: 5px;
 }
 
 .input_time {
-    margin: 10px 0;
-    width: auto;
-    padding-left: 15px;
+    margin: 10px 25px;
+    padding-left:15px;
     background: #FFFFFF;
-    border: 0.25px solid #000000;
     box-sizing: border-box;
-    border-radius: 10px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
     line-height: 35px;
-    margin-right: 600px;
+    word-break: break-word;
+    border: 0.75px solid darkgrey;
+    width: 16%;
+    border-radius: 5px;
 }
 
-.columnButtons {
-    width:100%;
-}
+    .columnButtons {
+        width:100%;
+    }
 
-.columnButtons button {
-    cursor: pointer;
-    background: #FFFFFF;
-    border-radius: 15px;
-    height: 44px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
-    width: 15%;
-    color: #000000;
-    margin: 25px 25px;
-    float: right;
+    .columnButtons button {
+        font-family:Roboto;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 15%;
+        color: #000000;
+        margin: 25px 25px;
+        float: right;
+    }
 
-}
+    .columnButtons a {
+        text-decoration: none;
+        color:black;
+    }
 
-.columnButtons a {
-    text-decoration: none;
-    color:black;
-}
 
-.row {
-    display: flex;
-}
+    .row {
+        display: flex;
+        align-items: center;
+    }
 
-.column {
-    width:25%;
-    padding: 10px;
-}
-
-.columnX {
-    border: 2px solid black;
-    background-color:red;
-    width:75%;
-}
 
 .edit {
     margin-left:auto;
@@ -267,6 +326,12 @@ export default {
     width:70%;
     height:60%;
 }
+    label {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+    }
 
 button {
     margin-top: 10px;
@@ -289,8 +354,11 @@ span {
 }
 
 .switch p {
-    margin-left:75px;
-    margin-top:40px;
+    margin-left:0;
+    margin-top:20px;
+    font-size:16px;
+    text-align:center;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 .switch input {
