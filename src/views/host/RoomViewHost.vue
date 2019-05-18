@@ -248,7 +248,7 @@
     }
 
     .columnButtons button {
-        font-family:Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         cursor: pointer;
         background: #FFFFFF;
         border-radius: 15px;
@@ -271,7 +271,7 @@
 
 
     label {
-        font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 25px;

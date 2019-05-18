@@ -10,16 +10,17 @@
                     <label>Room Name</label>
                     <label>Capacity</label>
                     <label>Description</label>
-                    <label>Location</label>
+                    <label>Business Address</label>
                     <label>Open Time</label>
                     <label>Close Time</label>
                 </div>
                 <div class="column">
-                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name">
-                    <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="capacity">
-                    <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
-                    <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
+                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name of room">
+                    <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="number of people">
+                    <input class="input_add" type="text" v-model="roomInfo.description" placeholder="quick description of the room">
+                    <input class="input_add" type="text" v-model="roomInfo.address" placeholder="business address">
                     <input class="input_time" type="time" v-model="roomInfo.openTime">
+                    <input class="input_time" type="time" v-model="roomInfo.closeTime">
                 </div>
             </div>
             <div class="row">
@@ -141,7 +142,7 @@ label {
     margin-left: 30%;
     margin-top: 20px;
     margin-bottom: 15px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
@@ -196,7 +197,7 @@ label {
     border: 0.25px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -212,7 +213,7 @@ label {
     border: 0.25px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -226,7 +227,7 @@ button {
     background: #FFFFFF;
     border-radius: 15px;
     height: 44px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
