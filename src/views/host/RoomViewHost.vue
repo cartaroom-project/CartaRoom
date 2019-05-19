@@ -7,7 +7,7 @@
         <div id="view">
             <div class="row">
                 <div class="column1">
-                    <label>Name</label>
+                    <label>Room Name</label>
                 </div>
                 <div class="column2">
                     <p class="info"> {{ roomInfo.name }}</p>
@@ -190,7 +190,7 @@
         float: right;
     }
     .column1 {
-        width:40%;
+        width:30%;
         align-items: center;
     }
     .column1 label{
@@ -199,13 +199,13 @@
     }
 
     .column2 {
-        width:60%;
+        width:70%;
     }
 
     .column2 ul{
         display:inline-block;
         margin-right: 20px;
-        margin-top:0;
+        margin-top:10px;
         margin-bottom: 0;
         vertical-align:middle;
     }
@@ -254,7 +254,7 @@
         border-radius: 15px;
         height: 44px;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 18px;
         line-height: 35px;
         text-align: center;
@@ -300,7 +300,7 @@
         padding-top: 44px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 1200px;
+        width:55%;
         height: 60%;
     }
 </style>
