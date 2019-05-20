@@ -6,40 +6,76 @@
         </div>
         <div class="add">
             <div class="row">
-                <div class="column">
+                <div class="column1">
                     <label>Room Name</label>
-                    <label>Capacity</label>
-                    <label>Description</label>
-                    <label>Location</label>
-                    <label>Open Time</label>
-                    <label>Close Time</label>
                 </div>
-                <div class="column">
-                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name">
-                    <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="capacity">
-                    <input class="input_add" type="text" v-model="roomInfo.description" placeholder="description">
-                    <input class="input_add" type="text" v-model="roomInfo.address" placeholder="location">
-                    <input class="input_time" type="time" v-model="roomInfo.openTime">
+                <div class="column2">
+                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name of room">
                 </div>
             </div>
             <div class="row">
-                <div class="columnX">
-                    <label>Amenities:</label>
-                    <p>test: {{roomInfo.amenities}}</p>
+                <div class="column1">
+                    <label>Capacity</label>
                 </div>
-                <div class="column">
+                <div class="columnCapacity">
+                    <input class="input_add" type="number" v-model="roomInfo.capacity" placeholder="number of people">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
+                    <label>Description</label>
+                </div>
+                <div class="column2">
+                    <textarea class="input_add" type="text" cols="40" rows="4" v-model="roomInfo.description"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
+                    <label>Address</label>
+                </div>
+                <div class="column2">
+                    <input class="input_add" type="text" v-model="roomInfo.address" placeholder="business address">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
+                    <label>Business Hours</label>
+                </div>
+                <div class="column2">
+                    Open: <input class="input_time" type="time" v-model="roomInfo.openTime">
+                    Close: <input class="input_time" type="time" v-model="roomInfo.closeTime">
+                </div>
+            </div>
+            <div class="row">
+                <div id="line">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column1">
+                    <label>Amenities</label>
+                </div>
+                <div class="columnAmenities">
                     <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
-                        <input type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
-                        <label :for="amenity.offering">{{amenity.offering}}</label>
+                        <label class="switch">
+                            <input class="amenity" type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
+                            <span class="slider" :for="amenity.offering"></span>
+                            <p>{{amenity.offering}}</p>
+                        </label>
                     </ul>
                 </div>
             </div>
-            <!--    <input type = "file" @click="uploadImage">-->
-            <br>
-            <button @click="addRoom">Continue</button>
-            <button>
-                <router-link to="/home">Cancel</router-link>
-            </button>
+
+            <div class="row">
+                <div class="columnButtons">
+                    <button @click="addRoom">Confirm</button>
+                    <button>
+                        <router-link to="/home">Cancel</router-link>
+                    </button>
+                </div>
+            </div>
+            <!-- <input type = "file" @click="uploadImage"> -->
         </div>
     </div>
 </template>
@@ -137,116 +173,230 @@ export default {
 </script>
 
 <style scoped>
-label {
-    margin-left: 30%;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
+    .columnButtons {
+        float: right;
+    }
 
-.row {
-    display: flex;
-}
+    .column1 {
+        width:40%;
+        align-items: center;
+    }
+    .column1 label{
+        float: right;
+        padding-right: 10%;
+    }
 
-.column {
-    flex: 50%;
-    padding: 10px;
-}
+    .column2 {
+        width:60%;
 
-.columnX {
-    flex: 13%;
-}
+    }
 
-.banner_text {
-    font-family: Rajdhani;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 110px;
-    line-height: 191px;
-    text-align: center;
-    color: #000000;
-}
+    .columnCapacity{
+        width:60%;
 
-.banner {
-    height: 450px;
-    width: 100%;
-    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top:-150px;
-    padding-top:150px;
-}
+    }
+    .input_number{
+        margin: 10px 5%;
+        padding-left: 15px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 90%;
+        word-break: break-word;
+        border: 0.75px solid darkgrey;
+        width: 10%;
+        border-radius: 5px;
+    }
 
-.sign-up {
-    margin-top: 40px;
-}
+    .columnAmenities {
+        width:60%;
+        height:75px;
+        margin-left:-60px;
+    }
+    .columnAmenities ul{
+        display:inline-block;
+        margin-right: 20px;
+        margin-top:0;
+        margin-bottom: 0;
+        vertical-align:middle;
+    }
 
-.input_add {
-    margin: 10px 0;
-    width: 725px;
-    padding-left: 15px;
-    background: #FFFFFF;
-    border: 0.25px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 35px;
-    margin-right: 100px;
-}
 
-.input_time {
-    margin: 10px 0;
-    width: 225px;
-    padding-left: 15px;
-    background: #FFFFFF;
-    border: 0.25px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 35px;
-    margin-right: 600px;
-}
+    .banner_text {
+        font-family: Rajdhani;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 110px;
+        line-height: 191px;
+        text-align: center;
+        color: #000000;
+    }
 
-button {
-    margin-top: 10px;
-    cursor: pointer;
-    background: #FFFFFF;
-    border-radius: 15px;
-    height: 44px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
-    width: 177px;
-    color: #000000;
-    margin: 0px 20px;
-    float: right;
-}
+    .banner {
+        height: 450px;
+        width: 100%;
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-top:-150px;
+        padding-top:150px;
+    }
 
-.add {
-    margin-left: 25%;
-    padding-top: 44px;
-    margin-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width: 1200px;
-    height: 850px;
-}
+    .input_add {
+        margin: 10px 0;
+        padding-left: 15px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        margin-right: 100px;
+        word-break: break-word;
+        border: 0.75px solid darkgrey;
+        width: 75%;
+        border-radius: 5px;
+    }
+
+    .input_time {
+        margin: 10px 25px;
+        padding-left:15px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        word-break: break-word;
+        border: 0.75px solid darkgrey;
+        width: 16%;
+        border-radius: 5px;
+    }
+
+    .columnButtons {
+        width:100%;
+    }
+
+    .columnButtons button {
+        font-family:Roboto;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 15%;
+        color: #000000;
+        margin: 25px 25px;
+        float: right;
+    }
+
+    .columnButtons a {
+        text-decoration: none;
+        color:black;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+    }
+
+    .add {
+        margin: 40px auto;
+        margin-left:auto;
+        margin-right:auto;
+        padding-top: 44px;
+        margin-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width:70%;
+        height:60%;
+    }
+    label {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+    }
+
+    button {
+        margin-top: 10px;
+        width: 10%;
+        cursor: pointer;
+    }
+
+    span {
+        display: block;
+        margin-top: 20px;
+        font-size: 11px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        float:left;
+    }
+
+    .switch p {
+        margin-left:0;
+        margin-top:20px;
+        font-size:16px;
+        text-align:center;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .2s;
+    }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
 </style>
 // Needed fields:
 // *Name--Text#
