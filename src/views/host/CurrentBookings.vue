@@ -4,26 +4,54 @@
             <br>
             <p class="banner_text">Current Bookings</p>
         </div>
-        <div class="current" v-for="booking of bookings" v-bind:key="booking['.key']">
+        <div class="current" v-for="booking of bookings.slice().reverse()" v-bind:key="booking['.key']">
             <div class="row">
-                <div class="column">
+                <div class="column1">
                     <img src="../../assets/banner/image.png">
                 </div>
-                <div class="column">
-                    <label>Name</label>
-                    <label>Booked By</label>
-                    <label>Host</label>
-                    <label>Date</label>
-                    <label>Start Time</label>
-                    <label>End Time</label>
-                </div>
-                <div class="column">
-                    <p class="info">{{ booking.room.name }}</p>
-                    <p class="info">{{ booking.userEmail }}</p>
-                    <p class="info">{{ booking.host }}</p>
-                    <p class="info">{{ booking.date }}</p>
-                    <p class="info">{{ booking.startTime}}:00</p>
-                    <p class="info">{{ booking.endTime}}:00</p>
+                <div class="column2">
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Room Name</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ booking.room.name}}</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Reserved By</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ booking.userEmail}}</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Host</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ booking.host}}</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Date</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ booking.date}}</p>
+                        </div>
+                    </div>
+
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Business Hours</label>
+                        </div>
+                        <div class="column2A">
+                            <span class="timeText">Open:</span><p class="info">{{ booking.startTime}}:00</p>
+                            <span class="timeText">Close:</span><p class="info">{{ booking.endTime}}:00</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
