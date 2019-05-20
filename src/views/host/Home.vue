@@ -5,7 +5,7 @@
             <p class="banner_text">All Rooms</p>
         </div>
 
-        <div class="rooms" v-for="room of rooms" v-bind:key ="room['.key']">
+        <div class="rooms" v-for="room of rooms.slice().reverse()" v-bind:key ="room['.key']">
             <div class="row">
                 <div class="column1">
                     <img src="../../assets/banner/image.png">
