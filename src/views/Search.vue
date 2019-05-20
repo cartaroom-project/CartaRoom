@@ -4,16 +4,16 @@
          <h1 class="heading_one">Reserve a Room</h1>
          <div id="search_text">
             <p class="label_head">where</p>
-            <input class="search_input big" type="text" placeholder="Location" v-model="criteria">
+            <input class="search_input big" type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
             <br>
             <div style="display: inline-flex;">
                <p class="label_head">when</p>
                <p style="padding-left: 290px;" class="label_head">how many</p>
             </div>
             <br>
-            <input class="search_input small" style="margin-left: 40px; " type="text" placeholder="Date">
-            <input class="search_input small" type="text" placeholder="Time">
-            <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests">
+            <input class="search_input small" style="margin-left: 40px; " type="text" placeholder="Date" @keyup.enter="search">
+            <input class="search_input small" type="text" placeholder="Time" @keyup.enter="search">
+            <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
          </div>
       </div>
@@ -21,7 +21,9 @@
        <WhyCartaRoom></WhyCartaRoom>
        <p></p>
     </div>
+    <!--
       <Recommended></Recommended>
+   -->
    </div>
 </template>
 <script>
