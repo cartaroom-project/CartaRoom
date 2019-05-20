@@ -4,24 +4,48 @@
             <br>
             <p class="banner_text">All Rooms</p>
         </div>
-        <div class="all" v-for="room of rooms" v-bind:key ="room['.key']">
+
+        <div class="rooms" v-for="room of rooms" v-bind:key ="room['.key']">
             <div class="row">
-                <div class="column">
+                <div class="column1">
                     <img src="../../assets/banner/image.png">
                 </div>
-                <div class="column">
-                    <label>Name</label>
-                    <label>Capacity</label>
-                    <label>Address</label>
-                </div>
-                <div class="column">
-                    <p class="info">{{ room.name }}</p>
-                    <p class="info">{{ room.capacity }}</p>
-                    <p class="info">{{ room.address }}</p>
+                <div class="column2">
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Room Name</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ room.name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Capacity</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ room.capacity }}</p>
+                        </div>
+                    </div>
+
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Business Address</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ room.address }}</p>
+                        </div>
+                    </div>
+
+                    <div class="rowA">
+                        <div class="columnButtons">
+                            <button v-on:click="viewRoom(room.roomID)">View Room</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button v-on:click="viewRoom(room.roomID)">View Room</button>
-            <br />
+<!--            -->
         </div>
     </div>
 </template>
@@ -78,13 +102,43 @@
 
 </script>
 <style scoped>
-    .banner{
-        height: 450px;
+    .column1 {
+        width:30%;
     }
+
+    .column1A {
+        width:50%;
+    }
+
+    .column1A label{
+        float: right;
+        padding-right: 10%;
+    }
+
+    .column2 {
+        width:80%;
+     }
+
+    .column2A {
+        width:50%;
+        float: right;
+    }
+
+    .row {
+        margin:auto;
+        width: 90%;
+        display:flex;
+        align-items:center;
+    }
+
+    .rowA {
+        display:flex;
+        align-items:center;
+    }
+
     img{
-        padding-top: 15px;
-        padding-left: 40px;
-        width: 75%;
+        width: 100%;
+        height:auto;
     }
     .banner_text {
         font-family: Rajdhani;
@@ -105,59 +159,64 @@
         padding-top:150px;
     }
     label {
-        margin-left: 30%;
-        padding-top: 15px;
-        padding-bottom: 6px;
-        font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 25px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        color: #000000;
+
+        /*margin-left: 30%;*/
+        /*padding-top: 15px;*/
+        /*padding-bottom: 6px;*/
+        /*font-family: Roboto;*/
+        /*font-style: normal;*/
+        /*font-weight: normal;*/
+        /*font-size: 25px;*/
+        /*line-height: 35px;*/
+        /*display: flex;*/
+        /*align-items: center;*/
+        /*color: #000000;*/
     }
-    .all{
-        margin-left: 25%;
-        padding-top: 44px;
-        padding-bottom: 54px;
+    .rooms{
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 1%;
+        padding-bottom: 1%;
         margin-top: 45px;
         margin-bottom: 65px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 1200px;
+        width: 50%;
     }
-    .row {
-        display: flex;
-    }
-    .column {
-        flex: 33%;
-        padding: 10px;
-    }
+
     .info{
-        border: 0.25px solid #000000;
-        width: 625px;
+        border: 0.75px solid darkgrey;
+        width: 100%;
         font-size: 20px;
         line-height: 35px;
         box-sizing: border-box;
         background: #FFFFFF;
-        border-radius: 10px;
-        margin-right: 100px;
+        border-radius: 5px;
+        margin-top:10px;
+        margin-bottom:10px;
     }
-    button {
+    .columnButtons{
+        width:100%;
+        margin-top:10px;
+    }
+    .columnButtons button {
+        display:block;
+        margin:0 auto;
         cursor: pointer;
         background: #FFFFFF;
         border-radius: 15px;
         height: 44px;
-        font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 18px;
         line-height: 35px;
         text-align: center;
-        width: 177px;
+        width: 25%;
         color: #000000;
-        margin: 0px 20px;
-        float: right;
     }
 </style>
