@@ -156,12 +156,12 @@
         box-sizing: border-box;
         background: #FFFFFF;
         border-radius: 5px;
-        width: 75%;
+        width: 90%;
         word-break: break-word;
     }
     .info2 {
         border: 0.75px solid darkgrey;
-        width:60%;
+        width:90%;
         padding-left: 0;
         margin:0;
         font-size: 20px;
