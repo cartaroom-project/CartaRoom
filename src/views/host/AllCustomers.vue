@@ -40,7 +40,6 @@
 <script>
     import firebase from 'firebase';
     import db from '@/firebase.js';
-
     var userID;
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -51,7 +50,6 @@
             userID = "null";
         }
     });
-
     export default {
         name: 'currentBookings',
         data() {
@@ -104,12 +102,10 @@
     .column4 {
         width: 30%;
     }
-
     .column4 p {
         margin-left:auto;
         margin-right: auto;
     }
-
     img{
         width: 100%;
         height:auto;
@@ -153,7 +149,6 @@
         border-radius: 15px;
         width: 50%;
     }
-
     .info{
         margin:auto;
         border: 0.75px solid darkgrey;
