@@ -26,8 +26,9 @@
         </button>
     </router-link>
     <!-- <Recommended></Recommended> -->
+    <div class="clear">
+    </div>
 </div>
-
 </template>
 
 <script>
@@ -67,6 +68,8 @@ export default {
 </script>
 
 <style scoped>
+.clear { clear:both; }
+
 label {
 
     margin-bottom: 20px;
