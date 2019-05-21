@@ -1,6 +1,5 @@
 <template>
     <div id="mySidenav" class="sidenav">
-
         <router-link to="/home">
             <i class='fas fa-door-open' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
             <h3 class="NavTitle" style="display: none;">View All Rooms</h3>
@@ -30,8 +29,6 @@
 <!--            <i class="fas fa-search" style="position: relative"></i>&nbsp;&nbsp;&nbsp;&nbsp;-->
 <!--            <h3 class="NavTitle" style="display: none;">Customer Database</h3>-->
 <!--        </router-link>-->
-
-
         <router-link id ="bottom" to="/about">
             <i class="fas fa-info" style="position: relative;">&nbsp;&nbsp;&nbsp;&nbsp;</i>
             <h3 class="NavTitle" style="display: none;">About</h3>
@@ -46,12 +43,14 @@
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 95px; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
+  position: relative; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
+  /* bottom: 70%; Stay at the bottom */
   left: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   
 }

@@ -6,7 +6,7 @@
         <router-view></router-view>
 
     </div>
-    <v-footer dark height="auto" style="margin-bottom: 0px; position: relative">
+    <v-footer dark height="auto" style="margin-bottom: 0px;">
         <Footer></Footer>
     </v-footer>
 </div>
@@ -52,6 +52,9 @@ export default {
 </script>
 
 <style>
+    #notLoggedInContent {
+        height:100%;
+    }
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

@@ -72,8 +72,8 @@
 
             <div class="row">
                 <div class="columnButtons">
-                    <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
-                    <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button>
+                    <button v-on:click="editRoom(roomInfo.roomID)">Edit <i class='far fa-edit'></i></button>
+                    <button id="delete" v-on:click="deleteRoom(roomInfo.roomID)">Delete <i class='far fa-trash-alt'></i></button>
                 </div>
             </div>
         </div>
@@ -292,9 +292,13 @@
         padding-top:150px;
     }
 
+    #delete {
+        background-color: #ff6961;
+        color:white;
+    }
     #view {
         margin: 40px auto 45px auto;
-        padding-top: 44px;
+        padding: 1% 0;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
         width:55%;
