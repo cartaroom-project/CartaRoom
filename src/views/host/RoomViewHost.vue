@@ -1,7 +1,6 @@
 <template>
     <div class="editRoom">
         <div class="banner">
-            <br>
             <p class="banner_text">Room View</p>
         </div>
         <div id="view">
@@ -277,13 +276,13 @@
         font-family: Rajdhani;
         font-style: normal;
         font-weight: 600;
-        font-size: 110px;
+        font-size: 90px;
         line-height: 191px;
         text-align: center;
         color: #000000;
     }
     .banner {
-        height: 450px;
+        height: 400px;
         width: 100%;
         background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
         background-repeat: no-repeat;

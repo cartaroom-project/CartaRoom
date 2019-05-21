@@ -1,7 +1,6 @@
 <template>
     <div class="currentBookings">
         <div class="banner">
-            <br>
             <p class="banner_text">All Your Customers</p>
         </div>
         <div class="customer" v-for="booking of bookings.slice().reverse()" v-bind:key="booking['.key']">
@@ -114,13 +113,13 @@
         font-family: Rajdhani;
         font-style: normal;
         font-weight: 600;
-        font-size: 110px;
+        font-size: 90px;
         line-height: 191px;
         text-align: center;
         color: #000000;
     }
     .banner {
-        height: 450px;
+        height: 400px;
         width: 100%;
         background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Customer.jpeg");
         background-repeat: no-repeat;
