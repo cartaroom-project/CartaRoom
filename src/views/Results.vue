@@ -1,8 +1,8 @@
 <template>
-<div class="result">
-    <img src="../assets/banner/map.png">
+<div class="finalResults">
+    <!--<img src="../assets/banner/map.png"> -->
     <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
-        <div class="row">
+        <div class="row">   
             <div class="column">
                 <label>Room Name</label>
                 <label>Room Capacity</label>
@@ -20,8 +20,14 @@
         <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
     </div>
     <br>
-    <button><router-link to="/search">Back to Search</router-link></button>
+    <router-link to="/search">
+        <button>
+            Back to Search  
+        </button>
+    </router-link>
     <!-- <Recommended></Recommended> -->
+    <div class="clear">
+    </div>
 </div>
 </template>
 
@@ -50,7 +56,6 @@ export default {
     },
     methods: {
         viewRoom: function (id) {
-            alert("button clicked!");
             this.$router.push({
                 name: 'RoomViewPatron',
                 params: {
@@ -63,6 +68,8 @@ export default {
 </script>
 
 <style scoped>
+.clear { clear:both; }
+
 label {
 
     margin-bottom: 20px;
@@ -76,12 +83,6 @@ label {
     color: #000000;
 }
 
-button {
-    margin-top: 10px;
-    width: 10%;
-    cursor: pointer;
-}
-
 span {
     display: block;
     margin-top: 20px;
@@ -91,7 +92,6 @@ span {
 button {
     margin-top: 10px;
     cursor: pointer;
-    background: #FFFFFF;
     border-radius: 15px;
     height: 44px;
     font-family: Roboto;
@@ -101,8 +101,8 @@ button {
     line-height: 35px;
     text-align: center;
     width: 177px;
-    color: #000000;
-
+    color: #FFFFFF;
+    background: #000000;
 }
 
 #stuck {

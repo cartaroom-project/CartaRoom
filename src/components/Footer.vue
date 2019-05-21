@@ -70,6 +70,6 @@ i {
 }
 
 .footer {
-    padding-top: 6.8%;
+    padding-top: 6.5%;
 }
 </style>

@@ -6,32 +6,76 @@
         </div>
         <div id="view">
             <div class="row">
-                <div class="column">
-                    <label>Name</label>
+                <div class="column1">
+                    <label>Room Name</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ roomInfo.name }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
                     <label>Capacity</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ roomInfo.capacity }} People</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
                     <label>Description</label>
-                    <label>Location</label>
-                    <label>Open Time</label>
-                    <label>Close Time</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ roomInfo.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
+                    <label>Address</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ roomInfo.address }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
                     <label>Total Bookings</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ roomInfo.bookingCounter }} Bookings</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
+                    <label>Business Hours</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ roomInfo.openTime }} - {{ roomInfo.closeTime }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div id="line">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column1">
                     <label>Amenities</label>
                 </div>
-                <div class="column">
-                    <p class="info"> {{ roomInfo.name }}</p>
-                    <p class="info"> {{ roomInfo.capacity }}</p>
-                    <p class="info"> {{ roomInfo.description }}</p>
-                    <p class="info"> {{ roomInfo.address }}</p>
-                    <p class="info"> {{ roomInfo.openTime }}</p>
-                    <p class="info"> {{ roomInfo.closeTime }}</p>
-                    <p class="info"> {{ roomInfo.bookinCounter }}</p>
-                    <ul class="info" v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
+                <div class="column2">
+                    <ul class="info2" v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
                         {{amenity}}
                     </ul>
                 </div>
             </div>
-            <br />
-            <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
-            <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button><br />
+
+            <div class="row">
+                <div class="columnButtons">
+                    <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>
+                    <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button>
+                </div>
+            </div>
         </div>
         <router-link to="/home">Cancel</router-link>
     </div>
@@ -139,18 +183,95 @@
 
 </script>
 <style scoped>
+    .columnButtons {
+        float: right;
+    }
+    .column1 {
+        width:30%;
+        align-items: center;
+    }
+    .column1 label{
+        float: right;
+        padding-right: 10%;
+    }
+
+    .column2 {
+        width:70%;
+    }
+
+    .column2 ul{
+        display:inline-block;
+        margin-right: 20px;
+        margin-top:10px;
+        margin-bottom: 0;
+        vertical-align:middle;
+    }
+
+    .info{
+        border: 0.75px solid darkgrey;
+        width: 75%;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin-right: 100px;
+        word-break: break-word;
+    }
+
+    .info2 {
+        border: 0.75px solid darkgrey;
+        width:160px;
+        padding-left: 0;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+    .row {
+        display: flex;
+        align-items: center;
+    }
+
+    #line {
+        width:75%;
+        margin:auto auto 20px auto;
+    }
+
+    .columnButtons {
+        width:100%;
+    }
+
+    .columnButtons button {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 15%;
+        color: #000000;
+        margin: 25px 25px;
+        float: right;
+    }
+
+    .columnButtons a {
+        text-decoration: none;
+        color:black;
+    }
+
+
     label {
-        margin-left: 30%;
-        margin-top: 20px;
-        margin-bottom: 15px;
-        font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 25px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        color: #000000;
     }
     .banner_text {
         font-family: Rajdhani;
@@ -170,66 +291,13 @@
         margin-top:-150px;
         padding-top:150px;
     }
-    .sign-up {
-        margin-top: 40px;
-    }
-    input {
-        margin: 10px 0;
-        width: 20%;
-        padding: 15px;
-    }
-    button {
-        margin-top: 10px;
-        width: 10%;
-        cursor: pointer;
-    }
-    span {
-        display: block;
-        margin-top: 20px;
-        font-size: 11px;
-    }
-    button {
-        margin-top: 10px;
-        cursor: pointer;
-        background: #FFFFFF;
-        border-radius: 15px;
-        height: 44px;
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 35px;
-        text-align: center;
-        width: 177px;
-        color: #000000;
-        margin: 0px 20px;
-        float: right;
-    }
+
     #view {
-        margin-top: 40px;
-        margin-left: 25%;
+        margin: 40px auto 45px auto;
         padding-top: 44px;
-        margin-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 1200px;
-        height: 600px;
-    }
-    .row {
-        display: flex;
-    }
-    .column {
-        flex: 50%;
-        padding: 10px;
-    }
-    .info{
-        border: 0.25px solid #000000;
-        width: 725px;
-        font-size: 20px;
-        line-height: 35px;
-        box-sizing: border-box;
-        background: #FFFFFF;
-        border-radius: 10px;
-        margin-right: 100px;
+        width:55%;
+        height: 60%;
     }
 </style>
