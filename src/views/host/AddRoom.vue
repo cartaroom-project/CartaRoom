@@ -26,7 +26,7 @@
                     <label>Description</label>
                 </div>
                 <div class="column2">
-                    <textarea class="input_add" type="text" cols="40" rows="4" v-model="roomInfo.description"></textarea>
+                    <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description" placeholder="quick description of the room"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -247,7 +247,7 @@ export default {
     }
 
     .input_add {
-        margin: 10px 0;
+        margin: 10px 100px 10px 0;
         padding-left: 15px;
         background: #FFFFFF;
         box-sizing: border-box;
@@ -255,16 +255,14 @@ export default {
         font-weight: 300;
         font-size: 20px;
         line-height: 35px;
-        margin-right: 100px;
         word-break: break-word;
         border: 0.75px solid darkgrey;
         width: 75%;
         border-radius: 5px;
-        word-break: break-word;
     }
 
     .input_time {
-        margin: 10px 25px;
+        margin: 10px 45px 10px 0;
         padding-left:15px;
         background: #FFFFFF;
         box-sizing: border-box;
@@ -276,7 +274,6 @@ export default {
         border: 0.75px solid darkgrey;
         width: 16%;
         border-radius: 5px;
-        word-break: break-word;
     }
 
     .columnButtons {
@@ -284,13 +281,13 @@ export default {
     }
 
     .columnButtons button {
-        font-family:Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         cursor: pointer;
         background: #FFFFFF;
         border-radius: 15px;
         height: 44px;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 18px;
         line-height: 35px;
         text-align: center;
@@ -312,8 +309,6 @@ export default {
 
     .add {
         margin: 40px auto;
-        margin-left:auto;
-        margin-right:auto;
         padding-top: 44px;
         margin-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
@@ -334,12 +329,9 @@ export default {
         cursor: pointer;
     }
 
-    span {
+    .switch span {
         display: block;
-        margin-top: 20px;
-        font-size: 11px;
     }
-
     .switch {
         position: relative;
         display: inline-block;
@@ -350,7 +342,7 @@ export default {
 
     .switch p {
         margin-left:0;
-        margin-top:20px;
+        margin-top:10px;
         font-size:16px;
         text-align:center;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;

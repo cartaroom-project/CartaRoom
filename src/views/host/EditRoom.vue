@@ -317,16 +317,16 @@ export default {
     }
 
 
-.edit {
-    margin-left:auto;
-    margin-right:auto;
-    padding-top: 44px;
-    margin-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width:55%;
-    height:60%;
-}
+    .edit {
+        margin-left:auto;
+        margin-right:auto;
+        padding-top: 44px;
+        margin-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width:55%;
+        height:60%;
+    }
     label {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
