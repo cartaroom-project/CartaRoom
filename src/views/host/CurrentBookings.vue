@@ -48,7 +48,7 @@
                             <label>Reservation Time</label>
                         </div>
                         <div class="column2A">
-                            <p class="info2"> {{ booking.startTime }} - {{ booking.endTime }}</p>
+                            <p class="info2"> {{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
 
     .info2 {
         border: 0.75px solid darkgrey;
-        width:160px;
+        width:60%;
         padding-left: 0;
         margin:10px 0;
         font-size: 20px;
