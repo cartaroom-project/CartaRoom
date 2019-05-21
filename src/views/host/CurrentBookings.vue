@@ -39,17 +39,16 @@
                             <label>Date</label>
                         </div>
                         <div class="column2A">
-                            <p class="info">{{ booking.date}}</p>
+                            <p class="info2">{{ booking.date}}</p>
                         </div>
                     </div>
 
                     <div class="rowA">
                         <div class="column1A">
-                            <label>Business Hours</label>
+                            <label>Reservation Time</label>
                         </div>
                         <div class="column2A">
-                            <span class="timeText">Open:</span><p class="info">{{ booking.startTime}}:00</p>
-                            <span class="timeText">Close:</span><p class="info">{{ booking.endTime}}:00</p>
+                            <p class="info2"> {{ booking.startTime }} - {{ booking.endTime }}</p>
                         </div>
                     </div>
                 </div>
@@ -99,10 +98,42 @@
     }
 </script>
 <style scoped>
+    .row {
+        margin:auto;
+        width: 90%;
+        display: flex;
+        align-items:center;
+        border: 2px solid red;
+    }
+    .rowA {
+        display: flex;
+        align-items: center;
+        border: 2px solid black;
+    }
+    .column1 {
+        border: 2px solid orange;
+        width:30%;
+    }
+
+    .column2 {
+        border: 2px solid yellow;
+        width: 100%;
+    }
+    .column1A {
+        border: 2px solid green;
+        width: 50%;;
+    }
+    .column1A label{
+        float: right;
+        padding-right: 10%;
+    }
+    .column2A {
+        width:50%;
+        border: 2px solid blue;
+    }
     img{
-    padding-top: 75px;
-    padding-left: 40px;
-    width: 75%;
+        width: 100%;
+        height:auto;
     }
     .banner_text {
     font-family: Rajdhani;
@@ -123,43 +154,41 @@
         padding-top:150px;
     }
     label {
-    margin-left: 30%;
-    padding-top: 15px;
-    padding-bottom: 6px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
     }
     .current{
-    margin-left: 25%;
-    padding-top: 45px;
-    padding-bottom: 45px;
-    margin-top: 45px;
-    margin-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width: 1200px;
+        margin: 45px auto;
+        padding-top: 45px;
+        padding-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width: 50%;
     }
-    .row {
-    display: flex;
-    }
-    .column {
-    flex: 33%;
-    padding: 10px;
-    }
+
     .info{
-    border: 0.25px solid #000000;
-    width: 625px;
-    font-size: 20px;
-    line-height: 35px;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin-right: 100px;
-    }   
+        border: 0.75px solid darkgrey;
+        margin:10px 0;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+
+    .info2 {
+        border: 0.75px solid darkgrey;
+        width:160px;
+        padding-left: 0;
+        margin:10px 0;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        word-break: break-word;
+    }
 </style>
