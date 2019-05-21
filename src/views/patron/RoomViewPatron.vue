@@ -157,6 +157,7 @@
                 var elseStatement = false;
                 var snapshotExist = false;
                 var initialBookingID = '1';
+                var dateChecked;
     
                 //This creates a string with all the neccessary info needed to see if a time slot is already taken or not
                 var bookingInfo = startTime.toString() + '->' + endTime.toString() + '->' + this.date + '->' + this.roomInfo.roomID;
@@ -165,6 +166,8 @@
                 //if date is seleted, check booking time slot is available in datebase and return a boolean snapshotExist from cloud function 
                 if (this.date === '') {
                     alert('Please select a date before moving on');
+                    dateChecked = false;
+                    this.$router.push({path: '/allBookingsPatron'});
                 } else {
                     await checkBookingExist({
                         bookingInfo: bookingInfo
@@ -174,6 +177,7 @@
                     }).catch(function (error) {
                         console.log(error);
                     });
+                    dateChecked = true;
                 }
     
                 //if snapshotExist is true, meaning booking slot already exists in datebase alter message "not avaiable"
@@ -195,8 +199,7 @@
                 }
     
                 //update database if snapshotExist is false
-                if (elseStatement) {
-    
+                if (elseStatement && dateChecked) {
                     const info = {
                         room: this.roomInfo,
                         user: userInfo,
@@ -235,7 +238,7 @@
     
                     await updateUIDAllBookingViewRoomPatron(info2).then(() => {
                         alert('BOOKING CONFIRMED\n' + 'Booking Details:\n' + 'date: ' + this.date + '\n' + "time: " + startTime + ':00' + " - " + endTime + ':00');
-                        this.$router.push('CurrentBookingsPatron');
+                        this.$router.push({path: '/currentBookingsPatron'});
                     })
                 }
             }
@@ -277,17 +280,19 @@
     font-family: Rajdhani;
     font-style: normal;
     font-weight: 600;
-    font-size: 110px;
+    font-size: 90px;
     line-height: 191px;
     text-align: center;
     color: #000000;
     }
     .banner {
-    height: 450px;
-    width: 100%;
-    background-image: url(../../assets/banner/Host2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+        height: 400px;
+        width: 100%;
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-top:-150px;
+        padding-top:150px;
     }
     button {
     margin-top: 10px;
@@ -324,6 +329,7 @@
     margin-left: 25%;
     padding-top: 44px;
     margin-top: 45px;
+    margin: 0 auto;
     margin-bottom: 45px;
     padding-bottom: 35px;
     background: rgba(218, 229, 227, 0.9);
