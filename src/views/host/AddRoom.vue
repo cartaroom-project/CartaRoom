@@ -1,8 +1,7 @@
 <template>
 <div class="addRoom">
     <div class="banner">
-        <br>
-        <p class="banner_text">Let's Add a New Room</p>
+        <p class="banner_text">Add a New Room</p>
         </div>
         <div class="add">
             <div class="row">
@@ -42,8 +41,8 @@
                     <label>Business Hours</label>
                 </div>
                 <div class="column2">
-                    Open: <input class="input_time" type="time" v-model="roomInfo.openTime">
-                    Close: <input class="input_time" type="time" v-model="roomInfo.closeTime">
+                    <span class="timeText">Open:</span><input class="input_time" type="time" v-model="roomInfo.openTime">
+                    <span class="timeText">Close:</span><input class="input_time" type="time" v-model="roomInfo.closeTime">
                 </div>
             </div>
             <div class="row">
@@ -69,10 +68,10 @@
 
             <div class="row">
                 <div class="columnButtons">
-                    <button @click="addRoom">Confirm</button>
                     <button>
                         <router-link to="/home">Cancel</router-link>
                     </button>
+                    <button @click="addRoom">Confirm</button>
                 </div>
             </div>
             <!-- <input type = "file" @click="uploadImage"> -->
@@ -226,18 +225,19 @@ export default {
     }
 
 
+
     .banner_text {
         font-family: Rajdhani;
         font-style: normal;
         font-weight: 600;
-        font-size: 110px;
+        font-size: 90px;
         line-height: 191px;
         text-align: center;
         color: #000000;
     }
 
     .banner {
-        height: 450px;
+        height: 400px;
         width: 100%;
         background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
         background-repeat: no-repeat;
@@ -259,20 +259,28 @@ export default {
         border: 0.75px solid darkgrey;
         width: 75%;
         border-radius: 5px;
+        resize:none;
     }
 
+    .timeText {
+        float:left;
+        font-size: 1em;
+        margin-right: 3px;
+        margin-top: 20px;
+    }
     .input_time {
-        margin: 10px 45px 10px 0;
+        float: left;
+        margin: 10px 25px 10px 0;
         padding-left:15px;
         background: #FFFFFF;
         box-sizing: border-box;
         font-style: normal;
         font-weight: 300;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 35px;
         word-break: break-word;
         border: 0.75px solid darkgrey;
-        width: 16%;
+        width: 30%;
         border-radius: 5px;
     }
 
@@ -294,7 +302,6 @@ export default {
         width: 15%;
         color: #000000;
         margin: 25px 25px;
-        float: right;
     }
 
     .columnButtons a {
