@@ -8,7 +8,7 @@
     <div class="edit">
         <div class="row">
             <div class="column1">
-                <label>Name</label>
+                <label>Room Name</label>
             </div>
             <div class="column2">
                 <input class="input_add" type="text" v-model="roomInfo.name">
@@ -18,7 +18,7 @@
             <div class="column1">
                 <label>Capacity</label>
             </div>
-            <div class="columnCapacity">
+            <div class="column2">
                 <input class="input_number" type="number" v-model="roomInfo.capacity">
             </div>
         </div>
@@ -43,8 +43,8 @@
                 <label>Business Hours</label>
             </div>
             <div class="column2">
-                Open: <input class="input_time" type="time" v-model="roomInfo.openTime">
-                Close: <input class="input_time" type="time" v-model="roomInfo.closeTime">
+                <span class="timeText">Open:</span><input class="input_time" type="time" v-model="roomInfo.openTime">
+                <span class="timeText">Close:</span><input class="input_time" type="time" v-model="roomInfo.closeTime">
             </div>
         </div>
         <div class="row">
@@ -82,7 +82,6 @@
 </template>
 
 <script>
-//   console.log(this.$router);
 import firebase from 'firebase';
 var updateRoom = firebase.functions().httpsCallable('updateRoom');
 var createRoom = firebase.functions().httpsCallable('createRoom');
@@ -184,7 +183,7 @@ export default {
     }
 
     .column1 {
-        width:40%;
+        width:30%;
         align-items: center;
     }
     .column1 label{
@@ -193,35 +192,21 @@ export default {
     }
 
     .column2 {
-        width:60%;
+        width:70%;
 
     }
 
-    .columnCapacity{
-        width:60%;
-
-    }
-    .input_number{
-        margin: 10px 5%;
-        padding-left: 15px;
-        background: #FFFFFF;
-        box-sizing: border-box;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 20px;
-        line-height: 35px;
-        margin-right: 90%;
-        word-break: break-word;
-        border: 0.75px solid darkgrey;
-        width: 10%;
-        border-radius: 5px;
-
+    .timeText {
+        float:left;
+        font-size: 1em;
+        margin-right: 3px;
+        margin-top: 20px;
     }
 
     .columnAmenities {
-        width:60%;
+        width:70%;
         height:75px;
-        margin-left:-60px;
+        margin-left:-5%;
     }
     .columnAmenities ul{
         display:inline-block;
@@ -251,8 +236,23 @@ export default {
     margin-top:-150px;
     padding-top:150px;
 }
-
+    .input_number{
+        float: left;
+        margin: 10px 0;
+        padding-left: 15px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 35px;
+        word-break: break-word;
+        border: 0.75px solid darkgrey;
+        width: 75px;
+        border-radius: 5px;
+    }
 .input_add {
+    float:left;
     margin: 10px 0;
     padding-left: 15px;
     background: #FFFFFF;
@@ -261,7 +261,7 @@ export default {
     font-weight: 300;
     font-size: 20px;
     line-height: 35px;
-    margin-right: 100px;
+    margin-right: 20%;
     word-break: break-word;
     border: 0.75px solid darkgrey;
     width: 75%;
@@ -269,7 +269,8 @@ export default {
 }
 
 .input_time {
-    margin: 10px 25px;
+    float: left;
+    margin: 10px 25px 10px 0;
     padding-left:15px;
     background: #FFFFFF;
     box-sizing: border-box;
@@ -279,7 +280,7 @@ export default {
     line-height: 35px;
     word-break: break-word;
     border: 0.75px solid darkgrey;
-    width: 16%;
+    width: 20%;
     border-radius: 5px;
 }
 
@@ -288,13 +289,13 @@ export default {
     }
 
     .columnButtons button {
-        font-family:Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         cursor: pointer;
         background: #FFFFFF;
         border-radius: 15px;
         height: 44px;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 18px;
         line-height: 35px;
         text-align: center;
@@ -323,7 +324,7 @@ export default {
     margin-bottom: 45px;
     background: rgba(218, 229, 227, 0.9);
     border-radius: 15px;
-    width:70%;
+    width:55%;
     height:60%;
 }
     label {
@@ -339,10 +340,8 @@ button {
     cursor: pointer;
 }
 
-span {
+.switch span {
     display: block;
-    margin-top: 20px;
-    font-size: 11px;
 }
 
 .switch {
@@ -355,8 +354,8 @@ span {
 
 .switch p {
     margin-left:0;
-    margin-top:20px;
-    font-size:16px;
+    margin-top:10px;
+    font-size:0.7em;
     text-align:center;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }

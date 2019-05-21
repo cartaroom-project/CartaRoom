@@ -1,8 +1,8 @@
 <template>
-<div class="result">
-    <!-- <img src="../assets/banner/map.png"> -->
+<div class="finalResults">
+    <!--<img src="../assets/banner/map.png"> -->
     <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
-        <div class="row">
+        <div class="row">   
             <div class="column">
                 <label>Room Name</label>
                 <label>Room Capacity</label>
@@ -19,10 +19,16 @@
         </div>
         <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
     </div>
-    <!-- <br> -->
-    <!-- <button><router-link to="/search">Back to Search</router-link></button> -->
+    <br>
+    <!-- comment out for new, can click logo to go back to search page -->
+    <!-- <router-link to="/search">
+        <button>
+            Back to Search  
+        </button>
+    </router-link> -->
     <!-- <Recommended></Recommended> -->
 </div>
+
 </template>
 
 <script>
@@ -75,12 +81,6 @@ label {
     color: #000000;
 }
 
-button {
-    margin-top: 10px;
-    width: 10%;
-    cursor: pointer;
-}
-
 span {
     display: block;
     margin-top: 20px;
@@ -90,7 +90,6 @@ span {
 button {
     margin-top: 10px;
     cursor: pointer;
-    background: #FFFFFF;
     border-radius: 15px;
     height: 44px;
     font-family: Roboto;
@@ -100,8 +99,8 @@ button {
     line-height: 35px;
     text-align: center;
     width: 177px;
-    color: #000000;
-
+    color: #FFFFFF;
+    background: #000000;
 }
 
 #stuck {
@@ -154,5 +153,4 @@ img {
     width: 25%;
     position: fixed;
 }
-
 </style>

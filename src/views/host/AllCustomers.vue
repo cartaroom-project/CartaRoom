@@ -6,18 +6,32 @@
         </div>
         <div class="customer" v-for="booking of bookings" v-bind:key="booking['.key']">
             <div class="row">
-                <div class="column">
+                <div class="column1">
                     <img src="../../assets/banner/placeholde.png">
                 </div>
-                <div class="column">
-                    <label>Customer</label>
-                    <label>Date</label>
-                    <label>Time</label>
+                <div class="column2">
+                    <div class="rowA">
+                        <label>User</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info">{{booking.userEmail}}</p>
+                    </div>
                 </div>
-                <div class="column">
-                    <p class="info">{{ booking.userEmail }}</p>
-                    <p class="info">{{ booking.date }}</p>
-                    <p class="info">{{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
+                <div class="column3">
+                    <div class="rowA">
+                        <label>Date</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info2">{{ booking.date}}</p>
+                    </div>
+                </div>
+                <div class="column4">
+                    <div class="rowA">
+                        <label>Reservation Time</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info2"> {{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,12 +40,6 @@
 <script>
     import firebase from 'firebase';
     import db from '@/firebase.js';
-
-    // db.ref('rooms').once('value').then(function(snapshot) {
-    //   console.log(snapshot.val());
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
 
     var userID;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -65,10 +73,48 @@
     }
 </script>
 <style scoped>
+    .row {
+        margin:auto;
+        width: 90%;
+        display: flex;
+        align-items:center;
+        border: 2px solid red;
+    }
+    .rowA {
+        display: flex;
+        align-items: center;
+        border: 2px solid black;
+    }
+    .rowB {
+        border: 2px solid green;
+        width: 70%;;
+    }
+    .column1 {
+        border: 2px solid yellow;
+        width:10%;
+    }
+    .column2 {
+        border: 2px solid yellow;
+        width:30%;
+    }
+    .column3 {
+        border: 2px solid yellow;
+        width:20%;
+    }
+
+    .column4 {
+        border: 2px solid yellow;
+        width: 40%;
+    }
+
+    .column2 label{
+        float: right;
+        padding-right: 10%;
+    }
+
     img{
-        padding-top: 10px;
-        padding-left: 40px;
-        width: 75%;
+        width: 100%;
+        height:auto;
     }
     .banner_text {
         font-family: Rajdhani;
@@ -111,21 +157,15 @@
         border-radius: 15px;
         width: 1200px;
     }
-    .row {
-        display: flex;
-    }
-    .column {
-        flex: 33%;
-        padding: 10px;
-    }
+
     .info{
-        border: 0.25px solid #000000;
-        width: 625px;
+        margin:auto;
+        border: 0.75px solid darkgrey;
         font-size: 20px;
         line-height: 35px;
         box-sizing: border-box;
         background: #FFFFFF;
-        border-radius: 10px;
-        margin-right: 100px;
+        border-radius: 5px;
+        word-break: break-word;
     }
 </style>
