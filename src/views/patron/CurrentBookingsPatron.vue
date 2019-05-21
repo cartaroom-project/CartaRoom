@@ -5,6 +5,58 @@
         </div>
         <div class="books" v-for="booking of bookings" v-bind:key="booking['.key']">
             <div class="row">
+                <div class="column1">
+                    <img src="../../assets/banner/image.png">
+                </div>
+                <div class="column2">
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Room Name</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ booking.room.name}}</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Host</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info">{{ booking.host}}</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Date</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info2">{{ booking.date}}</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Reservation Time</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info2"> {{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Status</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info2">{{ booking.status}}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                    <div class="row">
                 <div class="column">
                     <img src="../../assets/banner/image.png">
                 </div>
@@ -28,6 +80,7 @@
             <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Simulate Finish</button>
             <button v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
         </div>
+    </div>
     </div>
 </template>
 <script>

@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <router-link to="/home">Cancel</router-link>
+        <router-link to="/home">Back</router-link>
     </div>
 </template>
 <script>
