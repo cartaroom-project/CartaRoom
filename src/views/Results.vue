@@ -1,35 +1,39 @@
 <template>
 <div class="finalResults">
-    <!--<img src="../assets/banner/map.png"> -->
-    <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
-        <div class="row">   
-            <div class="column">
-                <label>Room Name</label>
-                <label>Room Capacity</label>
-                <label>Address</label>
-                <label>Hours Of Operation</label>
-            </div>
-            <div class="column">
-                <p class="info">{{ room.name }}</p>
-                <p class="info">{{ room.capacity }}</p>
-                <p class="info">{{ room.address }}</p>
-                <p class="info">{{ room.openTime }} to {{ room.closeTime }}</p>
-                <button @click="viewRoom(room.roomID)">View Room</button>
-            </div>
+    <div id="search_text">
+        <p class="label_head">Search</p>
+        <input class="search_input big" type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
+        <br>
         </div>
-        <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
-    </div>
-    <br>
-    <!-- comment out for new, can click logo to go back to search page -->
-    <!-- <router-link to="/search">
+        <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
+            <div class="row">
+                <div class="column">
+                    <label>Room Name</label>
+                    <label>Room Capacity</label>
+                    <label>Address</label>
+                    <label>Hours Of Operation</label>
+                </div>
+                <div class="column">
+                    <p class="info">{{ room.name }}</p>
+                    <p class="info">{{ room.capacity }}</p>
+                    <p class="info">{{ room.address }}</p>
+                    <p class="info">{{ room.openTime }} to {{ room.closeTime }}</p>
+                    <button @click="viewRoom(room.roomID)">View Room</button>
+                </div>
+            </div>
+            <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
+        </div>
+        <br>
+        <!-- comment out for new, can click logo to go back to search page -->
+        <!-- <router-link to="/search">
         <button>
             Back to Search  
         </button>
     </router-link> -->
-    <!-- <Recommended></Recommended> -->
-    <div class="clear">
+        <!-- <Recommended></Recommended> -->
+        <div class="clear">
+        </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -63,13 +67,24 @@ export default {
                     id: id
                 }
             })
+        },
+        search: function () {
+            this.$router.push({
+                name: 'Results',
+                params: {
+                    criteria: this.criteria
+                }
+            })
+            this.$router.go();
         }
     }
 }
 </script>
 
 <style scoped>
-.clear { clear:both; }
+.clear {
+    clear: both;
+}
 
 label {
 
@@ -123,7 +138,6 @@ button {
     float: left;
     margin-left: 50px
 }
-
 
 .info {
     border: 0.25px solid #000000;
