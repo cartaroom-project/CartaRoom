@@ -26,7 +26,7 @@
                 <label>Description</label>
             </div>
             <div class="column2">
-                <textarea class="input_add" type="text" cols="40" rows="4" v-model="roomInfo.description"></textarea>
+                <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description"></textarea>
             </div>
         </div>
         <div class="row">
@@ -262,6 +262,7 @@ export default {
     border: 0.75px solid darkgrey;
     width: 75%;
     border-radius: 5px;
+    resize:none;
 }
 
 .input_time {
@@ -272,11 +273,11 @@ export default {
     box-sizing: border-box;
     font-style: normal;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 35px;
     word-break: break-word;
     border: 0.75px solid darkgrey;
-    width: 25%;
+    width: 30%;
     border-radius: 5px;
 }
 

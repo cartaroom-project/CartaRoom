@@ -71,8 +71,8 @@
 
             <div class="row">
                 <div class="columnButtons">
-                    <button v-on:click="editRoom(roomInfo.roomID)">Edit <i class='far fa-edit'></i></button>
                     <button id="delete" v-on:click="deleteRoom(roomInfo.roomID)">Delete <i class='far fa-trash-alt'></i></button>
+                    <button v-on:click="editRoom(roomInfo.roomID)">Edit <i class='far fa-edit'></i></button>
                 </div>
             </div>
         </div>
@@ -257,7 +257,6 @@
         width: 15%;
         color: #000000;
         margin: 25px 25px;
-        float: right;
     }
 
     .columnButtons a {
