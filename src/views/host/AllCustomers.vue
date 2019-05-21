@@ -2,9 +2,9 @@
     <div class="currentBookings">
         <div class="banner">
             <br>
-            <p class="banner_text">All Customers</p>
+            <p class="banner_text">All Your Customers</p>
         </div>
-        <div class="customer" v-for="booking of bookings" v-bind:key="booking['.key']">
+        <div class="customer" v-for="booking of bookings.slice().reverse()" v-bind:key="booking['.key']">
             <div class="row">
                 <div class="column1">
                     <img src="../../assets/banner/placeholde.png">
@@ -84,10 +84,12 @@
         display: flex;
         align-items: center;
         border: 2px solid black;
+        margin-left:auto;
+        margin-right: auto;
     }
     .rowB {
         border: 2px solid green;
-        width: 50%;;
+        width: 100%;
     }
     .column1 {
         border: 2px solid yellow;
@@ -99,17 +101,20 @@
     }
     .column3 {
         border: 2px solid yellow;
-        width:20%;
+        width:30%;
     }
-
+    .column3 p {
+        margin-left:auto;
+        margin-right: auto;
+    }
     .column4 {
         border: 2px solid yellow;
-        width: 40%;
+        width: 30%;
     }
 
-    .column2 label{
-        float: right;
-        padding-right: 10%;
+    .column4 p {
+        margin-left:auto;
+        margin-right: auto;
     }
 
     img{
@@ -135,10 +140,9 @@
         padding-top:150px;
     }
     label {
-        margin-left: 30%;
-        padding-top: 15px;
-        padding-bottom: 6px;
-        font-family: Roboto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 25px;
@@ -149,18 +153,30 @@
     }
     .customer{
         margin-left: 25%;
-        padding-top: 44px;
-        padding-bottom: 44px;
+        padding:20px 0px;
         margin-top: 45px;
         margin-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 1200px;
+        width: 50%;
     }
 
     .info{
         margin:auto;
         border: 0.75px solid darkgrey;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        width: 75%;
+        word-break: break-word;
+    }
+    .info2 {
+        border: 0.75px solid darkgrey;
+        width:60%;
+        padding-left: 0;
+        margin:0;
         font-size: 20px;
         line-height: 35px;
         box-sizing: border-box;

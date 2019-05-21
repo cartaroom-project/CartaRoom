@@ -2,7 +2,7 @@
 <div class="addRoom">
     <div class="banner">
         <br>
-        <p class="banner_text">Let's add a new room</p>
+        <p class="banner_text">Let's Add a New Room</p>
         </div>
         <div class="add">
             <div class="row">

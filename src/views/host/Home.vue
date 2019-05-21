@@ -2,7 +2,7 @@
     <div class="home">
         <div class="banner">
             <br>
-            <p class="banner_text">All Rooms</p>
+            <p class="banner_text">All the Rooms</p>
         </div>
 
         <div class="rooms" v-for="room of rooms.slice().reverse()" v-bind:key ="room['.key']">
