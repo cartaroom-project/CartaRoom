@@ -280,17 +280,19 @@
     font-family: Rajdhani;
     font-style: normal;
     font-weight: 600;
-    font-size: 110px;
+    font-size: 90px;
     line-height: 191px;
     text-align: center;
     color: #000000;
     }
     .banner {
-    height: 450px;
-    width: 100%;
-    background-image: url(../../assets/banner/Host2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+        height: 400px;
+        width: 100%;
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-top:-150px;
+        padding-top:150px;
     }
     button {
     margin-top: 10px;
@@ -327,6 +329,7 @@
     margin-left: 25%;
     padding-top: 44px;
     margin-top: 45px;
+    margin: 0 auto;
     margin-bottom: 45px;
     padding-bottom: 35px;
     background: rgba(218, 229, 227, 0.9);

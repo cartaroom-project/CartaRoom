@@ -107,7 +107,7 @@
         font-family: Rajdhani;
         font-style: normal;
         font-weight: 600;
-        font-size: 110px;
+        font-size: 90px;
         line-height: 191px;
         text-align: center;
         color: #000000;
@@ -117,7 +117,7 @@
         width: 100%;
         margin-top: -150px;
         padding-top: 150px;
-        background-image: url(../../assets/banner/Patron.jpg);
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url(../../assets/banner/Patron.jpg); 
         background-repeat: no-repeat;
         background-size: cover;
     }
