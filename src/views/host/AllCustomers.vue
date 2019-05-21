@@ -11,10 +11,10 @@
                 </div>
                 <div class="column2">
                     <div class="rowA">
-                        <label>Host</label>
+                        <label>User</label>
                     </div>
                     <div class="rowB">
-                        <p class="info">{{ booking.host}}</p>
+                        <p class="info">{{booking.userEmail}}</p>
                     </div>
                 </div>
                 <div class="column3">
@@ -87,7 +87,7 @@
     }
     .rowB {
         border: 2px solid green;
-        width: 50%;;
+        width: 70%;;
     }
     .column1 {
         border: 2px solid yellow;
