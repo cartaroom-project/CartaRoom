@@ -1,10 +1,10 @@
 <template>
 <div class="finalResults">
     <div id="search_text">
-        <p class="label_head">Search</p>
+        <div style="display:inline">
         <input class="search_input big" type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
         <button id="search_button" @click="search">Search</button>
-        <br>
+        </div>
         </div>
         <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
             <div class="row">
@@ -170,18 +170,6 @@ img {
     position: fixed;
 }
 
-#search_text {
-    left: 25%;
-    text-align: left;
-    margin: 0 auto;
-    background: #FFFFFF;
-    border: 0.25px solid #828282;
-    box-sizing: border-box;
-    border-radius: 15px;
-    width: 700px;
-    height: 200px;
-}
-
 .search_input {
     background: #FFFFFF;
     border: 1px solid #828282;
@@ -206,7 +194,6 @@ img {
 }
    #search_button{
    background: rgba(84, 142, 255, 0.8);
-   margin-left: 90px;
    border-radius: 5px;
    font-family: Roboto;
    font-style: normal;
@@ -214,6 +201,47 @@ img {
    font-size: 17px;
    text-align: center;
    color: #FFFFFF;
-   height: 47px;
+       width: 10%;
+   height: 35px;
+       margin-bottom: 0px;
+       float: right;
+       margin-right: 20%;
+   }
+   .search_input{
+   background: #FFFFFF;
+   border: 1px solid #828282;
+   box-sizing: border-box;
+   border-radius: 10px;
+   padding-left: 20px;
+   font-family: Rboto;
+   font-style: normal;
+   font-weight: 300;
+       margin-top: 6px;
+   font-size: 15px;
+   }
+       .big{
+   width: 620px;
+   height: 37px;
+   }
+       ::placeholder {
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 15px;
+   color: #828282;
+   }
+   :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 15px;
+   color: #828282;
+   }
+   ::-ms-input-placeholder { /* Microsoft Edge */
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 15px;
+   color: #828282;
    }
 </style>
