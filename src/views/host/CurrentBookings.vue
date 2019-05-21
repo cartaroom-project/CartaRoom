@@ -103,25 +103,20 @@
         width: 90%;
         display: flex;
         align-items:center;
-        border: 2px solid red;
     }
     .rowA {
         display: flex;
         align-items: center;
-        border: 2px solid black;
     }
     .column1 {
-        border: 2px solid orange;
         width:30%;
     }
 
     .column2 {
-        border: 2px solid yellow;
         width: 100%;
     }
     .column1A {
-        border: 2px solid green;
-        width: 50%;;
+        width: 40%;;
     }
     .column1A label{
         float: right;
@@ -129,7 +124,9 @@
     }
     .column2A {
         width:50%;
-        border: 2px solid blue;
+    }
+    .column2A p {
+        margin:5px 0;
     }
     img{
         width: 100%;
@@ -161,8 +158,7 @@
     }
     .current{
         margin: 45px auto;
-        padding-top: 45px;
-        padding-bottom: 45px;
+        padding:1% 0;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
         width: 50%;

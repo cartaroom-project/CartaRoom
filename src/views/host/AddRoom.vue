@@ -178,7 +178,7 @@ export default {
     }
 
     .column1 {
-        width:40%;
+        width:30%;
         align-items: center;
     }
     .column1 label{
@@ -313,7 +313,7 @@ export default {
         margin-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width:70%;
+        width:60%;
         height:60%;
     }
     label {

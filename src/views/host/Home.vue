@@ -40,7 +40,7 @@
 
                     <div class="rowA">
                         <div class="columnButtons">
-                            <button v-on:click="viewRoom(room.roomID)">View Room</button>
+                            <button v-on:click="viewRoom(room.roomID)">View</button>
                         </div>
                     </div>
                 </div>

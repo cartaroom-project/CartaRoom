@@ -298,7 +298,7 @@
     }
     #view {
         margin: 40px auto 45px auto;
-        padding-top: 44px;
+        padding: 1% 0;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
         width:55%;

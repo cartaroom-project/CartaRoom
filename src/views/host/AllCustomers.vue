@@ -78,29 +78,23 @@
         width: 90%;
         display: flex;
         align-items:center;
-        border: 2px solid red;
     }
     .rowA {
         display: flex;
         align-items: center;
-        border: 2px solid black;
         margin-left:auto;
         margin-right: auto;
     }
     .rowB {
-        border: 2px solid green;
         width: 100%;
     }
     .column1 {
-        border: 2px solid yellow;
         width:10%;
     }
     .column2 {
-        border: 2px solid yellow;
         width:30%;
     }
     .column3 {
-        border: 2px solid yellow;
         width:30%;
     }
     .column3 p {
@@ -108,7 +102,6 @@
         margin-right: auto;
     }
     .column4 {
-        border: 2px solid yellow;
         width: 30%;
     }
 
