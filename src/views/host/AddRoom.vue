@@ -209,6 +209,7 @@ export default {
         border: 0.75px solid darkgrey;
         width: 10%;
         border-radius: 5px;
+        word-break: break-word;
     }
 
     .columnAmenities {
@@ -259,6 +260,7 @@ export default {
         border: 0.75px solid darkgrey;
         width: 75%;
         border-radius: 5px;
+        word-break: break-word;
     }
 
     .input_time {
@@ -274,6 +276,7 @@ export default {
         border: 0.75px solid darkgrey;
         width: 16%;
         border-radius: 5px;
+        word-break: break-word;
     }
 
     .columnButtons {

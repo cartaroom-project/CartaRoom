@@ -53,12 +53,6 @@
     import firebase from 'firebase';
     import db from '@/firebase.js';
 
-    // db.ref('rooms').once('value').then(function(snapshot) {
-    //   console.log(snapshot.val());
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
-
     var userID;
     firebase.auth().onAuthStateChanged(function (user) {
 
@@ -163,18 +157,6 @@
         font-style: normal;
         font-weight: normal;
         font-size: 25px;
-
-        /*margin-left: 30%;*/
-        /*padding-top: 15px;*/
-        /*padding-bottom: 6px;*/
-        /*font-family: Roboto;*/
-        /*font-style: normal;*/
-        /*font-weight: normal;*/
-        /*font-size: 25px;*/
-        /*line-height: 35px;*/
-        /*display: flex;*/
-        /*align-items: center;*/
-        /*color: #000000;*/
     }
     .rooms{
         margin-left: auto;
