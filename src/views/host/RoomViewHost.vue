@@ -76,9 +76,6 @@
                     <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button>
                 </div>
             </div>
-<!--            <br />-->
-<!--            <button v-on:click="editRoom(roomInfo.roomID)">Edit Room</button>-->
-<!--            <button v-on:click="deleteRoom(roomInfo.roomID)">Delete Room</button><br />-->
         </div>
         <router-link to="/home">Cancel</router-link>
     </div>

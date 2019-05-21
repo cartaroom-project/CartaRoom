@@ -82,7 +82,6 @@
 </template>
 
 <script>
-//   console.log(this.$router);
 import firebase from 'firebase';
 var updateRoom = firebase.functions().httpsCallable('updateRoom');
 var createRoom = firebase.functions().httpsCallable('createRoom');
