@@ -6,7 +6,7 @@
     </div>
     <div id="hostContent">
         <router-view></router-view>
-        <SideNav></SideNav>
+        <!-- <SideNav></SideNav> -->
     </div>
     <v-footer dark height="auto" style="margin-bottom: 0px; position: relative">
         <Footer></Footer>
