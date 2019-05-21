@@ -70,10 +70,10 @@
 
         <div class="row">
             <div class="columnButtons">
-                <button @click="updateRoom">Confirm</button>
                 <button>
                     <router-link to="/home">Cancel</router-link>
                 </button>
+                <button @click="updateRoom">Confirm</button>
             </div>
         </div>
             <!-- <input type = "file" @click="uploadImage"> -->
@@ -178,9 +178,6 @@ export default {
 </script>
 
 <style scoped>
-    .columnButtons {
-        float: right;
-    }
 
     .column1 {
         width:30%;
@@ -280,7 +277,7 @@ export default {
     line-height: 35px;
     word-break: break-word;
     border: 0.75px solid darkgrey;
-    width: 20%;
+    width: 25%;
     border-radius: 5px;
 }
 
@@ -302,7 +299,6 @@ export default {
         width: 15%;
         color: #000000;
         margin: 25px 25px;
-        float: right;
     }
 
     .columnButtons a {
@@ -317,16 +313,16 @@ export default {
     }
 
 
-.edit {
-    margin-left:auto;
-    margin-right:auto;
-    padding-top: 44px;
-    margin-bottom: 45px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width:55%;
-    height:60%;
-}
+    .edit {
+        margin-left:auto;
+        margin-right:auto;
+        padding-top: 44px;
+        margin-bottom: 45px;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width:55%;
+        height:60%;
+    }
     label {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
