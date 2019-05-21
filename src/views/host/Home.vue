@@ -101,7 +101,7 @@
     }
 
     .column1A {
-        width:50%;
+        width:60%;
     }
 
     .column1A label{
@@ -114,7 +114,7 @@
      }
 
     .column2A {
-        width:50%;
+        width:40%;
         float: right;
     }
 
