@@ -134,24 +134,20 @@
 </script>
 <style scoped>
     .row {
-        border: 2px solid red;
         margin:auto;
         width: 90%;
         display: flex;
         align-items: center;
     }
     .rowA {
-        border: 2px solid black;
         display: flex;
         align-items:center;
     }
     .column1 {
-        border: 2px solid orange;
         width: 20vw;
     }
 
     .column1A {
-        border: 2px solid yellow;
         width: 40%;
 
     }
@@ -163,12 +159,10 @@
     }
 
     .column2 {
-        border: 2px solid green;
         width:100%;
     }
 
     .column2A {
-        border: 2px solid blue;
         width: 60%;
         padding: 0;
         margin: 5px 0;
@@ -248,8 +242,6 @@
     }
     .rowButtons {
         width:100%;
-        border: 2px solid black;
-
         display: flex;
         align-items: center;
     }
