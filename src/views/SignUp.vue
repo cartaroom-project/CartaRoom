@@ -267,6 +267,13 @@ export default {
     text-align: right;
 }
 
+.goBackToLogin{
+    text-align:left;
+    padding-left: 17%;
+}
+.signUpButtom {
+    text-align:right;
+}
 .signtext {
     margin-left: 45px;
     padding-top: 25px;
