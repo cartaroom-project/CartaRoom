@@ -4,53 +4,108 @@
             <br>
             <p class="banner_text">Room View</p>
         </div>
-        <div class="view">
+        <div class="rowPicture">
+            <div id="rowBigPic">
+                <div id="bigPicture">
+                    <img src="../../assets/banner/image.png">
+                </div>
+            </div>
+            <div id="rowSmallPic">
+                <div class="smallPicture">
+                    <img src="../../assets/banner/image.png">
+                </div>
+                <div class="smallPicture">
+                    <img src="../../assets/banner/image.png">
+                </div>
+                <div class="smallPicture">
+                    <img src="../../assets/banner/image.png">
+                </div>
+            </div>
+
+        </div>
+        <div id="view">
             <div class="row">
-                <div class="column">
-                    <label>Name</label>
+                <div class="column1">
+                    <label>Room Name</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ roomInfo.name }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
                     <label>Capacity</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ roomInfo.capacity }} People</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
                     <label>Description</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ roomInfo.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
                     <label>Address</label>
-                    <label>Open Time</label>
-                    <label>Close Time</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ roomInfo.address }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1">
+                    <label>Business Hours</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ roomInfo.openTime }} - {{ roomInfo.closeTime }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column1">
                     <label>Amenities</label>
                 </div>
-                <div class="column">
-                    <p class="info">{{ roomInfo.name }}</p>
-                    <p class="info">{{ roomInfo.capacity }}</p>
-                    <p class="info">{{ roomInfo.description }}</p>
-                    <p class="info">{{ roomInfo.address }}</p>
-                    <p class="info">{{ roomInfo.openTime }}</p>
-                    <p class="info">{{ roomInfo.closeTime }}</p>
-                    <ul class="info" v-for="amenity in roomInfo.amenities" v-bind:key="amenity['.key']">
-                        {{ amenity }}
+                <div class="column2">
+                    <ul class="info2" v-for="amenity in roomInfo.amenities"  v-bind:key ="amenity['.key']">
+                        {{amenity}}
                     </ul>
                 </div>
             </div>
-       
-        <h3>{{msg}}</h3>
-        Date: <input type="date" v-model="date"><br />
-        <!-- <li v-for="(value, name, index) in roomInfo.bookingSlots"> -->
-        <ul v-for="index in timeSlotsAvailable" :key="index">
-            <p>{{roomInfo.bookingSlots[index].startingTime}}:00 to {{roomInfo.bookingSlots[index].endingTime}}:00
-                <button v-on:click="bookRoom(roomInfo.bookingSlots[index].startingTime, roomInfo.bookingSlots[index].endingTime)">Book Room</button>
-            </p>
-        </ul>
+
+            <div class="row">
+                <div id="line">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column1">
+                    <label>Date</label>
+                </div>
+                <div class="column2">
+                    <input id="info_date" type="date" v-model="date"><br />
+                    <h3>{{msg}}</h3>
+                    <ul id="time_list" v-for="index in timeSlotsAvailable" :key="index">
+                        <p id="time_slots">{{roomInfo.bookingSlots[index].startingTime}}:00 to {{roomInfo.bookingSlots[index].endingTime}}:00
+                            <button v-on:click="bookRoom(roomInfo.bookingSlots[index].startingTime, roomInfo.bookingSlots[index].endingTime)">Book Room</button>
+                        </p>
+                    </ul>
+                    <v-btn id="timeButton" @click="doMath"><b><u>{{msg1}}</u></b></v-btn>
+                </div>
+            </div>
         <!-- <p>{{roomInfo.bookingSlots[1].startingTime}}:00 to {{roomInfo.bookingSlots[1].endingTime}}:00</p> <br /> -->
         <!-- </li> -->
-        <br>
-        <v-btn id="timeButton" @click="doMath"><b><u>{{msg1}}</u></b></v-btn>
-        <br />
+        </div>
         <router-link to="/search">Cancel</router-link>
     </div>
-         </div>
 </template>
 <script>
-    //   console.log(this.$router);
-    // bookingSlots[1].startingTime
     import firebase from 'firebase';
     import db from '@/firebase.js';
-    import axios from 'axios';
     
     var createRoom = firebase.functions().httpsCallable('createRoom');
     var roomViewPatronCreated = firebase.functions().httpsCallable('roomViewPatronCreated');
@@ -61,7 +116,6 @@
     
     var userID;
     var roomID = '1';
-    //   var timeSlotsAVailable = 2;
     var storageRef = firebase.storage().ref();
     
     firebase.auth().onAuthStateChanged(function (user) {
@@ -245,35 +299,84 @@
     }
 </script>
 <style scoped>
+    #rowSmallPic {
+        display: flex;
+        align-items:center;
+        width:50%;
+        padding:10px 25%;
+    }
+    #bigPicture{
+        margin-top:1%;
+    }
+    .smallPicture {
+        width:10%;
+        flex:33%;
+    }
     .row {
-    display: flex;
+        display: flex;
     }
-    .column {
-    flex: 50%;
-    padding: 10px;
-    } 
+
+    .column1 {
+        width: 40%;
+    }
+    .column1 label{
+        float: right;
+        padding-right: 10%;
+    }
+    .column2 {
+        width: 60%;
+        padding: 0;
+    }
+    .column2 ul{
+        display:inline-block;
+        margin-right: 20px;
+        margin-top:10px;
+        margin-bottom: 0;
+        vertical-align:middle;
+    }
+
+
+    .smallPicture img {
+        width:100%;
+    }
+
     .info{
-    border: 0.25px solid #000000;
-    width: 725px;
-    font-size: 20px;
-    line-height: 35px;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin-right: 100px;
+        border: 0.75px solid darkgrey;
+        width: 75%;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin-right: 100px;
+        word-break: break-word;
+
     }
+
+    .info2 {
+        border: 0.75px solid darkgrey;
+        width:160px;
+        padding-left: 0;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+
     label {
-    margin-left: 30%;
-    margin-top: 20px;
-    margin-bottom: 15px;        
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+        margin-left: 30%;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
     }
     .banner_text {
     font-family: Rajdhani;
@@ -294,29 +397,25 @@
         padding-top:150px;
     }
     button {
-    margin-top: 10px;
-    cursor: pointer;
-    background: #FFFFFF;
-    border-radius: 15px;
-    height: 44px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
-    width: 177px;
-    color: #000000;
-    margin: 0px 20px;
-    cursor: pointer;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 177px;
+        color: #000000;
+        margin: 0px 20px;
+
     }
-    .sign-up {
-    margin-top: 40px;
-    }
+
     input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
+        margin: 10px 0;
+        width: 20%;
+        padding: 15px;
     }
 
     span {
@@ -324,16 +423,29 @@
     margin-top: 20px;
     font-size: 11px;
     }
-        .view{
-    margin-left: 25%;
-    padding-top: 44px;
-    margin-top: 45px;
-    margin: 0 auto;
-    margin-bottom: 45px;
-    padding-bottom: 35px;
-    background: rgba(218, 229, 227, 0.9);
-    border-radius: 15px;
-    width: 1200px;
+    h3 {
+        margin-bottom: 0;
+    }
+    #view {
+        margin: 40px auto 45px auto;
+        padding: 1% 0;
+        background: rgba(218, 229, 227, 0.9);
+        border-radius: 15px;
+        width:55%;
+        height: 60%;
+    }
+    #info_date {
+        width:30%;
+    }
+    #time_slots {
+        margin-top:0;
+        margin-bottom:0;
+    }
+    #time_slots button {
+        width: 30%;
+    }
+    #time_list {
+        width: 90%;
     }
    
 </style>

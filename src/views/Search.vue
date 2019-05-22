@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
 .heading_one {
-    font-family: "Rajdhani";
+    font-family: Rajdhani;
     font-style: normal;
     font-weight: 600;
     font-size: 52px;
@@ -125,7 +125,7 @@ export default {
 }
 
 .label_head {
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -139,7 +139,7 @@ export default {
     background: rgba(84, 142, 255, 0.8);
     margin-left: 90px;
     border-radius: 5px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
@@ -149,7 +149,7 @@ export default {
 }
 
 ::placeholder {
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -158,7 +158,7 @@ export default {
 
 :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -167,7 +167,7 @@ export default {
 
 ::-ms-input-placeholder {
     /* Microsoft Edge */
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 15px;

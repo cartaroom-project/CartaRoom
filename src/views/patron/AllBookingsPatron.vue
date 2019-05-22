@@ -1,26 +1,52 @@
 <template>
     <div class="currentBookings">
         <div class="banner">
-            <p class="banner_text">All Your Bookings</p>
+            <p class="banner_text">All Your Reservations</p>
         </div>
         <div class="books" v-for="booking of bookings" v-bind:key="booking['.key']">
             <div class="row">
-                <div class="column">
+                <div class="column1">
                     <img src="../../assets/banner/image.png">
                 </div>
-                <div class="column">
-                    <label>Room Name</label>
-                    <label>Host</label>
-                    <label>Date</label>
-                    <label>Time</label>
-                    <label>Status</label>
+                <div class="column2">
+                    <div class="rowA">
+                        <label>Room Name</label>
+                    </div>
+                    <div class="rowB">
+                            <p class="info">{{ booking.room.name}}</p>
+                    </div>
                 </div>
-                <div class="column">
-                    <p class="info">{{ booking.room.name }}</p>
-                    <p class="info">{{ booking.host }}</p>
-                    <p class="info">{{ booking.date }}</p>
-                    <p class="info">{{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
-                    <p class="info">{{ booking.status }}</p>
+                <div class="column3">
+                    <div class="rowA">
+                        <label>Host</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info">{{ booking.host}}</p>
+                    </div>
+                </div>
+                <div class="column4">
+                    <div class="rowA">
+                        <label>Reservation Date</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info">{{ booking.date}}</p>
+                    </div>
+                </div>
+                <div class="column5">
+                    <div class="rowA">
+                        <label>Reservation Time</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info2"> {{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
+                    </div>
+                </div>
+                <div class="column6">
+                    <div class="rowA">
+                        <label>Status</label>
+                    </div>
+                    <div class="rowB">
+                        <p class="info2">{{ booking.status}}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,10 +99,53 @@
     }
 </script>
 <style scoped>
+    .row {
+        border: 2px solid red;
+        margin:auto;
+        width: 95%;
+        display: flex;
+        align-items:center;
+    }
+    .rowA {
+        border: 2px solid orange;
+        display: flex;
+        align-items: center;
+        margin-left:auto;
+        margin-right: auto;
+    }
+    .rowB {
+        width:100%;
+        border: 2px solid Yellow;
+    }
+
+    .column1 {
+             border: 2px solid green;
+             width: 10%;
+         }
+    .column2 {
+        border: 2px solid blue;
+        width: 15%;
+    }
+    .column3 {
+        border: 2px solid purple;
+        width: 15%;
+    }
+    .column4 {
+        border: 2px solid green;
+        width: 20%;
+    }
+    .column5 {
+        border: 2px solid blue;
+        width: 20%;
+    }
+    .column6 {
+        border: 2px solid purple;
+        width: 20%;
+    }
+
     img{
-    padding-top: 75px;
-    padding-left: 40px;
-    width: 75%;
+        width: 100%;
+        height:auto;
     }
     .banner_text {
     font-family: Rajdhani;
@@ -97,44 +166,48 @@
     background-size: cover;
     }
     label {
-    margin-left: 30%;
-    padding-top: 15px;
-    padding-bottom: 6px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
-    line-height: 35px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
     }
     .books{
     left: 25%;
         margin: 0 auto;
-    padding-top: 44px;
+    padding: 2% 0;
     margin-top: 45px;
     margin-bottom: 45px;
-    padding-bottom: 35px;
     background: rgba(218, 229, 227, 0.9);
     border-radius: 15px;
-    width: 1200px;
-    }
-    .row {
-    display: flex;
-    }
-    .column {
-    flex: 33%;
-    padding: 10px;
+    width: 90%;
     }
     .info{
-    border: 0.25px solid #000000;
-    width: 625px;
-    font-size: 20px;
-    line-height: 35px;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin-right: 100px;
+        margin:auto;
+        border: 0.75px solid darkgrey;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        width: 90%;
+        word-break: break-word;
+    }
+    .info2 {
+        border: 0.75px solid darkgrey;
+        width:90%;
+        padding-left: 0;
+        margin:auto;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        word-break: break-word;
     }
 </style>
