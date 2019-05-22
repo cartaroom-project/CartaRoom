@@ -32,14 +32,14 @@
 </template>
 <style scoped>
     p{
-    font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-size: 20px;
     line-height: 41px;
     color: #000000;
     }
     h3{
-    font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 28px;
@@ -58,9 +58,9 @@
     .banner {
     height: 450px;
     width: 100%;
-    background-image: url("../assets/banner/About.jpg");
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../assets/banner/About.jpg");
+        background-repeat: no-repeat;
     background-position: bottom;
-    background-repeat: no-repeat;
     background-size: cover;
     }
     .info{
