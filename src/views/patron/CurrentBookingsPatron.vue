@@ -27,7 +27,7 @@
                     </div>
                     <div class="rowA">
                         <div class="column1A">
-                            <label>Date</label>
+                            <label>Reservation Date</label>
                         </div>
                         <div class="column2A">
                             <p class="info2">{{ booking.date}}</p>
@@ -42,6 +42,11 @@
                         </div>
                     </div>
                     <div class="rowA">
+                        <div id="line">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="rowA">
                         <div class="column1A">
                             <label>Status</label>
                         </div>
@@ -50,37 +55,14 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-                    <div class="row">
-                <div class="column">
-                    <img src="../../assets/banner/image.png">
-                </div>
-                <div class="column">
-                    <label>Room Name</label>
-                    <label>Host</label>
-                    <label>Date</label>
-                    <label>Start Time</label>
-                    <label>End Time</label>
-                    <label>Status</label>
-                </div>
-                <div class="column">
-                    <p class="info">{{ booking.room.name }}</p>
-                    <p class="info">{{ booking.host }}</p>
-                    <p class="info">{{ booking.date }}</p>
-                    <p class="info">{{ booking.startTime }}:00 </p>
-                    <p class="info">{{ booking.endTime }}:00 </p>
-                    <p class="info">{{ booking.status }}</p>
+            </div>
+            <div class="row">
+                <div class="rowButtons">
+                    <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
+                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>
                 </div>
             </div>
-            <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Simulate Finish</button>
-            <button v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
         </div>
-    </div>
     </div>
 </template>
 <script>
@@ -151,10 +133,54 @@
     }
 </script>
 <style scoped>
+    .row {
+        border: 2px solid red;
+        margin:auto;
+        width: 90%;
+        display: flex;
+        align-items: center;
+    }
+    .rowA {
+        border: 2px solid black;
+        display: flex;
+        align-items:center;
+    }
+    .column1 {
+        border: 2px solid orange;
+        width: 20vw;
+    }
+
+    .column1A {
+        border: 2px solid yellow;
+        width: 40%;
+
+    }
+
+    .column1A label{
+        padding: 0;
+        float: right;
+        padding-right: 10%;
+    }
+
+    .column2 {
+        border: 2px solid green;
+        width:100%;
+    }
+
+    .column2A {
+        border: 2px solid blue;
+        width: 60%;
+        padding: 0;
+        margin: 5px 0;
+    }
+    .column2A p {
+        margin: 0;
+    }
+
+
     img{
-        padding-top: 75px;
-        padding-left: 40px;
-        width: 75%;
+        width: 100%;
+        height:auto;
     }
     .banner_text {
         font-family: Rajdhani;
@@ -178,7 +204,7 @@
         margin-left: 30%;
         padding-top: 15px;
         padding-bottom: 6px;
-        font-family: Roboto;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 25px;
@@ -196,40 +222,54 @@
         padding-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 1200px;
-    }
-    .row {
-        display: flex;
-    }
-    .column {
-        flex: 33%;
-        padding: 10px;
+        width: 75vw;
     }
     .info{
-        border: 0.25px solid #000000;
-        width: 625px;
+        border: 0.75px solid darkgrey;
+        margin:10px 0;
         font-size: 20px;
         line-height: 35px;
         box-sizing: border-box;
         background: #FFFFFF;
-        border-radius: 10px;
-        margin-right: 100px;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+    .info2 {
+        border: 0.75px solid darkgrey;
+        width:60%;
+        padding-left: 0;
+        margin:10px 0;
+        font-size: 20px;
+        line-height: 35px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+    .rowButtons {
+        width:100%;
+        border: 2px solid black;
+
+        display: flex;
+        align-items: center;
     }
     button {
-        margin-top: 10px;
-        cursor: pointer;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         background: #FFFFFF;
         border-radius: 15px;
         height: 44px;
-        font-family: Roboto;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 18px;
         line-height: 35px;
         text-align: center;
-        width: 177px;
+        width: 15%;
         color: #000000;
-        margin: 0px 20px;
-        float: right;
+        margin: 0 25px;
+    }
+
+    #delete {
+        background-color: #ff6961;
+        color:white;
     }
 </style>
