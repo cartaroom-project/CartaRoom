@@ -60,7 +60,7 @@
     import db from '@/firebase.js';
     var booking = firebase.functions().httpsCallable('hostBooking');
     var unbook = firebase.functions().httpsCallable('hostUnbook');
-    
+
     var userID;
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -69,16 +69,16 @@
             userID = "null";
         }
     });
-    
-        export default {
-            name: 'currentBookings',
-            data () {
-                return {
-                    bookings:[],
-                }
-            },
-            async created () {
-                await booking({bookings:this.bookings}).then((result) => {
+
+    export default {
+        name: 'currentBookings',
+        data () {
+            return {
+                bookings:[],
+            }
+        },
+        async created () {
+            await booking({bookings:this.bookings}).then((result) => {
                 this.bookings = result.data.bookings
             }).catch(function (error) {
                 console.log(error);
@@ -110,7 +110,6 @@
     .column1 {
         width:30%;
     }
-
     .column2 {
         width: 100%;
     }
@@ -132,17 +131,17 @@
         height:auto;
     }
     .banner_text {
-    font-family: Rajdhani;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 90px;
-    line-height: 191px;
-    text-align: center;
-    color: #000000;
+        font-family: Rajdhani;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 90px;
+        line-height: 191px;
+        text-align: center;
+        color: #000000;
     }
     .banner {
-    height: 400px;
-    width: 100%;
+        height: 400px;
+        width: 100%;
         background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
         background-repeat: no-repeat;
         background-size: cover;
@@ -162,7 +161,6 @@
         border-radius: 15px;
         width: 50%;
     }
-
     .info{
         border: 0.75px solid darkgrey;
         margin:10px 0;
@@ -173,7 +171,6 @@
         border-radius: 5px;
         word-break: break-word;
     }
-
     .info2 {
         border: 0.75px solid darkgrey;
         width:60%;

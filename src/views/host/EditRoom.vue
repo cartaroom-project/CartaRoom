@@ -277,7 +277,7 @@ export default {
     line-height: 35px;
     word-break: break-word;
     border: 0.75px solid darkgrey;
-    width: 30%;
+    width: 25%;
     border-radius: 5px;
 }
 

@@ -1,14 +1,4 @@
 <template>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-
     <div class="header">
             <a class="logo">
               <router-link to="/search">
@@ -20,9 +10,6 @@
             <router-link to="/sign-up"><button class="navButtons">SIGN UP</button></router-link>
         </div>
     </div>
-</body>
-
-</html>
 </template>
 
 
@@ -49,6 +36,7 @@ body {
 
 .header a {
   color: black;
+    width: 100vw;
   text-align: center;
   padding: 12px;
   text-decoration: none;

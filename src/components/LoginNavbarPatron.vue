@@ -7,9 +7,15 @@
                 </router-link>
             </a>
         <div class="header-right">
-          <router-link to="/search">Search</router-link>
-          <router-link to="/currentBookingsPatron">Current Bookings</router-link>
-          <router-link to="/allBookingsPatron">All Bookings</router-link>
+        <router-link to="/search">
+            <i class='fas fa-search' style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+        </router-link>
+        <router-link to="/currentBookingsPatron">
+            <i class="fas fa-concierge-bell" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+        </router-link>
+        <router-link to="/allBookingsPatron">
+            <i class="fas fa-user-clock" style="position: relative">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+        </router-link>
             <button class="navButtons" @click="logout">LOGOUT</button>
         </div>
     </div>

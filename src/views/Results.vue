@@ -71,13 +71,17 @@ export default {
             })
         },
         search: function () {
-            this.$router.push({
-                name: 'Results',
-                params: {
-                    criteria: this.criteria
-                }
-            })
-            this.$router.go();
+            if (this.criteria == '') {
+               alert('Missing criteria');
+            } else {
+                this.$router.push({
+                    name: 'Results',
+                    params: {
+                        criteria: this.criteria
+                    }
+                })
+                this.$router.go();
+            }
         }
     }
 }
@@ -90,7 +94,7 @@ export default {
 
 label {
     margin-bottom: 20px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -111,7 +115,7 @@ button {
     cursor: pointer;
     border-radius: 15px;
     height: 44px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -178,7 +182,7 @@ img {
     box-sizing: border-box;
     border-radius: 10px;
     padding-left: 20px;
-    font-family: Rboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
