@@ -162,6 +162,12 @@ export default {
                 // this.roomInfo.openTime = 0;
                 // this.roomInfo.closeTime = 0;
                 this.$router.go();
+            }
+            else if (this.roomInfo.name == '' || this.roomInfo.capacity == '' || this.roomInfo.description == '' || this.roomInfo.address == '') {
+                alert("Please fill in all information before proceeding");
+                // this.roomInfo.openTime = 0;
+                // this.roomInfo.closeTime = 0;
+                // this.$router.go();
             } else {
                 await addRoom(this.roomInfo);
                 await this.$router.replace('home');
@@ -320,7 +326,7 @@ export default {
         margin-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width:60%;
+        width:70%;
         height:60%;
     }
     label {

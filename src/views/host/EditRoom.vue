@@ -12,72 +12,72 @@
             <div class="column2">
                 <input class="input_add" type="text" v-model="roomInfo.name">
             </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Capacity</label>
             </div>
-            <div class="column2">
-                <input class="input_number" type="number" v-model="roomInfo.capacity">
+            <div class="row">
+                <div class="column1">
+                    <label>Capacity</label>
+                </div>
+                <div class="column2">
+                    <input class="input_number" type="number" v-model="roomInfo.capacity">
             </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Description</label>
+                </div>
+                <div class="row">
+                    <div class="column1">
+                        <label>Description</label>
+                    </div>
+                    <div class="column2">
+                        <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column1">
+                        <label>Address</label>
+                    </div>
+                    <div class="column2">
+                        <input class="input_add" type="text" v-model="roomInfo.address">
             </div>
-            <div class="column2">
-                <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="column1">
+                            <label>Business Hours</label>
+                        </div>
+                        <div class="column2">
+                            <span class="timeText">Open:</span><input class="input_time" type="time" v-model="roomInfo.openTime">
+                            <span class="timeText">Close:</span><input class="input_time" type="time" v-model="roomInfo.closeTime">
             </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Address</label>
-            </div>
-            <div class="column2">
-                <input class="input_add" type="text" v-model="roomInfo.address">
-            </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Business Hours</label>
-            </div>
-            <div class="column2">
-                <span class="timeText">Open:</span><input class="input_time" type="time" v-model="roomInfo.openTime">
-                <span class="timeText">Close:</span><input class="input_time" type="time" v-model="roomInfo.closeTime">
-            </div>
-        </div>
-        <div class="row">
-            <div id="line">
-                <hr>
-            </div>
-        </div>
+                        </div>
+                        <div class="row">
+                            <div id="line">
+                                <hr>
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="column1">
-                <label>Amenities</label>
-            </div>
-            <div class="columnAmenities">
-                <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
-                    <label class="switch">
+                        <div class="row">
+                            <div class="column1">
+                                <label>Amenities</label>
+                            </div>
+                            <div class="columnAmenities">
+                                <ul v-for="amenity in amenities" v-bind:key="amenity['.key']">
+                                    <label class="switch">
                         <input class="amenity" type="checkbox" :id="amenity.offering" :value="amenity.offering" v-model="roomInfo.amenities">
                         <span class="slider" :for="amenity.offering"></span>
                         <p>{{amenity.offering}}</p>
                     </label>
-                </ul>
-            </div>
-        </div>
+                                </ul>
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="columnButtons">
-                <button>
+                        <div class="row">
+                            <div class="columnButtons">
+                                <button>
                     <router-link to="/home">Cancel</router-link>
                 </button>
-                <button @click="updateRoom">Confirm</button>
-            </div>
-        </div>
-            <!-- <input type = "file" @click="uploadImage"> -->
-        </div>
-    </div>
+                                <button @click="updateRoom">Confirm</button>
+                            </div>
+                        </div>
+                        <!-- <input type = "file" @click="uploadImage"> -->
+                    </div>
+                </div>
 </template>
 
 <script>
@@ -132,7 +132,8 @@ export default {
                 bookingSlots: [
                     []
                 ]
-            }
+            },
+            validTimeSlot: 'true'
         }
     },
     async created() {
@@ -146,8 +147,15 @@ export default {
 
     },
     methods: {
+        checkTimeValidation: function () {
+            if (this.roomInfo.openTime >= this.roomInfo.closeTime) {
+                this.validTimeSlot = 'false';
+            }
+        },
         calculateTime: function () {
-            this.roomInfo.bookingSlots = [[]];
+            this.roomInfo.bookingSlots = [
+                []
+            ];
             var i = 0;
             var startHoursMinutes = this.roomInfo.openTime.split(/[.:]/);
             var startHours = parseInt(startHoursMinutes[0], 10);
@@ -166,52 +174,59 @@ export default {
         },
         updateRoom: async function () {
             await this.calculateTime();
-            await updateRoom(this.roomInfo).then(() => {
-                this.$router.go(-1);
-            });
-            console.log(this.id);
-            console.log('test')
+            if (this.validTimeSlot === 'false') {
+                alert("INVALID TIME SLOTS, PLEASE FIX BEFORE MOVING ON");
+                this.$router.go();
+            } else if (this.roomInfo.name == '' || this.roomInfo.capacity == '' || this.roomInfo.description == '' || this.roomInfo.address == '') {
+                alert("Please fill in all information before proceeding");
+            } else {
+                await updateRoom(this.roomInfo).then(() => {
+                    this.$router.go(-1);
+                });
+                console.log(this.id);
+                console.log('test')
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+.column1 {
+    width: 30%;
+    align-items: center;
+}
 
-    .column1 {
-        width:30%;
-        align-items: center;
-    }
-    .column1 label{
-        float: right;
-        padding-right: 10%;
-    }
+.column1 label {
+    float: right;
+    padding-right: 10%;
+}
 
-    .column2 {
-        width:70%;
+.column2 {
+    width: 70%;
 
-    }
+}
 
-    .timeText {
-        float:left;
-        font-size: 1em;
-        margin-right: 3px;
-        margin-top: 20px;
-    }
+.timeText {
+    float: left;
+    font-size: 1em;
+    margin-right: 3px;
+    margin-top: 20px;
+}
 
-    .columnAmenities {
-        width:70%;
-        height:75px;
-        margin-left:-5%;
-    }
-    .columnAmenities ul{
-        display:inline-block;
-        margin-right: 20px;
-        margin-top:0;
-        margin-bottom: 0;
-        vertical-align:middle;
-    }
+.columnAmenities {
+    width: 70%;
+    height: 75px;
+    margin-left: -5%;
+}
 
+.columnAmenities ul {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
 
 .banner_text {
     font-family: Rajdhani;
@@ -226,29 +241,31 @@ export default {
 .banner {
     height: 400px;
     width: 100%;
-    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
+    background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url("../../assets/banner/Host2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top:-150px;
-    padding-top:150px;
+    margin-top: -150px;
+    padding-top: 150px;
 }
-    .input_number{
-        float: left;
-        margin: 10px 0;
-        padding-left: 15px;
-        background: #FFFFFF;
-        box-sizing: border-box;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 20px;
-        line-height: 35px;
-        word-break: break-word;
-        border: 0.75px solid darkgrey;
-        width: 75px;
-        border-radius: 5px;
-    }
+
+.input_number {
+    float: left;
+    margin: 10px 0;
+    padding-left: 15px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 35px;
+    word-break: break-word;
+    border: 0.75px solid darkgrey;
+    width: 75px;
+    border-radius: 5px;
+}
+
 .input_add {
-    float:left;
+    float: left;
     margin: 10px 0;
     padding-left: 15px;
     background: #FFFFFF;
@@ -262,13 +279,13 @@ export default {
     border: 0.75px solid darkgrey;
     width: 75%;
     border-radius: 5px;
-    resize:none;
+    resize: none;
 }
 
 .input_time {
     float: left;
     margin: 10px 25px 10px 0;
-    padding-left:15px;
+    padding-left: 15px;
     background: #FFFFFF;
     box-sizing: border-box;
     font-style: normal;
@@ -281,54 +298,53 @@ export default {
     border-radius: 5px;
 }
 
-    .columnButtons {
-        width:100%;
-    }
+.columnButtons {
+    width: 100%;
+}
 
-    .columnButtons button {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        cursor: pointer;
-        background: #FFFFFF;
-        border-radius: 15px;
-        height: 44px;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 35px;
-        text-align: center;
-        width: 15%;
-        color: #000000;
-        margin: 25px 25px;
-    }
+.columnButtons button {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    background: #FFFFFF;
+    border-radius: 15px;
+    height: 44px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+    width: 15%;
+    color: #000000;
+    margin: 25px 25px;
+}
 
-    .columnButtons a {
-        text-decoration: none;
-        color:black;
-    }
+.columnButtons a {
+    text-decoration: none;
+    color: black;
+}
 
+.row {
+    display: flex;
+    align-items: center;
+}
 
-    .row {
-        display: flex;
-        align-items: center;
-    }
+.edit {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 44px;
+    margin-bottom: 45px;
+    background: rgba(218, 229, 227, 0.9);
+    border-radius: 15px;
+    width: 55%;
+    height: 60%;
+}
 
-
-    .edit {
-        margin-left:auto;
-        margin-right:auto;
-        padding-top: 44px;
-        margin-bottom: 45px;
-        background: rgba(218, 229, 227, 0.9);
-        border-radius: 15px;
-        width:55%;
-        height:60%;
-    }
-    label {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 25px;
-    }
+label {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+}
 
 button {
     margin-top: 10px;
@@ -345,14 +361,14 @@ button {
     display: inline-block;
     width: 60px;
     height: 34px;
-    float:left;
+    float: left;
 }
 
 .switch p {
-    margin-left:0;
-    margin-top:10px;
-    font-size:0.7em;
-    text-align:center;
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 0.7em;
+    text-align: center;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
@@ -386,20 +402,17 @@ button {
     transition: .2s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
-
-
-
 </style>
