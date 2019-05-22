@@ -100,14 +100,12 @@
 </script>
 <style scoped>
     .row {
-        border: 2px solid red;
         margin:auto;
         width: 95%;
         display: flex;
         align-items:center;
     }
     .rowA {
-        border: 2px solid orange;
         display: flex;
         align-items: center;
         margin-left:auto;
@@ -115,31 +113,24 @@
     }
     .rowB {
         width:100%;
-        border: 2px solid Yellow;
     }
 
     .column1 {
-             border: 2px solid green;
              width: 10%;
          }
     .column2 {
-        border: 2px solid blue;
         width: 15%;
     }
     .column3 {
-        border: 2px solid purple;
         width: 15%;
     }
     .column4 {
-        border: 2px solid green;
         width: 20%;
     }
     .column5 {
-        border: 2px solid blue;
         width: 20%;
     }
     .column6 {
-        border: 2px solid purple;
         width: 20%;
     }
 

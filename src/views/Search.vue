@@ -106,7 +106,7 @@ export default {
     box-sizing: border-box;
     border-radius: 10px;
     padding-left: 20px;
-    font-family: Rboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
