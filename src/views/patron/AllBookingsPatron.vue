@@ -202,7 +202,7 @@
         border: 0.75px solid darkgrey;
         width:90%;
         padding-left: 0;
-        margin:0;
+        margin:auto;
         font-size: 20px;
         line-height: 35px;
         box-sizing: border-box;
