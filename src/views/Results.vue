@@ -71,13 +71,17 @@ export default {
             })
         },
         search: function () {
-            this.$router.push({
-                name: 'Results',
-                params: {
-                    criteria: this.criteria
-                }
-            })
-            this.$router.go();
+            if (this.criteria == '') {
+               alert('Missing criteria');
+            } else {
+                this.$router.push({
+                    name: 'Results',
+                    params: {
+                        criteria: this.criteria
+                    }
+                })
+                this.$router.go();
+            }
         }
     }
 }
