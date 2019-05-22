@@ -167,7 +167,6 @@
                 if (this.date === '') {
                     alert('Please select a date before moving on');
                     dateChecked = false;
-                    this.$router.push({path: '/allBookingsPatron'});
                 } else {
                     await checkBookingExist({
                         bookingInfo: bookingInfo
