@@ -2,13 +2,13 @@
     <div class="footer">
         <div class="row">
             <div class="column" id="icon">
-                <a href = "https://www.google.com/">
+                <a href = "https://www.facebook.com/CartaRoom/">
   	                <i class='fab fa-facebook'></i>
                 </a>
-                <a href = "https://www.google.com/">
+                <a href = "https://www.instagram.com/meet.potatum">
   	                <i class='fab fa-instagram'></i>
                 </a>
-                <a href = "https://www.google.com/">
+                <a href = "https://www.linkedin.com/company/cartaroom/">
                 	<i class='fab fa-linkedin-in'></i>
                 </a>
                 <br>
