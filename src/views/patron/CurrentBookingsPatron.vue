@@ -1,7 +1,7 @@
 <template>
     <div class="currentBookings">
         <div class="banner">
-            <p class="banner_text">All Current Bookings</p>
+            <p class="banner_text">Current Reservation</p>
         </div>
         <div class="books" v-for="booking of bookings" v-bind:key="booking['.key']">
             <div class="row">
