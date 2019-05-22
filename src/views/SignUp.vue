@@ -60,7 +60,6 @@
 
 <script>
 import firebase from 'firebase';
-import $ from'jQuery';
 var setAccType = firebase.functions().httpsCallable('setAccType');
 var addPatron = firebase.functions().httpsCallable('addPatron');
 var addHost = firebase.functions().httpsCallable('addHost');
