@@ -6,6 +6,7 @@ import App1 from './hostIndex.vue'; //Navbar for logged in user[Host]
 import App2 from './patronIndex.vue'; //Navbar for logged in user[Patron]
 import router from './router';
 
+
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
 
