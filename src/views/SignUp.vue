@@ -40,7 +40,7 @@
                     <option>Library</option>
                     <option>Community Centre</option>
                 </select>
-                    <span>Selected: {{ hostCredentials.selected }}</span>
+                    <!-- <span>Selected: {{ hostCredentials.selected }}</span> -->
                 </div>
                 <div class="signUpButtom">
                     <button class="progressive" @click="signUp">Sign Up</button>
@@ -94,35 +94,43 @@ export default {
     },
     methods: {
         signUp: function () {
-            firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
-                () => {
-                    setAccType({
-                        isHost: this.credentials.isHost
-                    });
-                    if (this.credentials.isHost) {
-                        addHost({
-                            firstName: this.credentials.firstName,
-                            lastName: this.credentials.lastName,
-                            email: this.credentials.email,
-                            phone: this.credentials.phone,
-                            businessName: this.hostCredentials.name,
-                            businessAddress: this.hostCredentials.address,
-                            businessPhone: this.hostCredentials.phone,
-                            businessType: this.hostCredentials.selected
+            if (this.credentials.firstName == '' || this.credentials.lastName == '' || this.credentials.phone == '' || this.credentials.email == '' || this.credentials.password == '') {
+                alert('Missing part of PERSONAL information')
+            } else if (this.credentials.isHost && (this.hostCredentials.name == '' || this.hostCredentials.address == '' || this.hostCredentials.phone == '' || this.hostCredentials.selected.length == 0)) {
+                alert('Missing part of HOST information')
+            } else if (!this.credentials.isHost && this.patronCredentials.selected.length == 0) {
+                alert('Missing part of PATRON information')
+            } else {
+                firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
+                    () => {
+                        setAccType({
+                            isHost: this.credentials.isHost
                         });
-                        console.log('host')
-                    } else {
-                        addPatron({
-                            firstName: this.credentials.firstName,
-                            lastName: this.credentials.lastName,
-                            email: this.credentials.email,
-                            phone: this.credentials.phone,
-                            occupation: this.patronCredentials.selected
-                        });
-                        console.log('patron')
-                    }
-                    this.$router.replace('login')
-                })
+                        if (this.credentials.isHost) {
+                            addHost({
+                                firstName: this.credentials.firstName,
+                                lastName: this.credentials.lastName,
+                                email: this.credentials.email,
+                                phone: this.credentials.phone,
+                                businessName: this.hostCredentials.name,
+                                businessAddress: this.hostCredentials.address,
+                                businessPhone: this.hostCredentials.phone,
+                                businessType: this.hostCredentials.selected
+                            });
+                            console.log('host')
+                        } else {
+                            addPatron({
+                                firstName: this.credentials.firstName,
+                                lastName: this.credentials.lastName,
+                                email: this.credentials.email,
+                                phone: this.credentials.phone,
+                                occupation: this.patronCredentials.selected
+                            });
+                            console.log('patron')
+                        }
+                        this.$router.replace('login')
+                    })
+            }
         },
 
         //<div class="overlay_div" id="overlay_div_a">
@@ -193,8 +201,8 @@ export default {
     width: 1493px;
     line-height: 153px;
     text-align: left;
-    margin-top:0px;
-    margin-bottom:0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .sign_button_a {
@@ -248,6 +256,15 @@ export default {
     margin-top: 0px;
     margin-bottom: 25px;
     margin-right: 45px;
+}
+
+.goBackToLogin {
+    text-align: left;
+    padding-left: 17%;
+}
+
+.signUpButtom {
+    text-align: right;
 }
 
 .goBackToLogin{

@@ -9,7 +9,6 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 
-
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
 
