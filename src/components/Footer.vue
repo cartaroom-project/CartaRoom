@@ -12,10 +12,10 @@
                 <i class='fab fa-linkedin-in'></i>
                 </a>
                 <br>
-                <a href = "mailto: contactpotatum.com">contactpotatum.com</a>
+                <a href = "mailto:contactpotatum.com">contactpotatum.com</a>
             </div>
             <div class="column">
-                <img src="https://drive.google.com/uc?export=view&id=1rxtg9V33m6s0IY4l3crjZaMEjRFSUgz9" style="width: 200px; height: 50px;">
+                <img src="https://drive.google.com/uc?export=view&id=1rxtg9V33m6s0IY4l3crjZaMEjRFSUgz9" alt="Made by potatum" style="width: 200px; height: 50px;">
                 <p id="since">since 2000</p>
             </div>
         </div>
