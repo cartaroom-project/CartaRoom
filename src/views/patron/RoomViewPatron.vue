@@ -167,8 +167,8 @@
                     closeTime: 0,
                     amenities: [],
                     bookingSlots: [{
-                        startingTime: '9:00',
-                        endingTime: '10:00'
+                        startingTime: '',
+                        endingTime: ''
                     }]
                 }
             }
