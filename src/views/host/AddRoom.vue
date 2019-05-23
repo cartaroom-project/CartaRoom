@@ -176,6 +176,7 @@ export default {
                     title: 'Warning!',
                     okLabel: 'OK BOSS!'
                 });
+                
                 // this.roomInfo.openTime = 0;
                 // this.roomInfo.closeTime = 0;
                 // this.$router.go();
