@@ -82,12 +82,13 @@ export default {
         return {
             rooms: [],
             criteria: '',
-            newCriteria: ''
+            criteriaLowerCase: ''
         }
     },
     created() {
+        this.criteriaLowerCase = this.$route.params.criteria.toLowerCase();
         this.criteria = this.$route.params.criteria;
-        db.ref('rooms').orderByChild("name").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
+        db.ref('rooms').orderByChild("nameLowerCase").startAt(this.criteriaLowerCase).endAt(this.criteriaLowerCase + "\uf8ff").once('value').then((snapshot) => {
             this.rooms = [];
             snapshot.forEach((doc) => {
                 this.rooms.push(doc.val());

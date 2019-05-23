@@ -116,6 +116,7 @@ export default {
             roomInfo: {
                 hostID: hostID,
                 name: '',
+                nameLowerCase: '',
                 capacity: '',
                 description: '',
                 address: '',
@@ -169,7 +170,9 @@ export default {
                 // this.roomInfo.closeTime = 0;
                 // this.$router.go();
             } else {
+                await (this.roomInfo.nameLowerCase = this.roomInfo.name.toLowerCase());
                 await addRoom(this.roomInfo);
+                await alert('Room Added!');
                 await this.$router.replace('home');
             }
         }
