@@ -9,7 +9,7 @@
                     <label>Room Name</label>
                 </div>
                 <div class="column2">
-                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name of room">
+                    <input class="input_add" v-focus v-model="roomInfo.name" placeholder="name of room">
                 </div>
             </div>
             <div class="row">
@@ -117,6 +117,7 @@ export default {
             roomInfo: {
                 hostID: hostID,
                 name: '',
+                nameLowerCase: '',
                 capacity: '',
                 description: '',
                 address: '',
@@ -170,10 +171,13 @@ export default {
                 // this.roomInfo.closeTime = 0;
                 // this.$router.go();
             } else {
+                await (this.roomInfo.nameLowerCase = this.roomInfo.name.toLowerCase());
                 await addRoom(this.roomInfo);
+                await alert('Room Added!');
                 await this.$router.replace('home');
             }
-        }
+        },
+
     }
 }
 </script>

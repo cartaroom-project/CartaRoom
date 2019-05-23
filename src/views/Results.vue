@@ -2,7 +2,7 @@
 <div class="finalResults">
     <div id="search_text">
         <div style="display:inline">
-            <input class="search_input big" type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
+            <input class="search_input big" v-focus type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
         </div>
     </div>
@@ -82,12 +82,13 @@ export default {
         return {
             rooms: [],
             criteria: '',
-            newCriteria: ''
+            criteriaLowerCase: ''
         }
     },
     created() {
+        this.criteriaLowerCase = this.$route.params.criteria.toLowerCase();
         this.criteria = this.$route.params.criteria;
-        db.ref('rooms').orderByChild("name").startAt(this.criteria).endAt(this.criteria + "\uf8ff").once('value').then((snapshot) => {
+        db.ref('rooms').orderByChild("nameLowerCase").startAt(this.criteriaLowerCase).endAt(this.criteriaLowerCase + "\uf8ff").once('value').then((snapshot) => {
             this.rooms = [];
             snapshot.forEach((doc) => {
                 this.rooms.push(doc.val());
