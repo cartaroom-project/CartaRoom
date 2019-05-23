@@ -11,7 +11,7 @@
 
             <div class="personalInfo">
                 <p class="signtext">Personal Information</p>
-                <input class="sign_input_half" v-model="credentials.firstName" placeholder="first name">
+                <input class="sign_input_half" v-focus v-model="credentials.firstName" placeholder="first name">
                 <input class="sign_input_half" v-model="credentials.lastName" placeholder="last name">
                 <input class="sign_input" v-model="credentials.phone" placeholder="phone">
                 <input class="sign_input" type="email" v-model="credentials.email" placeholder="email">

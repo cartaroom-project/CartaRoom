@@ -12,6 +12,12 @@ window.$ = $;
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
 
+Vue.directive('focus', {
+  inserted:function(el) {
+    el.focus()
+  }
+})
+
 let app;
 //export default firebase.database();
 

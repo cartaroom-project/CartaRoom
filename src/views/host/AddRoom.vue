@@ -9,7 +9,7 @@
                     <label>Room Name</label>
                 </div>
                 <div class="column2">
-                    <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name of room">
+                    <input class="input_add" v-focus v-model="roomInfo.name" placeholder="name of room">
                 </div>
             </div>
             <div class="row">
@@ -176,7 +176,8 @@ export default {
                 await alert('Room Added!');
                 await this.$router.replace('home');
             }
-        }
+        },
+
     }
 }
 </script>
