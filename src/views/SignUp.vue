@@ -31,7 +31,7 @@
 
                 <!-- business info -->
                 <div class="overlay_div" id="overlay_div_a">
-                    <p class="signtext">Business Inforation</p>
+                    <p class="signtext">Business Information</p>
                     <input class="sign_input" v-model="hostCredentials.name" placeholder="business name">
                     <input class="sign_input" v-model="hostCredentials.address" placeholder="business address">
                     <input class="sign_input" v-model="hostCredentials.phone" placeholder="business phone">

@@ -9,7 +9,7 @@
                 <label>Room Name</label>
             </div>
             <div class="column2">
-                <input class="input_add" type="text" v-model="roomInfo.name" placeholder="name of room">
+                <input class="input_add" v-focus type="text" v-model="roomInfo.name" placeholder="name of room">
                 </div>
             </div>
             <div class="row">
@@ -25,7 +25,8 @@
                         <label>Description</label>
                     </div>
                     <div class="column2">
-                        <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description" placeholder="quick description of the room"></textarea>
+                        <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description" placeholder="quick description of the room"
+                        :maxlength="30"></textarea>
                     </div>
                 </div>
                 <div class="row">
