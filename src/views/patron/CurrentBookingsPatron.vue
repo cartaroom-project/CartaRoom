@@ -1,7 +1,7 @@
 <template>
     <div class="currentBookings">
         <div class="banner">
-            <p class="banner_text">Current Reservation</p>
+            <p class="banner_text">Current Reservations</p>
         </div>
         <div class="books" v-for="booking of bookings" v-bind:key="booking['.key']">
             <div class="row">
@@ -56,12 +56,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="rowButtons">
-                    <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
-                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>
-                </div>
-            </div>
+<!--            <div class="row">-->
+<!--                <div class="rowButtons">-->
+<!--                    <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />-->
+<!--                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </template>
@@ -216,7 +216,7 @@
         padding-bottom: 45px;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 75vw;
+        width: 70vw;
     }
     .info{
         border: 0.75px solid darkgrey;
@@ -255,7 +255,7 @@
         font-size: 18px;
         line-height: 35px;
         text-align: center;
-        width: 15%;
+        width: 20%;
         color: #000000;
         margin: 0 25px;
     }

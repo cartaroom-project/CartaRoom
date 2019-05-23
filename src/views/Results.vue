@@ -165,12 +165,12 @@ span {
 }
 
 button {
-    margin: 1% 0;
+    margin: 2% 0;
     border-radius: 15px;
     height: 44px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 18px;
     line-height: 35px;
     text-align: center;

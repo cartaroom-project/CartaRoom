@@ -64,6 +64,7 @@
                         </label>
                     </ul>
                 </div>
+<!--                <input class="input_add" type="text" v-model="roomInfo.amenities" placeholder="other">-->
             </div>
 
             <div class="row">
@@ -178,10 +179,6 @@ export default {
 </script>
 
 <style scoped>
-    .columnButtons {
-        float: right;
-    }
-
     .column1 {
         width:30%;
         align-items: center;
@@ -292,6 +289,7 @@ export default {
 
     .columnButtons {
         width:100%;
+        float: right;
     }
 
     .columnButtons button {
@@ -334,12 +332,6 @@ export default {
         font-style: normal;
         font-weight: normal;
         font-size: 25px;
-    }
-
-    button {
-        margin-top: 10px;
-        width: 10%;
-        cursor: pointer;
     }
 
     .switch span {

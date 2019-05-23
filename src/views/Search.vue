@@ -18,6 +18,17 @@
         </div>
     </div>
     <div id="second">
+        <div class="row">
+            <div class="column1">
+    <h4 id="second_heading">What is CartaRoom?</h4>
+        <p style="font-size: 25px; font-family: Roboto;">CartaRoom is a convenient online room mangement service that connects local businesses with avaiable space with customers who need a temporary space. </p>
+                </div>
+            <div class="column2">
+        <img src="../assets/banner/Section.jpg">
+                </div>
+    </div>
+        </div>
+    <div id="third">
         <WhyCartaRoom></WhyCartaRoom>
         <p></p>
     </div>
@@ -84,9 +95,36 @@ export default {
     background-position: center;
 }
 
+    #second_heading{
+        font-family: Rajdhani;
+font-style: normal;
+font-weight: 600;
+font-size: 53px;
+line-height: 68px;
+
+color: #000000;
+
+    }
+    
+    img{ 
+
+-webkit-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+        height: 450px;
+        width: 100%;
+        
+    }
 #second {
     height: 450px;
+    
+    margin: 20px 50px;
+    
 }
+    
+    #third{
+        height: 450px;
+        background-color: #DAE5E3;
+    }
 
 #search_text {
     left: 25%;
@@ -134,6 +172,17 @@ export default {
     padding-left: 40px;
     margin-bottom: 0px;
 }
+    .row {
+        display: flex;
+    }
+
+    .column1 {
+        padding-left: 15%;
+        width: 25%;
+    }.column2 {
+        width: 75%;
+        margin-left: -15%;
+    }
 
 #search_button {
     background: rgba(84, 142, 255, 0.8);

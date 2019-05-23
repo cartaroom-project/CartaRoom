@@ -66,25 +66,17 @@ export default {
 
 <style scoped>
     #loginBody {
-        border:2px solid red;
         background: rgba(0, 0, 0, 0.54);
         width: 25vw;
         border-radius: 10px;
         margin-left:10%;
         padding: 2%;
     }
-    #loginNoAcc {
-        border:2px solid orange;
-    }
-    #loginButton {
-        bordeR:2px solid yellow;
-    }
 
     #loginButton   button {
         width: 7%;
     }
     #login_modal {
-        border: 2px solid black;
 
     }
   /* "scoped" attribute limit the CSS to this component only */
