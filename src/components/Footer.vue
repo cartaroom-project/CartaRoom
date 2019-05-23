@@ -1,31 +1,36 @@
 <template>
-    <div class="footer">
-        <div class="row">
-            <div class="column" id="icon">
-                <a href = "https://www.facebook.com/CartaRoom/">
+<div class="footer">
+    <div class="row">
+        <div class="column" id="icon">
+            <a href = "https://www.facebook.com/CartaRoom/">
   	                <i class='fab fa-facebook'></i>
                 </a>
-                <a href = "https://www.instagram.com/meet.potatum">
+            <a href = "https://www.instagram.com/meet.potatum">
   	                <i class='fab fa-instagram'></i>
                 </a>
-                <a href = "https://www.linkedin.com/company/cartaroom/">
+            <a href = "https://www.linkedin.com/company/cartaroom/">
                 	<i class='fab fa-linkedin-in'></i>
                 </a>
-                <br>
-                <a href = "mailto: contactpotatum.com">contactpotatum.com</a>
-            </div>
+            <br>
+            <a href = "mailto: contactpotatum.com">contactpotatum.com</a>
+        </div>
 
-            <div class="column">
-                <img src="https://drive.google.com/uc?export=view&id=1rxtg9V33m6s0IY4l3crjZaMEjRFSUgz9" style="width: 200px; height: 50px;">
-                <p id="since">since 2000</p>
-            </div>
+        <div class="column">
+            <img v-on:dblclick="easterEgg" src="https://drive.google.com/uc?export=view&id=1rxtg9V33m6s0IY4l3crjZaMEjRFSUgz9" style="width: 200px; height: 50px;">
+            <p id="since">since 2000</p>
         </div>
     </div>
+</div>
 </template>
 
 <script>
 export default {
-    name: "Footer"
+    name: "Footer",
+    methods: {
+        easterEgg: function () {
+            alert('EASTER EGG!');
+        }
+    }
 }
 </script>
 
