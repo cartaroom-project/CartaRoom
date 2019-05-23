@@ -188,10 +188,7 @@ export default {
     /* 1342px for hosts*/
 }
 
-.column {
-    float: center;
-    width: 50%;
-}
+
 
 #sign_up {
     font-family: Rajdhani;
@@ -207,13 +204,13 @@ export default {
 
 .sign_button_a {
     width: 120px;
-    height: 60px;
+
     left: 271px;
     top: 706px;
     margin-left: 120px;
     background: #FFFFFF;
     border-radius: 35px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -224,13 +221,12 @@ export default {
 
 .sign_button_b {
     width: 120px;
-    height: 60px;
     left: 271px;
     top: 706px;
     margin-left: 120px;
     background: #FFFFFF;
     border-radius: 35px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -241,10 +237,10 @@ export default {
 
 .progressive {
     width: 140px;
-    height: 70px;
-    font-family: Roboto;
+
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 20px;
     line-height: 35px;
     text-align: center;
@@ -280,7 +276,7 @@ export default {
     margin-bottom: 0px;
     margin-top: 0px;
     padding-bottom: 25px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -297,7 +293,7 @@ export default {
     box-sizing: border-box;
     margin-top: 25px;
     border-radius: 10px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -310,7 +306,7 @@ export default {
     background: #FFFFFF;
     border: 0.25px solid #000000;
     padding-left: 24px;
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -326,7 +322,7 @@ export default {
 }
 
 ::placeholder {
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -336,7 +332,7 @@ export default {
 
 :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -346,7 +342,7 @@ export default {
 
 ::-ms-input-placeholder {
     /* Microsoft Edge */
-    font-family: Roboto;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
