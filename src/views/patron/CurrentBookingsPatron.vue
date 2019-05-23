@@ -56,12 +56,12 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="row">-->
-<!--                <div class="rowButtons">-->
-<!--                    <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />-->
+            <div class="row">
+                <div class="rowButtons">
+                    <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
 <!--                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>-->
-<!--                </div>-->
-<!--            </div>-->
+                </div>
+            </div>
         </div>
     </div>
 </template>

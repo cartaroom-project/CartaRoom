@@ -4,7 +4,7 @@
         <div id="loginBody">
             <h3 class="heading">Log into your CartaRoom Account</h3>
             <h3 class="login_label">Please Enter Your Email</h3>
-            <input class="login_text" type="text" v-model="email" placeholder="email">
+            <input class="login_text" v-focus type="text" v-model="email" placeholder="email">
             <h3 class="login_label">Password</h3>
             <input class="login_text" type="password" v-model="password" placeholder="password" @keyup.enter="login">
         </div>

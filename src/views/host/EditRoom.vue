@@ -10,7 +10,7 @@
                 <label>Room Name</label>
             </div>
             <div class="column2">
-                <input class="input_add" type="text" v-model="roomInfo.name">
+                <input class="input_add" v-focus type="text" v-model="roomInfo.name">
             </div>
             </div>
             <div class="row">

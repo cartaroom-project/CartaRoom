@@ -87,7 +87,7 @@
                     <label>Date</label>
                 </div>
                 <div class="column2">
-                    <input id="info_date" type="date" v-model="date"><br />
+                    <input id="info_date" v-focus type="date" v-model="date"><br />
                     <h3>{{msg}}</h3>
                     <ul id="time_list" v-for="index in timeSlotsAvailable" :key="index">
                         <p id="time_slots">{{roomInfo.bookingSlots[index].startingTime}}:00 to {{roomInfo.bookingSlots[index].endingTime}}:00

@@ -4,14 +4,14 @@
         <h1 class="heading_one">Reserve a Room</h1>
         <div id="search_text">
             <p class="label_head">where</p>
-            <input class="search_input big" type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
+            <input class="search_input big" v-focus type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
             <br>
             <div style="display: inline-flex;">
                 <p class="label_head">when</p>
                 <p style="padding-left: 290px;" class="label_head">how many</p>
             </div>
             <br>
-            <input class="search_input small" style="margin-left: 40px; " type="text" placeholder="Date" @keyup.enter="search">
+            <input class="search_input small" style="margin:0 10px 0 40px; " type="text" placeholder="Date" @keyup.enter="search">
             <input class="search_input small" type="text" placeholder="Time" @keyup.enter="search">
             <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
@@ -46,7 +46,6 @@ import WhyCartaRoom from "../components/WhyCartaRoom";
 export default {
     name: 'search',
     components: {
-        HostNavbar,
         Recommended,
         WhyCartaRoom
     },
@@ -186,7 +185,8 @@ clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
 
 #search_button {
     background: rgba(84, 142, 255, 0.8);
-    margin-left: 90px;
+    width:100px;
+    margin-left:50px;
     border-radius: 5px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -194,7 +194,7 @@ clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
     font-size: 17px;
     text-align: center;
     color: #FFFFFF;
-    height: 47px;
+    height: 35px;
 }
 
 ::placeholder {

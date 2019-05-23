@@ -2,7 +2,7 @@
 <div class="header">
 
     <a class="logo">
-              <router-link to="/home">
+              <router-link to="/search">
                 <img src="https://drive.google.com/uc?export=view&id=1BkDWEKkJCkMcyIE81ydzIluN134CZxzK">
                 </router-link>
             </a>
