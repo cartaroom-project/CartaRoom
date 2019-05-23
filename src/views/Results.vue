@@ -2,7 +2,7 @@
 <div class="finalResults">
     <div id="search_text">
         <div style="display:inline">
-            <input class="search_input big" type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
+            <input class="search_input big" v-focus type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
         </div>
     </div>
