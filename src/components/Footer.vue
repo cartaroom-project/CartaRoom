@@ -28,7 +28,7 @@ export default {
     name: "Footer",
     methods: {
         easterEgg: function () {
-            alert('EASTER EGG!');
+            window.open('https://www.nerdtests.com/mq/testimages/167138_5eac1357f32b04d5a131.jpg', '_blank');
         }
     }
 }
