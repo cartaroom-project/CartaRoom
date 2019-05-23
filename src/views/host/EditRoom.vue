@@ -121,6 +121,7 @@ export default {
             roomInfo: {
                 hostID: hostID,
                 name: '',
+                nameLowerCase: '',
                 capacity: '',
                 description: '',
                 address: '',
@@ -180,9 +181,10 @@ export default {
             } else if (this.roomInfo.name == '' || this.roomInfo.capacity == '' || this.roomInfo.description == '' || this.roomInfo.address == '') {
                 alert("Please fill in all information before proceeding");
             } else {
-                await updateRoom(this.roomInfo).then(() => {
-                    this.$router.go(-1);
-                });
+                await (this.roomInfo.nameLowerCase = this.roomInfo.name.toLowerCase());
+                await updateRoom(this.roomInfo)
+                await alert('Room has been edited!');
+                await this.$router.go(-1);
                 console.log(this.id);
                 console.log('test')
             }
