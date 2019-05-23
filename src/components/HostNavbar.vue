@@ -62,14 +62,15 @@
         transition: margin-left .5s;
         padding: 20px;
     }
-        @media screen and (max-height: 450px) 
-    {
-    .sidenav {
-        padding-top: 15px;
-    }
-    .sidenav a {
-        font-size: 18px;
-    }
+    
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+        .sidenav a {
+            font-size: 18px;
+        }
+    }   
     .NavTitle {
         font-family: Roboto;
         font-style: normal;
