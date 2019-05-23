@@ -141,7 +141,7 @@ export default {
 }
 
 .column1 {
-    width: 40%;
+    width: 30%;
     align-items: center;
 }
 
@@ -151,7 +151,7 @@ export default {
 }
 
 .column2 {
-    width: 60%;
+    width: 70%;
     margin-top: 1%;
 }
 
@@ -197,23 +197,20 @@ button {
 }
 
 .results {
-    margin: 0 auto;
+    margin: 25px auto;
     padding-top: 25px;
-
-    margin-top: 25px;
-    margin-bottom: 25px;
     background: rgba(218, 229, 227, 0.9);
     border-radius: 15px;
-    width: 400px;
+    width: 30%;
     float: left;
     margin-left: 50px
 }
 
 .info {
     border: 0.75px solid darkgrey;
-    width: 75%;
+    width: 90%;
     font-size: 15px;
-    line-height: 35px;
+    line-height: 25px;
     box-sizing: border-box;
     background: #FFFFFF;
     border-radius: 5px;
@@ -223,7 +220,7 @@ button {
 
 .info2 {
     border: 0.75px solid darkgrey;
-    width: 75%;
+    width: 90%;
     padding-left: 0;
     font-size: 15px;
     line-height: 35px;

@@ -25,7 +25,8 @@
                         <label>Description</label>
                     </div>
                     <div class="column2">
-                        <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description" placeholder="quick description of the room"></textarea>
+                        <textarea class="input_add" type="text" cols="40" rows="3" v-model="roomInfo.description" placeholder="quick description of the room"
+                        :maxlength="30"></textarea>
                     </div>
                 </div>
                 <div class="row">

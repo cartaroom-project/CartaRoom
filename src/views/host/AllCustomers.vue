@@ -3,7 +3,7 @@
         <div class="banner">
             <p class="banner_text">All Your Customers</p>
         </div>
-        <div class="customer" v-for="booking of bookings.slice().reverse()" v-bind:key="booking['.key']">
+        <div class="customer" v-for="booking of bookings" v-bind:key="booking['.key']">
             <div class="row">
                 <div class="column1">
                     <img src="../../assets/banner/placeholde.png">
