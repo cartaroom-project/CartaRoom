@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="rowButtons">
                     <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
-<!--                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>-->
+                    <!--                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>-->
                 </div>
             </div>
         </div>
@@ -107,7 +107,18 @@ export default {
 
     methods: {
         changeBookingStatus: async function (booking, statMsg, alertMsg, winMsg) {
-            if (window.confirm(winMsg)) {
+            var yesOrNo = false;
+
+            await this.$dialogs.confirm(winMsg, {
+                title: 'Update:',
+                cancelLabel: 'CANCEL',
+                okLabel: 'OK'
+
+            }).then(res => {
+                yesOrNo = res.ok;
+            });
+
+            if (yesOrNo) {
 
                 await bookingStatus({
                     bookingID: booking.bookingID,
@@ -173,93 +184,102 @@ export default {
     padding: 0;
     margin: 5px 0;
 }
-    img{
-        width: 100%;
-        height:auto;
-    }
-    .banner_text {
-        font-family: Rajdhani;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 90px;
-        line-height: 191px;
-        text-align: center;
-        color: #000000;
-    }
-    .banner {
-        height: 400px;
-        width: 100%;
-        margin-top: -150px;
-        padding-top: 150px;
-        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url(../../assets/banner/Patron.jpg); 
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    label {
-        margin-left: 30%;
-        padding-top: 15px;
-        padding-bottom: 6px;
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 25px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        color: #000000;
-    }
-    .books{
-        left: 25%;
-        margin:0 auto;
-        padding-top: 44px;
-        margin-top: 45px;
-        margin-bottom: 45px;
-        padding-bottom: 45px;
-        background: rgba(218, 229, 227, 0.9);
-        border-radius: 15px;
-        width: 70vw;
-    }
-    .info{
-        border: 0.75px solid darkgrey;
-        margin:10px 0;
-        font-size: 20px;
-        line-height: 35px;
-        box-sizing: border-box;
-        background: #FFFFFF;
-        border-radius: 5px;
-        word-break: break-word;
-    }
-    .info2 {
-        border: 0.75px solid darkgrey;
-        width:60%;
-        padding-left: 0;
-        margin:10px 0;
-        font-size: 20px;
-        line-height: 35px;
-        box-sizing: border-box;
-        background: #FFFFFF;
-        border-radius: 5px;
-        word-break: break-word;
-    }
-    .rowButtons {
-        width:100%;
-        display: flex;
-        align-items: center;
-    }
-    button {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        background: #FFFFFF;
-        border-radius: 15px;
-        height: 44px;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 35px;
-        text-align: center;
-        width: 20%;
-        color: #000000;
-        margin: 0 25px;
-    }
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.banner_text {
+    font-family: Rajdhani;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 191px;
+    text-align: center;
+    color: #000000;
+}
+
+.banner {
+    height: 400px;
+    width: 100%;
+    margin-top: -150px;
+    padding-top: 150px;
+    background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url(../../assets/banner/Patron.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+label {
+    margin-left: 30%;
+    padding-top: 15px;
+    padding-bottom: 6px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.books {
+    left: 25%;
+    margin: 0 auto;
+    padding-top: 44px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    padding-bottom: 45px;
+    background: rgba(218, 229, 227, 0.9);
+    border-radius: 15px;
+    width: 70vw;
+}
+
+.info {
+    border: 0.75px solid darkgrey;
+    margin: 10px 0;
+    font-size: 20px;
+    line-height: 35px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 5px;
+    word-break: break-word;
+}
+
+.info2 {
+    border: 0.75px solid darkgrey;
+    width: 60%;
+    padding-left: 0;
+    margin: 10px 0;
+    font-size: 20px;
+    line-height: 35px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 5px;
+    word-break: break-word;
+}
+
+.rowButtons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+button {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    background: #FFFFFF;
+    border-radius: 15px;
+    height: 44px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+    width: 20%;
+    color: #000000;
+    margin: 0 25px;
+}
 
 .column2A p {
     margin: 0;
