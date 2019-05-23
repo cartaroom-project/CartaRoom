@@ -128,8 +128,8 @@ export default {
                 address: '',
                 roomID: roomID,
                 bookingCounter: 0,
-                openTime: 0,
-                closeTime: 0,
+                openTime: '',
+                closeTime: '',
                 amenities: [],
                 bookingSlots: [
                     []
@@ -165,15 +165,14 @@ export default {
             await this.checkTimeValidation();
             await this.calculateTime();
             if (this.validTimeSlot === 'false') {
-                this.$dialogs.alert('INVALID TIME SLOTS, PLEASE FIX BEFORE MOVING ON', {
+
+                await this.$dialogs.alert('INVALID TIME SLOTS, PLEASE FIX BEFORE MOVING ON', {
                     title: 'Warning!',
                     okLabel: 'OK'
                 });
-                // this.roomInfo.openTime = 0;
-                // this.roomInfo.closeTime = 0;
-                this.$router.go();
+                    await this.$router.go()
             } else if (this.roomInfo.name == '' || this.roomInfo.capacity == '' || this.roomInfo.description == '' || this.roomInfo.address == '') {
-                this.$dialogs.alert('Please fill in all information before proceeding', {
+                this.$dialogs.confirm('Please fill in all information before proceeding', {
                     title: 'Warning!',
                     okLabel: 'OK BOSS!'
                 });
@@ -293,10 +292,11 @@ export default {
     margin-right: 3px;
     margin-top: 20px;
 }
-    .columnButtons {
-        width:100%;
-        float: right;
-    }
+
+.columnButtons {
+    width: 100%;
+    float: right;
+}
 
 .input_time {
     float: left;
