@@ -4,7 +4,7 @@
         <div id="loginBody">
             <h3 class="heading">Log into your CartaRoom Account</h3>
             <h3 class="login_label">Please Enter Your Email</h3>
-            <input class="login_text" type="text" v-model="email" placeholder="email">
+            <input class="login_text" v-focus type="text" v-model="email" placeholder="email">
             <h3 class="login_label">Password</h3>
             <input class="login_text" type="password" v-model="password" placeholder="password" @keyup.enter="login">
         </div>
@@ -65,25 +65,17 @@ export default {
 
 <style scoped>
     #loginBody {
-        border:2px solid red;
         background: rgba(0, 0, 0, 0.54);
         width: 25vw;
         border-radius: 10px;
         margin-left:10%;
         padding: 2%;
     }
-    #loginNoAcc {
-        border:2px solid orange;
-    }
-    #loginButton {
-        bordeR:2px solid yellow;
-    }
 
     #loginButton   button {
         width: 7%;
     }
     #login_modal {
-        border: 2px solid black;
 
     }
   /* "scoped" attribute limit the CSS to this component only */

@@ -2,7 +2,7 @@
 <div class="finalResults">
     <div id="search_text">
         <div style="display:inline">
-            <input class="search_input big" type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
+            <input class="search_input big" v-focus type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
         </div>
     </div>
@@ -177,12 +177,12 @@ span {
 }
 
 button {
-    margin: 1% 0;
+    margin: 2% 0;
     border-radius: 15px;
     height: 44px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 18px;
     line-height: 35px;
     text-align: center;

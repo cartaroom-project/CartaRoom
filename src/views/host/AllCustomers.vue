@@ -10,10 +10,10 @@
                 </div>
                 <div class="column2">
                     <div class="rowA">
-                        <label>Host</label>
+                        <label>Patron</label>
                     </div>
                     <div class="rowB">
-                        <p class="info">{{ booking.host}}</p>
+                        <p class="info">{{ booking.userEmail}}</p>
                     </div>
                 </div>
                 <div class="column3">

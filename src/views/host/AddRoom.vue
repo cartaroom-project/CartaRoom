@@ -189,7 +189,8 @@ export default {
                 });
                 await this.$router.replace('home');
             }
-        }
+        },
+
     }
 }
 </script>
@@ -292,6 +293,10 @@ export default {
     margin-right: 3px;
     margin-top: 20px;
 }
+    .columnButtons {
+        width:100%;
+        float: right;
+    }
 
 .input_time {
     float: left;

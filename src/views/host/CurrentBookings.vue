@@ -1,7 +1,7 @@
 <template>
     <div class="currentBookings">
         <div class="banner">
-            <p class="banner_text">Current Bookings</p>
+            <p class="banner_text">Current Reservations</p>
         </div>
         <div class="current" v-for="booking of bookings.slice().reverse()" v-bind:key="booking['.key']">
             <div class="row">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="rowA">
                         <div class="column1A">
-                            <label>Reserved By</label>
+                            <label>Patron</label>
                         </div>
                         <div class="column2A">
                             <p class="info">{{ booking.userEmail}}</p>
@@ -27,21 +27,12 @@
                     </div>
                     <div class="rowA">
                         <div class="column1A">
-                            <label>Host</label>
-                        </div>
-                        <div class="column2A">
-                            <p class="info">{{ booking.host}}</p>
-                        </div>
-                    </div>
-                    <div class="rowA">
-                        <div class="column1A">
-                            <label>Date</label>
+                            <label>Reservation Date</label>
                         </div>
                         <div class="column2A">
                             <p class="info2">{{ booking.date}}</p>
                         </div>
                     </div>
-
                     <div class="rowA">
                         <div class="column1A">
                             <label>Reservation Time</label>
@@ -50,6 +41,25 @@
                             <p class="info2"> {{ booking.startTime }}:00 - {{ booking.endTime }}:00</p>
                         </div>
                     </div>
+                    <div class="rowA">
+                        <div id="line">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="rowA">
+                        <div class="column1A">
+                            <label>Status</label>
+                        </div>
+                        <div class="column2A">
+                            <p class="info2">{{ booking.status}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="rowButtons">
+                    <button id="delete" v-on:click="changeBookingStatus(booking,'cancelled', 'Reservation has been cancelled','Are you sure you want to CANCEL this reservation?')">Cancel Booking</button><br />
+                    <button v-on:click="changeBookingStatus(booking,'completed', 'Room has been used(simulated)','Are you sure you want to SIMULATE this reservation?')">Complete</button>
                 </div>
             </div>
         </div>
@@ -66,6 +76,7 @@
 
     var booking = firebase.functions().httpsCallable('hostBooking');
     var unbook = firebase.functions().httpsCallable('hostUnbook');
+    var bookingStatus = firebase.functions().httpsCallable('bookingStatus');
 
     var userID;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -83,14 +94,28 @@
                 bookings:[],
             }
         },
-        async created () {
-            await booking({bookings:this.bookings}).then((result) => {
+        async created() {
+            await booking({
+                bookings: this.bookings
+            }).then((result) => {
                 this.bookings = result.data.bookings
             }).catch(function (error) {
                 console.log(error);
             });
         },
         methods: {
+            changeBookingStatus: async function (booking, statMsg, alertMsg, winMsg) {
+                if (window.confirm(winMsg)) {
+
+                    await bookingStatus({
+                        bookingID: booking.bookingID,
+                        roomID: booking.room.roomID,
+                        statMsg: statMsg
+                    });
+                    await alert(alertMsg);
+                    this.$router.go();
+                }
+            },
             unbookRoom: function (booking) {
                 unbook({
                     bk: booking
@@ -110,31 +135,41 @@
         margin:auto;
         width: 90%;
         display: flex;
-        align-items:center;
+        align-items: center;
     }
     .rowA {
         display: flex;
-        align-items: center;
+        align-items:center;
     }
     .column1 {
-        width:30%;
+        width: 20vw;
     }
-    .column2 {
-        width: 100%;
-    }
+
     .column1A {
-        width: 40%;;
+        width: 40%;
+
     }
+
     .column1A label{
+        padding: 0;
         float: right;
         padding-right: 10%;
     }
+
+    .column2 {
+        width:100%;
+    }
+
     .column2A {
-        width:50%;
+        width: 60%;
+        padding: 0;
+        margin: 5px 0;
     }
     .column2A p {
-        margin:5px 0;
+        margin: 0;
     }
+
+
     img{
         width: 100%;
         height:auto;
@@ -151,11 +186,24 @@
     .banner {
         height: 400px;
         width: 100%;
-        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("../../assets/banner/Host2.jpg");
+        margin-top: -150px;
+        padding-top: 150px;
+        background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url(../../assets/banner/Patron.jpg);
         background-repeat: no-repeat;
         background-size: cover;
-        margin-top:-150px;
-        padding-top:150px;
+    }
+    label {
+        margin-left: 30%;
+        padding-top: 15px;
+        padding-bottom: 6px;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        color: #000000;
     }
     label {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -164,11 +212,11 @@
         font-size: 25px;
     }
     .current{
-        margin: 45px auto;
-        padding:1% 0;
+        padding: 2% 0;
+        margin:2% auto;
         background: rgba(218, 229, 227, 0.9);
         border-radius: 15px;
-        width: 50%;
+        width: 70vw;
     }
     .info{
         border: 0.75px solid darkgrey;
@@ -191,5 +239,28 @@
         background: #FFFFFF;
         border-radius: 5px;
         word-break: break-word;
+    }
+    .rowButtons {
+        width:100%;
+        display: inherit;
+    }
+    .rowButtons button {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        background: #FFFFFF;
+        border-radius: 15px;
+        height: 44px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 35px;
+        text-align: center;
+        width: 15%;
+        color: #000000;
+        margin: 10px 25px;
+    }
+
+    #delete {
+        background-color: #ff6961;
+        color:white;
     }
 </style>

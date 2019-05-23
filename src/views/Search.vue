@@ -4,14 +4,14 @@
         <h1 class="heading_one">Reserve a Room</h1>
         <div id="search_text">
             <p class="label_head">where</p>
-            <input class="search_input big" type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
+            <input class="search_input big" v-focus type="text" placeholder="Location" v-model="criteria" id="where" @keyup.enter="search">
             <br>
             <div style="display: inline-flex;">
                 <p class="label_head">when</p>
                 <p style="padding-left: 290px;" class="label_head">how many</p>
             </div>
             <br>
-            <input class="search_input small" style="margin-left: 40px; " type="text" placeholder="Date" @keyup.enter="search">
+            <input class="search_input small" style="margin:0 10px 0 40px; " type="text" placeholder="Date" @keyup.enter="search">
             <input class="search_input small" type="text" placeholder="Time" @keyup.enter="search">
             <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
@@ -20,9 +20,9 @@
     <div id="second">
         <div class="row">
             <div class="column1">
-                <h4 id="second_heading">What is CartaRoom?</h4>
-                <p style="font-size: 25px; font-family: Roboto;">CartaRoom is a convenient online room mangement service that connects local businesses with avaiable space with customers who need a temporary space. </p>
-            </div>
+    <h4 id="second_heading">What is CartaRoom?</h4>
+        <p style="font-size: 20px; font-family: Roboto;">CartaRoom is a convenient online room mangement service that connects local businesses with avaiable space with customers who need a temporary space. </p>
+                </div>
             <div class="column2">
                 <img src="../assets/banner/Section.jpg">
                 </div>
@@ -51,7 +51,6 @@ Vue.use(SlimDialog)
 export default {
     name: 'search',
     components: {
-        HostNavbar,
         Recommended,
         WhyCartaRoom
     },
@@ -103,16 +102,12 @@ export default {
     background-position: center;
 }
 
-#second_heading {
-    font-family: Rajdhani;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 53px;
-    line-height: 68px;
-
-    color: #000000;
-
-}
+    #second_heading{
+        font-family: Rajdhani;
+font-style: normal;
+font-weight: 600;
+font-size: 45px;
+line-height: 68px;
 
 img {
 
@@ -123,6 +118,19 @@ img {
 
 }
 
+    }
+    
+    img{ 
+
+-webkit-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+-moz-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+-o-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+        
+clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+        height: 450px;
+        width: 100%;
+        
+    }
 #second {
     height: 450px;
 
@@ -198,7 +206,8 @@ img {
 
 #search_button {
     background: rgba(84, 142, 255, 0.8);
-    margin-left: 90px;
+    width:100px;
+    margin-left:50px;
     border-radius: 5px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -206,7 +215,7 @@ img {
     font-size: 17px;
     text-align: center;
     color: #FFFFFF;
-    height: 47px;
+    height: 35px;
 }
 
 ::placeholder {
