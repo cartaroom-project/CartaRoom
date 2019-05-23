@@ -22,7 +22,6 @@
     </div>
 </div>
 </template>
-
 <script>
 export default {
     name: "Footer",
@@ -33,48 +32,40 @@ export default {
     }
 }
 </script>
-
 <style scoped>
-* {
-    box-sizing: border-box;
-}
-
-/* Create three equal columns that floats next to each other */
-.column {
-    float: left;
-    text-align: right;
-    width: 50%;
-    padding: 10px;
-    height: 90px;
-    background-color: black;
-}
-
-#icon {
-    text-align: left;
-}
-
-.fab {
-    color: white;
-    font-size: 50px;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-
-#since {
-    margin-top: -5px;
-    margin-bottom: 0px;
-    color: white;
-    font-size: 16px;
-}
-
-i {
-    padding-right: 15px;
-}
-
-.footer {
-    padding-top: 6.5%;
-}
+    * {
+        box-sizing: border-box;
+    }
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        text-align: right;
+        width: 50%;
+        padding: 10px;
+        height: 90px;
+        background-color: black;
+    }
+    #icon {
+        text-align: left;
+    }
+    .fab {
+        color: white;
+        font-size: 50px;
+    }
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    #since {
+        margin-top: -5px;
+        margin-bottom: 0px;
+        color: white;
+        font-size: 16px;
+    }
+    i {
+        padding-right: 15px;
+    }
+    .footer {
+        padding-top: 6.5%;
+    }
 </style>
