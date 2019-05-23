@@ -30,13 +30,11 @@
         </router-link>
     </div>
 </template>
-
 <script>
     export default {
         name: "HostNavbar"
     }
 </script>
-
 <style scoped>
     .sidenav {
         height: 100%;
@@ -48,9 +46,7 @@
         background-color: #111;
         overflow-x: hidden;
         padding-top: 60px;
-
     }
-
     .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -59,28 +55,21 @@
         display: block;
         transition: 0.3s;
     }
-
     .sidenav a:hover {
         color: #f1f1f1;
     }
-
     #   main {
         transition: margin-left .5s;
         padding: 20px;
     }
-
-
-    @media screen and (max-height: 450px) {
-        .sidenav {
-            padding-top: 15px;
-        }
-
-        .sidenav a {
-            font-size: 18px;
-        }
+        @media screen and (max-height: 450px) 
+    {
+    .sidenav {
+        padding-top: 15px;
     }
-
-
+    .sidenav a {
+        font-size: 18px;
+    }
     .NavTitle {
         font-family: Roboto;
         font-style: normal;
@@ -89,17 +78,14 @@
         position: relative;
         line-height: 29px;
     }
-
     #bottom {
         padding-top: 500px;
         position: relative;
     }
-
     .column {
         float: left;
         width: 50%;
     }
-
     .row:after {
         content: "";
         display: table;
