@@ -106,6 +106,7 @@
         margin-right: auto;
     }
     img{
+        border-radius:50%;
         width: 100%;
         height:auto;
     }
