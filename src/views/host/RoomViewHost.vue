@@ -91,6 +91,7 @@ Vue.use(SlimDialog)
 
 var createRoom = firebase.functions().httpsCallable('createRoom');
 var hostDeleteRoom = firebase.functions().httpsCallable('hostDeleteRoom');
+var bookingStatus = firebase.functions().httpsCallable('bookingStatus');
 
 var hostID;
 var roomID = '1';
@@ -155,11 +156,33 @@ export default {
     },
 
     methods: {
-        deleteRoom: function (id) {
-            db.ref('currentBookings').orderByChild("room/roomID").equalTo(id).once('value').then((snapshot) => {
+        deleteRoom: async function (id) {
+            db.ref('currentBookings').orderByChild("room/roomID").equalTo(id).once('value').then(async (snapshot) => {
                 if (snapshot.exists()) {
-                    if (window.confirm("Room currently has bookings, do you want to continue?")) {
-                        if (window.confirm("Are you sure you want to delete this room?")) {
+                    var yesOrNo1 = false;
+
+                    await this.$dialogs.confirm('Room currently has bookings, do you want to continue?', {
+                        title: 'Warning:',
+                        okLabel: 'YES',
+                        cancelLabel: 'NO'
+                    }).then(res => {
+                        yesOrNo1 = res.ok;
+                    });
+                
+                    console.log(yesOrNo1);
+                    
+                    if (yesOrNo1) {
+
+                        var yesOrNo2 = false;
+
+                        await this.$dialogs.confirm('Are you sure you want to delete this room?', {
+                            title: 'Warning:',
+                            okLabel: 'YES',
+                            cancelLabel: 'NO'
+                        }).then(res => {
+                            yesOrNo2 = res.ok;
+                        });
+                        if (yesOrNo2) {
                             hostDeleteRoom({
                                 id: id
                             }).then(() => {
@@ -180,7 +203,17 @@ export default {
                         }
                     }
                 } else {
-                    if (window.confirm("Are you sure you want to delete this room?")) {
+                    var yesOrNo = false;
+
+                    await this.$dialogs.confirm('Are you sure you want to delete this room?', {
+                        title: 'Warning!',
+                        okLabel: 'YES',
+                        cancelLabel: 'NO'
+                    }).then(res => {
+                        yesOrNo = res.ok;
+                    });
+                
+                    if (yesOrNo) {
                         hostDeleteRoom({
                             id: id
                         }).then(() => {

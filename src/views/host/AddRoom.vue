@@ -128,8 +128,8 @@ export default {
                 address: '',
                 roomID: roomID,
                 bookingCounter: 0,
-                openTime: 0,
-                closeTime: 0,
+                openTime: '',
+                closeTime: '',
                 amenities: [],
                 bookingSlots: [
                     []
@@ -165,10 +165,12 @@ export default {
             await this.checkTimeValidation();
             await this.calculateTime();
             if (this.validTimeSlot === 'false') {
+                
                 this.$dialogs.alert('INVALID TIME SLOTS, PLEASE FIX BEFORE MOVING ON', {
                     title: 'Warning!',
                     okLabel: 'OK'
                 });
+
                 // this.roomInfo.openTime = 0;
                 // this.roomInfo.closeTime = 0;
                 this.$router.go();
