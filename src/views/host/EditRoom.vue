@@ -82,12 +82,18 @@
 
 <script>
 import firebase from 'firebase';
+
+//alert styling
+import Vue from 'vue'
+import 'v-slim-dialog/dist/v-slim-dialog.css'
+import SlimDialog from 'v-slim-dialog'
+Vue.use(SlimDialog)
+
 var updateRoom = firebase.functions().httpsCallable('updateRoom');
 var createRoom = firebase.functions().httpsCallable('createRoom');
 
 var hostID;
 var roomID = '1';
-var storageRef = firebase.storage().ref();
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -176,14 +182,24 @@ export default {
         updateRoom: async function () {
             await this.calculateTime();
             if (this.validTimeSlot === 'false') {
-                alert("INVALID TIME SLOTS, PLEASE FIX BEFORE MOVING ON");
+                this.$dialogs.alert('INVALID TIME SLOTS, PLEASE FIX BEFORE MOVING ON', {
+                    title: 'Warning!',
+                    okLabel: 'OK'
+                });
                 this.$router.go();
             } else if (this.roomInfo.name == '' || this.roomInfo.capacity == '' || this.roomInfo.description == '' || this.roomInfo.address == '') {
-                alert("Please fill in all information before proceeding");
+                this.$dialogs.alert('Please fill in all information before proceeding', {
+                    title: 'Warning!',
+                    okLabel: 'OK'
+                });
             } else {
                 await (this.roomInfo.nameLowerCase = this.roomInfo.name.toLowerCase());
                 await updateRoom(this.roomInfo)
-                await alert('Room has been edited!');
+                await this.$dialogs.confirm('Are you sure you want to edit this room?', {
+                    title: 'Confirm',
+                    cancelLabel: 'No',
+                    okLabel: 'Yes'
+                });
                 await this.$router.go(-1);
                 console.log(this.id);
                 console.log('test')

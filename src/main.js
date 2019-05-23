@@ -12,6 +12,7 @@ window.$ = $;
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
 
+
 let app;
 //export default firebase.database();
 

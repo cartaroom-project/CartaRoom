@@ -10,71 +10,76 @@
         <div class="row">
             <img src="../assets/banner/image.png">
         </div>
-        <div class="row">
-            <div class="column1">
-                <label>Room Name</label>
+            <div class="row">
+                <div class="column1">
+                    <label>Room Name</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ room.name }}</p>
+                </div>
             </div>
-            <div class="column2">
-                <p class="info"> {{ room.name }}</p>
+            <div class="row">
+                <div class="column1">
+                    <label>Capacity</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ room.capacity }} People</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Capacity</label>
+            <div class="row">
+                <div class="column1">
+                    <label>Description</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ room.description }}</p>
+                </div>
             </div>
-            <div class="column2">
-                <p class="info2"> {{ room.capacity }} People</p>
+            <div class="row">
+                <div class="column1">
+                    <label>Address</label>
+                </div>
+                <div class="column2">
+                    <p class="info"> {{ room.address }}</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Description</label>
+            <div class="row">
+                <div class="column1">
+                    <label>Business Hours</label>
+                </div>
+                <div class="column2">
+                    <p class="info2"> {{ room.openTime }} - {{ room.closeTime }}</p>
+                </div>
             </div>
-            <div class="column2">
-                <p class="info"> {{ room.description }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Address</label>
-            </div>
-            <div class="column2">
-                <p class="info"> {{ room.address }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column1">
-                <label>Business Hours</label>
-            </div>
-            <div class="column2">
-                <p class="info2"> {{ room.openTime }} - {{ room.closeTime }}</p>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="columnButtons">
-                <button @click="viewRoom(room.roomID)">View Room</button>
+            <div class="row">
+                <div class="columnButtons">
+                    <button @click="viewRoom(room.roomID)">View Room</button>
+                </div>
             </div>
-        </div>
 
-        <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
-    </div>
-    <br>
-    <!-- comment out for new, can click logo to go back to search page -->
-    <!-- <router-link to="/search">
+            <!-- <button v-on:click="bookRoom(room)">Book Room</button> <br /> -->
+        </div>
+        <br>
+        <!-- comment out for new, can click logo to go back to search page -->
+        <!-- <router-link to="/search">
         <button>
             Back to Search  
         </button>
     </router-link> -->
-    <!-- <Recommended></Recommended> -->
-    <div class="clear">
+        <!-- <Recommended></Recommended> -->
+        <div class="clear">
+        </div>
     </div>
-</div>
 </template>
 
 <script>
 import firebase from 'firebase';
 import db from '@/firebase.js';
+//alert styling
+import Vue from 'vue'
+import 'v-slim-dialog/dist/v-slim-dialog.css'
+import SlimDialog from 'v-slim-dialog'
+Vue.use(SlimDialog)
 
 export default {
     name: 'results',
@@ -108,7 +113,10 @@ export default {
         },
         search: function () {
             if (this.criteria == '') {
-               alert('Missing criteria');
+                this.$dialogs.alert('Missing required criteria', {
+                    title: 'Warning!',
+                    okLabel: 'OK'
+                });
             } else {
                 this.$router.push({
                     name: 'Results',
@@ -129,23 +137,26 @@ export default {
 }
 
 .columnButtons {
-    width:100%;
+    width: 100%;
 }
+
 .column1 {
-    width:40%;
+    width: 40%;
     align-items: center;
 }
-.column1 label{
+
+.column1 label {
     float: right;
     padding-right: 10%;
 }
 
 .column2 {
-    width:60%;
-    margin-top:1%;
+    width: 60%;
+    margin-top: 1%;
 }
+
 .column2 p {
-    margin:0;
+    margin: 0;
 }
 
 label {
@@ -198,7 +209,7 @@ button {
     margin-left: 50px
 }
 
-.info{
+.info {
     border: 0.75px solid darkgrey;
     width: 75%;
     font-size: 15px;
@@ -209,9 +220,10 @@ button {
     margin-right: 100px;
     word-break: break-word;
 }
+
 .info2 {
     border: 0.75px solid darkgrey;
-    width:75%;
+    width: 75%;
     padding-left: 0;
     font-size: 15px;
     line-height: 35px;
@@ -220,6 +232,7 @@ button {
     border-radius: 5px;
     word-break: break-word;
 }
+
 .row {
     display: flex;
     align-items: center;
@@ -230,10 +243,10 @@ button {
     padding: 10px;
 }
 
-img{
+img {
     margin: 1% 25%;
     width: 50%;
-    height:auto;
+    height: auto;
 }
 
 /*img {*/
@@ -257,6 +270,7 @@ img{
     font-weight: 300;
     font-size: 15px;
 }
+
 #search_text {
     margin-bottom: 1%;
 }

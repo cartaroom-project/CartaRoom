@@ -60,6 +60,12 @@
 
 <script>
 import firebase from 'firebase';
+//alert styling
+import Vue from 'vue'
+import 'v-slim-dialog/dist/v-slim-dialog.css'
+import SlimDialog from 'v-slim-dialog'
+Vue.use(SlimDialog)
+
 var setAccType = firebase.functions().httpsCallable('setAccType');
 var addPatron = firebase.functions().httpsCallable('addPatron');
 var addHost = firebase.functions().httpsCallable('addHost');
@@ -95,11 +101,20 @@ export default {
     methods: {
         signUp: function () {
             if (this.credentials.firstName == '' || this.credentials.lastName == '' || this.credentials.phone == '' || this.credentials.email == '' || this.credentials.password == '') {
-                alert('Missing part of PERSONAL information')
+                this.$dialogs.alert('Missing part of PERSONAL information', {
+                    title: 'Warning!',
+                    okLabel: 'OK'
+                });
             } else if (this.credentials.isHost && (this.hostCredentials.name == '' || this.hostCredentials.address == '' || this.hostCredentials.phone == '' || this.hostCredentials.selected.length == 0)) {
-                alert('Missing part of HOST information')
+                this.$dialogs.alert('Missing part of HOST information', {
+                    title: 'Warning!',
+                    okLabel: 'OK'
+                });
             } else if (!this.credentials.isHost && this.patronCredentials.selected.length == 0) {
-                alert('Missing part of PATRON information')
+                this.$dialogs.alert('Missing part of PATRON information', {
+                    title: 'Warning!',
+                    okLabel: 'OK'
+                });
             } else {
                 firebase.auth().createUserWithEmailAndPassword(this.credentials.email, this.credentials.password).then(
                     () => {
@@ -267,13 +282,15 @@ export default {
     text-align: right;
 }
 
-.goBackToLogin{
-    text-align:left;
+.goBackToLogin {
+    text-align: left;
     padding-left: 17%;
 }
+
 .signUpButtom {
-    text-align:right;
+    text-align: right;
 }
+
 .signtext {
     margin-left: 45px;
     padding-top: 25px;

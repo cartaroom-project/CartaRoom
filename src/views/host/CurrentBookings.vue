@@ -58,6 +58,12 @@
 <script>
     import firebase from 'firebase';
     import db from '@/firebase.js';
+    //alert styling
+    import Vue from 'vue'
+    import 'v-slim-dialog/dist/v-slim-dialog.css'
+    import SlimDialog from 'v-slim-dialog'
+    Vue.use(SlimDialog)
+
     var booking = firebase.functions().httpsCallable('hostBooking');
     var unbook = firebase.functions().httpsCallable('hostUnbook');
 
@@ -89,7 +95,10 @@
                 unbook({
                     bk: booking
                 }).then(() => {
-                    alert('Room Status has been reset');
+                    this.$dialogs.alert('Room Status has been reset', {
+                    title: 'Update:',
+                    okLabel: 'OK'
+                });
                     this.$router.go();
                 })
             }
