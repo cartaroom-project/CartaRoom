@@ -8,7 +8,7 @@
     </div>
     <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
         <div class="row">
-            <img src="../assets/banner/image.png">
+            <img src="../assets/banner/roomView/room1.jpg">
         </div>
             <div class="row">
                 <div class="column1">
