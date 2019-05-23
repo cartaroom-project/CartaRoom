@@ -7,18 +7,18 @@
     <div class="rowPicture">
         <div id="rowBigPic">
             <div id="bigPicture">
-                <img src="../../assets/banner/image.png">
+                <img src="../../assets/banner/roomView/room1.jpg">
                 </div>
             </div>
             <div id="rowSmallPic">
                 <div class="smallPicture">
-                    <img src="../../assets/banner/image.png">
+                    <img src="../../assets/banner/roomView/room2.jpg">
                 </div>
                     <div class="smallPicture">
-                        <img src="../../assets/banner/image.png">
+                        <img src="../../assets/banner/roomView/room3.jpg">
                 </div>
                         <div class="smallPicture">
-                            <img src="../../assets/banner/image.png">
+                            <img src="../../assets/banner/roomView/room4.jpg">
                 </div>
                         </div>
 
@@ -181,7 +181,7 @@ export default {
         }
     },
 
-async created() {
+    async created() {
         this.id = this.$route.params.id;
 
         await createRoom({
@@ -328,8 +328,20 @@ async created() {
     padding: 10px 25%;
 }
 
+/* 
+#rowBigPic {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    padding: 10px 25%;
+} */
+
 #bigPicture {
     margin-top: 1%;
+}
+#bigPicture img {
+    height: auto;
+    width: 31%;
 }
 
 .smallPicture {
