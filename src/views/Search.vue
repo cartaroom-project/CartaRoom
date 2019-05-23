@@ -21,7 +21,7 @@
         <div class="row">
             <div class="column1">
     <h4 id="second_heading">What is CartaRoom?</h4>
-        <p style="font-size: 25px; font-family: Roboto;">CartaRoom is a convenient online room mangement service that connects local businesses with avaiable space with customers who need a temporary space. </p>
+        <p style="font-size: 20px; font-family: Roboto;">CartaRoom is a convenient online room mangement service that connects local businesses with avaiable space with customers who need a temporary space. </p>
                 </div>
             <div class="column2">
         <img src="../assets/banner/Section.jpg">
@@ -99,7 +99,7 @@ export default {
         font-family: Rajdhani;
 font-style: normal;
 font-weight: 600;
-font-size: 53px;
+font-size: 45px;
 line-height: 68px;
 
 color: #000000;
@@ -109,6 +109,9 @@ color: #000000;
     img{ 
 
 -webkit-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+-moz-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+-o-clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
+        
 clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
         height: 450px;
         width: 100%;
