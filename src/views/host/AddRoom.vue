@@ -64,6 +64,7 @@
                         </label>
                     </ul>
                 </div>
+<!--                <input class="input_add" type="text" v-model="roomInfo.amenities" placeholder="other">-->
             </div>
 
             <div class="row">
