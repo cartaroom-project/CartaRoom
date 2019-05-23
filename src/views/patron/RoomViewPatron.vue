@@ -107,6 +107,7 @@
 <script>
 import firebase from 'firebase';
 import db from '@/firebase.js';
+
 //alert styling
 import Vue from 'vue'
 import 'v-slim-dialog/dist/v-slim-dialog.css'
@@ -122,6 +123,7 @@ var updateUIDAllBookingViewRoomPatron = firebase.functions().httpsCallable('upda
 
 var userID;
 var roomID = '1';
+var storageRef = firebase.storage().ref();
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -172,13 +174,14 @@ export default {
                 closeTime: 0,
                 amenities: [],
                 bookingSlots: [{
-                    startingTime: '9:00',
-                    endingTime: '10:00'
+                    startingTime: '',
+                    endingTime: ''
                 }]
             }
         }
-    },
-    async created() {
+    }
+},
+async created() {
         this.id = this.$route.params.id;
 
         await createRoom({
