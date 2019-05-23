@@ -6,7 +6,7 @@
     <div class="books" v-for="booking of bookings" v-bind:key="booking['.key']">
         <div class="row">
             <div class="column1">
-                <img src="../../assets/banner/image.png">
+                <img src="../../assets/banner/roomView/room1.jpg">
                 </div>
                 <div class="column2">
                     <div class="rowA">
