@@ -33,7 +33,7 @@
             <p></p>
         </div>
     <div id="fourth">
-        <Recommended></Recommended>
+
     </div>
     </div>
 </template>
