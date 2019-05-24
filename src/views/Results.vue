@@ -1,10 +1,8 @@
 <template>
 <div class="finalResults">
     <div id="search_text">
-        <div style="display:inline">
-            <input class="search_input big" v-focus type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
-            <button id="search_button" @click="search">Search</button>
-        </div>
+        <input class="search_input big" v-focus type="text" placeholder= "Location" v-model="criteria" id="where" @keyup.enter="search">
+        <button id="search_button" @click="search">Search</button>
     </div>
     <div class="results" v-for="room of rooms" v-bind:key="room['.key']">
         <div class="row">
@@ -170,13 +168,8 @@ label {
     color: #000000;
 }
 
-span {
-    display: block;
-    margin-top: 20px;
-    font-size: 11px;
-}
 
-button {
+.columnButtons button {
     margin: 2% 0;
     border-radius: 15px;
     height: 44px;
@@ -191,10 +184,6 @@ button {
     background: #000000;
 }
 
-#stuck {
-    position: fixed;
-    margin-right: 100px;
-}
 
 .results {
     margin: 25px auto;
@@ -235,15 +224,12 @@ button {
     align-items: center;
 }
 
-.column {
-    flex: 25%;
-    padding: 10px;
-}
-
 img {
     margin: 1% 25%;
     width: 50%;
     height: auto;
+    border: 2px solid darkgray;
+    border-radius: 2px;
 }
 
 /*img {*/
@@ -266,26 +252,27 @@ img {
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
+    line-height:35px;
 }
 
 #search_text {
-    margin-bottom: 1%;
+    border: 2px solid black;
+    display: flex;
+    padding-left: 30%;
 }
 
-#search_button {
+#search_button{
+    height:35px;
     background: rgba(84, 142, 255, 0.8);
     border-radius: 5px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 17px;
     text-align: center;
     color: #FFFFFF;
-    width: 10%;
-    height: 35px;
-    margin-bottom: 0px;
-    float: right;
-    margin-right: 20%;
+    width: 7%;
+    margin: auto 0 auto 1%
 }
 
 .search_input {
@@ -293,16 +280,15 @@ img {
     border: 1px solid #828282;
     box-sizing: border-box;
     border-radius: 10px;
-    padding-left: 20px;
+    padding-left: 2%;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 300;
-    margin-top: 6px;
-    font-size: 15px;
+    font-size: 25px;
 }
 
 .big {
-    width: 620px;
+    width: 50%;
     height: 37px;
 }
 

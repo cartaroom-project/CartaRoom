@@ -11,9 +11,9 @@
                 <p style="padding-left: 290px;" class="label_head">how many</p>
             </div>
             <br>
-            <input class="search_input small" style="margin:0 10px 0 40px; " type="text" placeholder="Date" @keyup.enter="search">
-            <input class="search_input small" type="text" placeholder="Time" @keyup.enter="search">
-            <input class="search_input small" style="margin-left: 48px; " type="text" placeholder="Guests" @keyup.enter="search">
+            <input class="search_input date" style="margin:0 10px 0 40px; " type="date" placeholder="Date" @keyup.enter="search">
+            <input class="search_input time" type="time" placeholder="Time" @keyup.enter="search">
+            <input class="search_input guest" style="margin-left: 48px; " type="number" placeholder="Guests" @keyup.enter="search">
             <button id="search_button" @click="search">Search</button>
         </div>
     </div>
@@ -148,7 +148,7 @@ clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
     text-align: left;
     margin: 0 auto;
     background: #FFFFFF;
-    border: 0.25px solid #828282;
+    border: 2px solid #828282;
     box-sizing: border-box;
     border-radius: 15px;
     width: 700px;
@@ -157,7 +157,7 @@ clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
 
 .search_input {
     background: #FFFFFF;
-    border: 1px solid #828282;
+    border: 0.5px solid #828282;
     box-sizing: border-box;
     border-radius: 10px;
     padding-left: 20px;
@@ -167,11 +167,21 @@ clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
     font-size: 15px;
 }
 
-.small {
+.date {
     height: 37px;
-    width: 138px;
-
+    width: 25%;
 }
+.time {
+    height: 37px;
+    width: 15%;
+}
+
+.guest {
+    height: 37px;
+    width:15%;
+    padding-left:1%;
+}
+
 
 .big {
     width: 620px;
@@ -216,6 +226,8 @@ clip-path: polygon(25% 0, 100% 0, 100% 100%, 37% 100%);
     text-align: center;
     color: #FFFFFF;
     height: 35px;
+    float: right;
+    margin-right: 40px;
 }
 
 ::placeholder {
