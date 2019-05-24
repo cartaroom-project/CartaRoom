@@ -256,7 +256,6 @@ img {
 }
 
 #search_text {
-    border: 2px solid black;
     display: flex;
     padding-left: 30%;
 }
@@ -276,7 +275,7 @@ img {
 }
 
 .search_input {
-    background: #FFFFFF;
+    background: #F5F5F5;
     border: 1px solid #828282;
     box-sizing: border-box;
     border-radius: 10px;

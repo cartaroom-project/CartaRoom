@@ -24,7 +24,7 @@
 .search_button{
    background: rgba(84, 142, 255, 0.8);
    
-   width:202px;
+   width:45%;
    border-radius: 15px;
    font-family: Roboto;
    font-style: normal;

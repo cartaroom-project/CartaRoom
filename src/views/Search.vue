@@ -32,9 +32,9 @@
             <WhyCartaRoom></WhyCartaRoom>
             <p></p>
         </div>
-        <!--
-      <Recommended></Recommended>
-   -->
+    <div id="fourth">
+        <Recommended></Recommended>
+    </div>
     </div>
 </template>
 
