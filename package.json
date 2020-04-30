@@ -11,7 +11,7 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "firebase": "^5.11.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "v-slim-dialog": "0.0.9",
     "vee-validate": "^2.2.7",
     "vue": "^2.6.10",
